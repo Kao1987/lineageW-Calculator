@@ -1,9 +1,12 @@
+// 導入多語系模組
+import i18n from './modules/i18n.js';
+
 // 寵物基礎數據
 const petData = {
     wolf: {
         name: '狼',
         emoji: '🐺',
-        image: 'wolf.png',
+        image: 'assets/images/pets/wolf.png',
         mainStat: 'hp',
         baseStats: {
             endurance: 6,    // 忍耐力
@@ -16,7 +19,7 @@ const petData = {
     dog: {
         name: '杜賓狗',
         emoji: '🐕',
-        image: 'dubin.png',
+        image: 'assets/images/pets/dubin.png',
         mainStat: 'loyalty',
         baseStats: {
             endurance: 6,
@@ -29,7 +32,7 @@ const petData = {
     shepherd: {
         name: '牧羊犬',
         emoji: '🐕‍🦺',
-        image: 'sheepdog.png',
+        image: 'assets/images/pets/sheepdog.png',
         mainStat: 'endurance',
         baseStats: {
             endurance: 14,
@@ -42,7 +45,7 @@ const petData = {
     hound: {
         name: '小獵犬',
         emoji: '🐶',
-        image: 'beagle.png',
+        image: 'assets/images/pets/beagle.png',
         mainStat: 'speed',
         baseStats: {
             endurance: 6,
@@ -83,13 +86,16 @@ const statNames = {
 };
 
 // 現代通知系統
-function showNotification(message, type = 'warning') {
+function showNotification(messageKey, type = 'warning', params = {}) {
+    // 使用多語系翻譯
+    const message = i18n.t(`notifications.${messageKey}`, params);
+    
     // 創建通知元素
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.innerHTML = `
         <span>${message}</span>
-        <button class="notification-close" aria-label="關閉通知">&times;</button>
+        <button class="notification-close" aria-label="${i18n.t('common.close')}">&times;</button>
     `;
     
     // 添加到頁面
@@ -120,15 +126,15 @@ function closeNotification(notification) {
 function calculateCharacterBonus(statName, value) {
     switch(statName) {
         case 'endurance':
-            return `+${Math.floor(value / 5)} 物理防禦`;
+            return `+${Math.floor(value / 5)} ${i18n.t('characterBonus.endurance')}`;
         case 'loyalty':
-            return `+${Math.floor(value / 5)} 命中`;
+            return `+${Math.floor(value / 5)} ${i18n.t('characterBonus.loyalty')}`;
         case 'speed':
-            return `+${Math.floor(value / 10)} 迴避`;
+            return `+${Math.floor(value / 10)} ${i18n.t('characterBonus.speed')}`;
         case 'hp':
-            return `+${value * 30} HP`;
+            return `+${value * 30} ${i18n.t('characterBonus.hp')}`;
         case 'aggressiveness':
-            return '無加成';
+            return i18n.t('characterBonus.none');
         default:
             return '';
     }
@@ -161,8 +167,81 @@ const closeBtn = document.querySelector('.close');
 const helpTabBtns = document.querySelectorAll('.help-tab-btn');
 const helpTabContents = document.querySelectorAll('.help-tab-content');
 
-// 事件監聽器
-document.addEventListener('DOMContentLoaded', function() {
+// 初始化應用程式
+async function initializeApp() {
+    try {
+        // 載入所有語言檔案
+        await i18n.loadAllLanguages();
+        
+        // 初始化多語系內容
+        i18n.updatePageContent();
+        
+        // 建立語言切換器
+        createLanguageSwitcher();
+        
+        // 設置事件監聽器
+        setupEventListeners();
+        
+        console.log('App initialized successfully');
+    } catch (error) {
+        console.error('Failed to initialize app:', error);
+    }
+}
+
+// 建立語言切換器
+function createLanguageSwitcher() {
+    const headerElement = document.querySelector('header');
+    if (!headerElement) return;
+    
+    const languageContainer = document.createElement('div');
+    languageContainer.className = 'language-switcher';
+    languageContainer.innerHTML = `
+        <label for="language-select" data-i18n="common.language">${i18n.t('common.language')}</label>:
+        <select id="language-select" class="language-select">
+            <option value="zh-TW">繁體中文</option>
+            <option value="en">English</option>
+            <option value="ko">한국어</option>
+        </select>
+    `;
+    
+    headerElement.appendChild(languageContainer);
+    
+    // 設置當前語言
+    const languageSelect = document.getElementById('language-select');
+    languageSelect.value = i18n.getCurrentLanguage();
+    
+    // 語言切換事件
+    languageSelect.addEventListener('change', async function() {
+        const newLanguage = this.value;
+        const success = await i18n.changeLanguage(newLanguage);
+        if (success) {
+            // 更新寵物名稱顯示
+            updatePetNamesDisplay();
+            // 重新計算如果有選中的寵物
+            if (selectedPet) {
+                updateBaseStatsDisplay();
+            }
+            showNotification('languageChanged', 'success');
+        }
+    });
+}
+
+// 更新寵物名稱顯示
+function updatePetNamesDisplay() {
+    petCards.forEach(card => {
+        const petType = card.dataset.pet;
+        const petNameElement = card.querySelector('h3');
+        const petDescElement = card.querySelector('p');
+        
+        if (petNameElement && petDescElement) {
+            petNameElement.textContent = i18n.t(`pets.${petType}`);
+            petDescElement.textContent = i18n.t(`pets.${petType}Desc`);
+        }
+    });
+}
+
+// 事件監聽器設置
+function setupEventListeners() {
     // 寵物選擇
     petCards.forEach(card => {
         card.addEventListener('click', function() {
@@ -233,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
+}
 
 // 更新基礎屬性顯示
 function updateBaseStatsDisplay() {
@@ -286,7 +365,7 @@ function calculateExpectedStats(pet, level) {
 // 計算寵物屬性
 function calculatePetStats() {
     if (!selectedPet) {
-        showNotification('請先選擇一隻寵物', 'warning');
+        showNotification('selectPet', 'warning');
         return;
     }
     
@@ -301,7 +380,7 @@ function calculatePetStats() {
     
     // 驗證輸入
     if (level < 1 || level > 15) {
-        showNotification('等級必須在 1-15 之間', 'error');
+        showNotification('invalidLevel', 'error');
         return;
     }
     
@@ -314,25 +393,27 @@ function calculatePetStats() {
             // 設定合理上限為預期值的1.5倍（允許優質寵物）
             const maxReasonableValue = Math.ceil(expectedStats[stat] * 1.5);
             if (value > maxReasonableValue) {
-                showNotification(`${statNames[stat]}數值過高，請檢查是否正確（建議不超過${maxReasonableValue}）`, 'warning');
+                const statName = i18n.t(`stats.${stat}`);
+                showNotification('valueToohigh', 'warning', { stat: statName, max: maxReasonableValue });
                 return;
             }
         }
         if (value < 0) {
-            showNotification(`${statNames[stat]}不能為負數`, 'error');
+            const statName = i18n.t(`stats.${stat}`);
+            showNotification('negativeValue', 'error', { stat: statName });
             return;
         }
     }
     
     if (Object.values(currentStats).filter((val, index) => index !== 3).every(val => val === 0)) {
-        showNotification('請輸入至少一個屬性值（積極性除外）', 'warning');
+        showNotification('noAttributes', 'warning');
         return;
     }
     
     const analysis = analyzeStats(pet, level, currentStats, expectedStats);
     
     displayResults(pet, level, currentStats, expectedStats, analysis);
-    showNotification('計算完成！', 'success');
+    showNotification('calculateComplete', 'success');
 }
 
 // 分析屬性
@@ -352,7 +433,7 @@ function analyzeStats(pet, level, currentStats, expectedStats) {
             
             // 積極性特殊處理
             if (stat === 'aggressiveness') {
-                rating = '固定值';
+                rating = i18n.t('ratings.fixed');
                 ratingClass = 'rating-good';
                 score = 70; // 給予中等分數，但不影響平均
             } else {
@@ -371,27 +452,27 @@ function analyzeStats(pet, level, currentStats, expectedStats) {
                 }
                 
                 if (growthRate >= 1.4) {
-                    rating = '頂級';
+                    rating = i18n.t('ratings.excellent');
                     ratingClass = 'rating-excellent';
                     score = 100;
                 } else if (growthRate >= 1.2) {
-                    rating = '優秀';
+                    rating = i18n.t('ratings.good');
                     ratingClass = 'rating-excellent';
                     score = 85;
                 } else if (growthRate >= 1.05) {
-                    rating = '良好';
+                    rating = i18n.t('ratings.average');
                     ratingClass = 'rating-good';
                     score = 70;
                 } else if (growthRate >= 1.0) {
-                    rating = '普通';
+                    rating = i18n.t('ratings.normal');
                     ratingClass = 'rating-average';
                     score = 55;
                 } else if (growthRate >= 0.85) {
-                    rating = '待加強';
+                    rating = i18n.t('ratings.poor');
                     ratingClass = 'rating-average';
                     score = 40;
                 } else {
-                    rating = '不佳';
+                    rating = i18n.t('ratings.bad');
                     ratingClass = 'rating-poor';
                     score = 30;
                 }
@@ -424,25 +505,25 @@ function analyzeStats(pet, level, currentStats, expectedStats) {
     let overallRating, overallClass, description;
     
     if (averageScore >= 95) {
-        overallRating = '神級寵物';
+        overallRating = i18n.t('ratings.godTier');
         overallClass = 'excellent';
-        description = '恭喜！這是一隻極品寵物，屬性成長非常優秀，值得大力培養！';
+        description = i18n.t('descriptions.godTier');
     } else if (averageScore >= 80) {
-        overallRating = '優質寵物';
+        overallRating = i18n.t('ratings.highQuality');
         overallClass = 'excellent';
-        description = '這是一隻品質很好的寵物，屬性成長超出平均水準，推薦繼續培養。';
+        description = i18n.t('descriptions.highQuality');
     } else if (averageScore >= 65) {
-        overallRating = '普通寵物';
+        overallRating = i18n.t('ratings.normalPet');
         overallClass = 'good';
-        description = '這隻寵物的屬性成長合乎預期，可正常使用。';
+        description = i18n.t('descriptions.normal');
     } else if (averageScore >= 50) {
-        overallRating = '待加強';
+        overallRating = i18n.t('ratings.needImprovement');
         overallClass = 'average';
-        description = '這隻寵物的成長低於平均，建議強化或尋找更好的替代。';
+        description = i18n.t('descriptions.needImprovement');
     } else {
-        overallRating = '品質不佳';
+        overallRating = i18n.t('ratings.poorQuality');
         overallClass = 'poor';
-        description = '這隻寵物的屬性成長明顯不佳，建議重新培養或更換寵物。';
+        description = i18n.t('descriptions.poor');
     }
     
     return {
@@ -466,25 +547,25 @@ function displayResults(pet, level, currentStats, expectedStats, analysis) {
         // 創建圖片元素
         const petImg = document.createElement('img');
         petImg.src = pet.image;
-        petImg.alt = pet.name;
+        petImg.alt = i18n.t(`pets.${selectedPet}`);
         petImg.className = 'pet-image';
         petEmojiElement.appendChild(petImg);
     }
     
-    document.querySelector('.pet-name').textContent = pet.name;
+    document.querySelector('.pet-name').textContent = i18n.t(`pets.${selectedPet}`);
     document.querySelector('.pet-level').textContent = `Lv.${level}`;
     
     // 清空之前的比較表格
     const comparisonGrid = document.querySelector('.comparison-grid');
     comparisonGrid.innerHTML = `
         <div class="stat-row header">
-            <div>屬性</div>
-            <div>當前值</div>
-            <div>基礎值</div>
-            <div>成長值</div>
-            <div>期望值</div>
-            <div>角色加成</div>
-            <div>評價</div>
+            <div>${i18n.t('results.attribute')}</div>
+            <div>${i18n.t('common.currentValue')}</div>
+            <div>${i18n.t('common.baseValue')}</div>
+            <div>${i18n.t('common.growthValue')}</div>
+            <div>${i18n.t('common.expectedValue')}</div>
+            <div>${i18n.t('common.characterBonus')}</div>
+            <div>${i18n.t('common.rating')}</div>
         </div>
     `;
     
@@ -497,7 +578,7 @@ function displayResults(pet, level, currentStats, expectedStats, analysis) {
         const mainIndicator = data.isMain ? ' ⭐' : '';
         
         statRow.innerHTML = `
-            <div>${statNames[stat]}${mainIndicator}</div>
+            <div>${i18n.t(`stats.${stat}`)}${mainIndicator}</div>
             <div>${data.current}</div>
             <div>${data.base}</div>
             <div>+${data.growth}</div>
@@ -526,3 +607,6 @@ function displayResults(pet, level, currentStats, expectedStats, analysis) {
 function formatNumber(num) {
     return Math.round(num * 10) / 10;
 }
+
+// 應用程式初始化
+document.addEventListener('DOMContentLoaded', initializeApp);

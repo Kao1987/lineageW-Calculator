@@ -40,6 +40,50 @@ header h1 {
     color: #abb2bf;
 }
 
+/* 語言切換器樣式 */
+.language-switcher {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.language-switcher label {
+    color: #e5c07b;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.language-select {
+    background: #323844;
+    color: #abb2bf;
+    border: 2px solid #3e4451;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    min-width: 120px;
+}
+
+.language-select:hover {
+    border-color: #61dafb;
+    box-shadow: 0 0 8px rgba(97, 218, 251, 0.3);
+}
+
+.language-select:focus {
+    border-color: #61dafb;
+    box-shadow: 0 0 10px rgba(97, 218, 251, 0.4);
+}
+
+.language-select option {
+    background: #323844;
+    color: #abb2bf;
+    padding: 8px;
+}
+
 .main-content {
     background: #323844;
     border-radius: 20px;

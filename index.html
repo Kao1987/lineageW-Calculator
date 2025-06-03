@@ -9,7 +9,7 @@
     <meta name="author" content="Orien">
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%2361dafb'/><text x='16' y='22' text-anchor='middle' font-size='18' fill='white'>O</text></svg>">
-    <link rel="apple-touch-icon" sizes="180x180" href="OrionKao.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/OrionKao.png">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -22,7 +22,7 @@
     <meta property="twitter:title" content="天堂W 寵物屬性計算器">
     <meta property="twitter:description" content="計算您的寵物成長潛力與評價">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/main.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6RPKQGPBG0"></script>
     <script>
@@ -36,34 +36,34 @@
 <body>
     <div class="container">
         <header>
-            <h1>🐾 天堂W 寵物屬性計算器</h1>
-            <p class="subtitle">計算您的寵物成長潛力與評價</p>
+            <h1 data-i18n="title.main">🐾 天堂W 寵物屬性計算器</h1>
+            <p class="subtitle" data-i18n="title.subtitle">計算您的寵物成長潛力與評價</p>
         </header>
 
         <div class="main-content">
             <!-- 寵物選擇區 -->
             <section class="pet-selection" role="radiogroup" aria-labelledby="pet-selection-title">
-                <h2 id="pet-selection-title">選擇寵物</h2>
+                <h2 id="pet-selection-title" data-i18n="pets.select">選擇寵物</h2>
                 <div class="pet-grid">
                     <div class="pet-card" data-pet="wolf">
-                        <img src="wolf.png" alt="狼" class="pet-icon">
-                        <h3>狼</h3>
-                        <p>主屬：體力(HP)</p>
+                        <img src="assets/images/pets/wolf.png" alt="狼" class="pet-icon">
+                        <h3 data-i18n="pets.wolf">狼</h3>
+                        <p data-i18n="pets.wolfDesc">主屬：體力(HP)</p>
                     </div>
                     <div class="pet-card" data-pet="dog">
-                        <img src="dubin.png" alt="杜賓狗" class="pet-icon">
-                        <h3>杜賓狗</h3>
-                        <p>主屬：忠誠心(命中)</p>
+                        <img src="assets/images/pets/dubin.png" alt="杜賓狗" class="pet-icon">
+                        <h3 data-i18n="pets.dog">杜賓狗</h3>
+                        <p data-i18n="pets.dogDesc">主屬：忠誠心(命中)</p>
                     </div>
                     <div class="pet-card" data-pet="shepherd">
-                        <img src="sheepdog.png" alt="牧羊犬" class="pet-icon">
-                        <h3>牧羊犬</h3>
-                        <p>主屬：忍耐力(物防)</p>
+                        <img src="assets/images/pets/sheepdog.png" alt="牧羊犬" class="pet-icon">
+                        <h3 data-i18n="pets.shepherd">牧羊犬</h3>
+                        <p data-i18n="pets.shepherdDesc">主屬：忍耐力(物防)</p>
                     </div>
                     <div class="pet-card" data-pet="hound">
-                        <img src="beagle.png" alt="小獵犬" class="pet-icon">
-                        <h3>小獵犬</h3>
-                        <p>主屬：速度(迴避)</p>
+                        <img src="assets/images/pets/beagle.png" alt="小獵犬" class="pet-icon">
+                        <h3 data-i18n="pets.hound">小獵犬</h3>
+                        <p data-i18n="pets.houndDesc">主屬：速度(迴避)</p>
                     </div>
                 </div>
             </section>
@@ -71,58 +71,58 @@
             <!-- 輸入區 -->
             <section class="input-section">
                 <div class="input-group">
-                    <label for="level">寵物等級</label>
+                    <label for="level" data-i18n="common.level">寵物等級</label>
                     <input type="number" id="level" min="1" max="15" value="1">
                 </div>
 
                 <div class="stats-input">
                     <div class="stats-header">
-                        <h3>當前屬性值</h3>
-                        <button id="help-btn" class="help-btn">❓ 使用說明</button>
+                        <h3 data-i18n="stats.title">當前屬性值</h3>
+                        <button id="help-btn" class="help-btn" data-i18n="common.help">❓ 使用說明</button>
                     </div>
 
-                    <div class="warning">
+                    <div class="warning" data-i18n="stats.warning">
                         ⚠️ 請記得扣除技能加成的屬性點數
                     </div>
                     
                     <div class="stats-grid">
                         <div class="stat-input">
-                            <label for="endurance">忍耐力</label>
-                            <small class="stat-desc">5點=1物防</small>
+                            <label for="endurance" data-i18n="stats.endurance">忍耐力</label>
+                            <small class="stat-desc" data-i18n="stats.enduranceDesc">5點=1物防</small>
                             <input type="number" id="endurance" min="0" value="0">
                         </div>
                         <div class="stat-input">
-                            <label for="loyalty">忠誠心</label>
-                            <small class="stat-desc">5點=1近/遠/魔命中</small>
+                            <label for="loyalty" data-i18n="stats.loyalty">忠誠心</label>
+                            <small class="stat-desc" data-i18n="stats.loyaltyDesc">5點=1近/遠/魔命中</small>
                             <input type="number" id="loyalty" min="0" value="0">
                         </div>
                         <div class="stat-input">
-                            <label for="speed">速度</label>
-                            <small class="stat-desc">10點=1近/遠迴避</small>
+                            <label for="speed" data-i18n="stats.speed">速度</label>
+                            <small class="stat-desc" data-i18n="stats.speedDesc">10點=1近/遠迴避</small>
                             <input type="number" id="speed" min="0" value="0">
                         </div>
                         <div class="stat-input">
-                            <label for="aggressiveness">積極性</label>
-                            <small class="stat-desc">3點=1攻擊力</small>
+                            <label for="aggressiveness" data-i18n="stats.aggressiveness">積極性</label>
+                            <small class="stat-desc" data-i18n="stats.aggressivenessDesc">3點=1攻擊力</small>
                             <input type="number" id="aggressiveness" min="0" value="3" disabled>
-                            <small>※積極性固定為3，不會升級</small>
+                            <small data-i18n="stats.aggressivenessNote">※積極性固定為3，不會升級</small>
                         </div>
                         <div class="stat-input">
-                            <label for="hp">體力</label>
-                            <small class="stat-desc">1點=30HP</small>
+                            <label for="hp" data-i18n="stats.hp">體力</label>
+                            <small class="stat-desc" data-i18n="stats.hpDesc">1點=30HP</small>
                             <input type="number" id="hp" min="0" value="0">
                         </div>
                     </div>
                 </div>
 
                 <div class="button-group">
-                    <button id="calculate" class="calculate-btn">🧮 計算屬性評價</button>
+                    <button id="calculate" class="calculate-btn" data-i18n="common.calculate">🧮 計算屬性評價</button>
                 </div>
             </section>
 
             <!-- 結果顯示區 -->
             <section class="result-section" id="results" style="display: none;">
-                <h2>計算結果</h2>
+                <h2 data-i18n="results.title">計算結果</h2>
                 
                 <div class="pet-info">
                     <div class="selected-pet-display">
@@ -135,18 +135,19 @@
                 <div class="stats-comparison">
                     <div class="comparison-grid">
                         <div class="stat-row header">
-                            <div>屬性</div>
-                            <div>當前值</div>
-                            <div>基礎值</div>
-                            <div>成長值</div>
-                            <div>角色加成</div>
-                            <div>評價</div>
+                            <div data-i18n="results.attribute">屬性</div>
+                            <div data-i18n="common.currentValue">當前值</div>
+                            <div data-i18n="common.baseValue">基礎值</div>
+                            <div data-i18n="common.growthValue">成長值</div>
+                            <div data-i18n="common.expectedValue">期望值</div>
+                            <div data-i18n="common.characterBonus">角色加成</div>
+                            <div data-i18n="common.rating">評價</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="overall-rating">
-                    <h3>整體評價</h3>
+                    <h3 data-i18n="results.overallRating">整體評價</h3>
                     <div class="rating-display">
                         <span class="rating-badge"></span>
                         <p class="rating-description"></p>
@@ -158,71 +159,71 @@
             <div id="help-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 id="modal-title">🐾 使用說明</h2>
-                        <span class="close" aria-label="關閉說明視窗">&times;</span>
+                        <h2 id="modal-title" data-i18n="help.title">🐾 使用說明</h2>
+                        <span class="close" data-i18n-attr="aria-label:common.close" aria-label="關閉說明視窗">&times;</span>
                     </div>
                     <div class="modal-body">
                         <!-- 標籤按鈕 -->
                         <div class="help-tabs">
-                            <button class="help-tab-btn active" data-tab="usage-tab">使用方法</button>
-                            <button class="help-tab-btn" data-tab="calculation-tab">計算原理</button>
-                            <button class="help-tab-btn" data-tab="rating-tab">評價等級</button>
+                            <button class="help-tab-btn active" data-tab="usage-tab" data-i18n="help.usage">使用方法</button>
+                            <button class="help-tab-btn" data-tab="calculation-tab" data-i18n="help.calculation">計算原理</button>
+                            <button class="help-tab-btn" data-tab="rating-tab" data-i18n="help.ratingSystem">評價等級</button>
                         </div>
 
                         <!-- 使用方法標籤 -->
                         <div class="help-tab-content active" id="usage-tab">
-                            <h3>🚀 使用步驟</h3>
+                            <h3 data-i18n="help.steps.title">🚀 使用步驟</h3>
                             <div class="steps">
                                 <div class="step-item">
                                     <span class="step-num">1</span>
-                                    <div>選擇您的寵物類型</div>
+                                    <div data-i18n="help.steps.step1">選擇您的寵物類型</div>
                                 </div>
                                 <div class="step-item">
                                     <span class="step-num">2</span>
-                                    <div>輸入寵物等級（1-15）</div>
+                                    <div data-i18n="help.steps.step2">輸入寵物等級（1-15）</div>
                                 </div>
                                 <div class="step-item">
                                     <span class="step-num">3</span>
-                                    <div>輸入各屬性數值（⚠️請扣除技能加成）</div>
+                                    <div data-i18n="help.steps.step3">輸入各屬性數值（⚠️請扣除技能加成）</div>
                                 </div>
                                 <div class="step-item">
                                     <span class="step-num">4</span>
-                                    <div>點擊計算按鈕查看評價</div>
+                                    <div data-i18n="help.steps.step4">點擊計算按鈕查看評價</div>
                                 </div>
                             </div>
 
-                            <h3>🎯 寵物基礎數據</h3>
+                            <h3 data-i18n="help.baseData.title">🎯 寵物基礎數據</h3>
                             <table class="base-table">
                                 <tr>
-                                    <th>寵物</th>
-                                    <th>忍耐力</th>
-                                    <th>忠誠心</th>
-                                    <th>速度</th>
-                                    <th>體力</th>
+                                    <th data-i18n="pets.select">寵物</th>
+                                    <th data-i18n="stats.endurance">忍耐力</th>
+                                    <th data-i18n="stats.loyalty">忠誠心</th>
+                                    <th data-i18n="stats.speed">速度</th>
+                                    <th data-i18n="stats.hp">體力</th>
                                 </tr>
                                 <tr>
-                                    <td><img src="wolf.png" alt="狼" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 狼</td>
+                                    <td><img src="assets/images/pets/wolf.png" alt="狼" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 狼</td>
                                     <td>6</td>
                                     <td>6</td>
                                     <td>6</td>
                                     <td><strong>14</strong></td>
                                 </tr>
                                 <tr>
-                                    <td><img src="dubin.png" alt="杜賓狗" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 杜賓狗</td>
+                                    <td><img src="assets/images/pets/dubin.png" alt="杜賓狗" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 杜賓狗</td>
                                     <td>6</td>
                                     <td><strong>14</strong></td>
                                     <td>6</td>
                                     <td>6</td>
                                 </tr>
                                 <tr>
-                                    <td><img src="sheepdog.png" alt="牧羊犬" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 牧羊犬</td>
+                                    <td><img src="assets/images/pets/sheepdog.png" alt="牧羊犬" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 牧羊犬</td>
                                     <td><strong>14</strong></td>
                                     <td>6</td>
                                     <td>6</td>
                                     <td>6</td>
                                 </tr>
                                 <tr>
-                                    <td><img src="beagle.png" alt="小獵犬" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 小獵犬</td>
+                                    <td><img src="assets/images/pets/beagle.png" alt="小獵犬" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 小獵犬</td>
                                     <td>6</td>
                                     <td>6</td>
                                     <td><strong>14</strong></td>
@@ -233,33 +234,33 @@
 
                         <!-- 計算原理標籤 -->
                         <div class="help-tab-content" id="calculation-tab">
-                            <h3>🧮 計算原理</h3>
+                            <h3 data-i18n="help.calculationPrinciple.title">🧮 計算原理</h3>
                             <div class="calc-section">
-                                <h4>升級機率</h4>
+                                <h4 data-i18n="help.calculationPrinciple.upgradeRates">升級機率</h4>
                                 <div class="probability-section">
                                     <div class="prob-item">
-                                        <strong>主屬性：</strong>+1(5%), +2(15%), +3(30%), +4(20%), +5(15%), +6(10%), +7(5%)
-                                        <br><small>預期值：每級 +3.75 點</small>
+                                        <strong data-i18n="help.calculationPrinciple.mainStat">主屬性：+1(5%), +2(15%), +3(30%), +4(20%), +5(15%), +6(10%), +7(5%)</strong>
+                                        <br><small data-i18n="help.calculationPrinciple.mainStatExpected">預期值：每級 +3.75 點</small>
                                     </div>
                                     <div class="prob-item">
-                                        <strong>副屬性：</strong>+0(15%), +1(50%), +2(30%), +3(5%)
-                                        <br><small>預期值：每級 +1.25 點</small>
+                                        <strong data-i18n="help.calculationPrinciple.subStat">副屬性：+0(15%), +1(50%), +2(30%), +3(5%)</strong>
+                                        <br><small data-i18n="help.calculationPrinciple.subStatExpected">預期值：每級 +1.25 點</small>
                                     </div>
                                 </div>
                                 
-                                <h4>評分公式</h4>
+                                <h4 data-i18n="help.calculationPrinciple.formula">評分公式</h4>
                                 <div class="formula">
                                     <div class="formula-step">
-                                        <strong>1. 計算預期值</strong><br>
-                                        預期值 = 基礎值 + (等級-1) × 每級預期成長
+                                        <strong data-i18n="help.calculationPrinciple.formula1">1. 計算預期值</strong><br>
+                                        <span data-i18n="help.calculationPrinciple.formula1Desc">預期值 = 基礎值 + (等級-1) × 每級預期成長</span>
                                     </div>
                                     <div class="formula-step">
-                                        <strong>2. 計算成長率</strong><br>
-                                        成長率 = (當前值 - 基礎值) ÷ (預期值 - 基礎值)
+                                        <strong data-i18n="help.calculationPrinciple.formula2">2. 計算成長率</strong><br>
+                                        <span data-i18n="help.calculationPrinciple.formula2Desc">成長率 = (當前值 - 基礎值) ÷ (預期值 - 基礎值)</span>
                                     </div>
                                     <div class="formula-step">
-                                        <strong>3. 主屬性加權</strong><br>
-                                        主屬性分數 × 1.5 倍加權
+                                        <strong data-i18n="help.calculationPrinciple.formula3">3. 主屬性加權</strong><br>
+                                        <span data-i18n="help.calculationPrinciple.formula3Desc">主屬性分數 × 1.5 倍加權</span>
                                     </div>
                                 </div>
                             </div>
@@ -267,63 +268,63 @@
 
                         <!-- 評價等級標籤 -->
                         <div class="help-tab-content" id="rating-tab">
-                            <h3>🏆 評價等級</h3>
+                            <h3 data-i18n="help.ratingLevels.title">🏆 評價等級</h3>
                             <div class="rating-list">
                                 <div class="rating-item excellent">
-                                    <span class="rating-badge">頂級</span>
+                                    <span class="rating-badge" data-i18n="ratings.excellent">頂級</span>
                                     <div class="rating-info">
-                                        <strong>≥140%</strong> - 神級寵物，極品成長
+                                        <strong>≥140%</strong> - <span data-i18n="help.ratingLevels.excellent140">神級寵物，極品成長</span>
                                     </div>
                                 </div>
                                 <div class="rating-item excellent">
-                                    <span class="rating-badge">優秀</span>
+                                    <span class="rating-badge" data-i18n="ratings.good">優秀</span>
                                     <div class="rating-info">
-                                        <strong>120-139%</strong> - 品質優良，推薦培養
+                                        <strong>120-139%</strong> - <span data-i18n="help.ratingLevels.excellent120">品質優良，推薦培養</span>
                                     </div>
                                 </div>
                                 <div class="rating-item good">
-                                    <span class="rating-badge">良好</span>
+                                    <span class="rating-badge" data-i18n="ratings.average">良好</span>
                                     <div class="rating-info">
-                                        <strong>105-119%</strong> - 超出預期，值得培養
+                                        <strong>105-119%</strong> - <span data-i18n="help.ratingLevels.good105">超出預期，值得培養</span>
                                     </div>
                                 </div>
                                 <div class="rating-item average">
-                                    <span class="rating-badge">普通</span>
+                                    <span class="rating-badge" data-i18n="ratings.normal">普通</span>
                                     <div class="rating-info">
-                                        <strong>100-104%</strong> - 合乎預期，可正常使用
+                                        <strong>100-104%</strong> - <span data-i18n="help.ratingLevels.normal100">合乎預期，可正常使用</span>
                                     </div>
                                 </div>
                                 <div class="rating-item average">
-                                    <span class="rating-badge">待加強</span>
+                                    <span class="rating-badge" data-i18n="ratings.poor">待加強</span>
                                     <div class="rating-info">
-                                        <strong>85-99%</strong> - 低於平均，建議強化或替換
+                                        <strong>85-99%</strong> - <span data-i18n="help.ratingLevels.poor85">低於平均，建議強化或替換</span>
                                     </div>
                                 </div>
                                 <div class="rating-item poor">
-                                    <span class="rating-badge">不佳</span>
+                                    <span class="rating-badge" data-i18n="ratings.bad">不佳</span>
                                     <div class="rating-info">
-                                        <strong><85%</strong> - 明顯不佳，建議重練
+                                        <strong>&lt;85%</strong> - <span data-i18n="help.ratingLevels.bad">明顯不佳，建議重練</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="bonus-info">
-                                <h4>💡 評分說明</h4>
+                                <h4 data-i18n="help.ratingLevels.explanation">💡 評分說明</h4>
                                 <ul>
-                                    <li><strong>預期值 (100%)：</strong>根據升級機率計算的平均成長表現</li>
-                                    <li><strong>評分邏輯：</strong>以預期值為基準，評估寵物實際成長相對於理論平均值的表現</li>
-                                    <li><strong>主屬性加權：</strong>主屬性評分 × 1.5 倍，更重視寵物的主要特性</li>
-                                    <li><strong>整體評價：</strong>綜合所有屬性的加權平均分數</li>
-                                    <li><strong>「待加強」：</strong>明確提示該寵物需要更多投入或考慮替換</li>
+                                    <li><strong data-i18n="help.ratingLevels.expected">預期值 (100%)：根據升級機率計算的平均成長表現</strong></li>
+                                    <li><strong data-i18n="help.ratingLevels.logic">評分邏輯：以預期值為基準，評估寵物實際成長相對於理論平均值的表現</strong></li>
+                                    <li><strong data-i18n="help.ratingLevels.mainWeight">主屬性加權：主屬性評分 × 1.5 倍，更重視寵物的主要特性</strong></li>
+                                    <li><strong data-i18n="help.ratingLevels.overall">整體評價：綜合所有屬性的加權平均分數</strong></li>
+                                    <li><strong data-i18n="help.ratingLevels.improvement">「待加強」：明確提示該寵物需要更多投入或考慮替換</strong></li>
                                 </ul>
 
-                                <h4>💪 角色加成效果</h4>
+                                <h4 data-i18n="help.ratingLevels.bonusTitle">💪 角色加成效果</h4>
                                 <ul>
-                                    <li><strong>忍耐力：</strong>每5點 = +1物理防禦</li>
-                                    <li><strong>忠誠心：</strong>每5點 = +1近/遠/魔命中</li>
-                                    <li><strong>速度：</strong>每10點 = +1近/遠迴避</li>
-                                    <li><strong>體力：</strong>每1點 = +30HP</li>
-                                    <li><strong>積極性：</strong>影響攻擊積極度，固定為3</li>
+                                    <li><strong data-i18n="help.ratingLevels.enduranceBonus">忍耐力：每5點 = +1物理防禦</strong></li>
+                                    <li><strong data-i18n="help.ratingLevels.loyaltyBonus">忠誠心：每5點 = +1近/遠/魔命中</strong></li>
+                                    <li><strong data-i18n="help.ratingLevels.speedBonus">速度：每10點 = +1近/遠迴避</strong></li>
+                                    <li><strong data-i18n="help.ratingLevels.hpBonus">體力：每1點 = +30HP</strong></li>
+                                    <li><strong data-i18n="help.ratingLevels.aggressivenessBonus">積極性：影響攻擊積極度，固定為3</strong></li>
                                 </ul>
                             </div>
                         </div>
@@ -335,23 +336,24 @@
         <footer class="footer">
             <!-- 📝 意見回饋表單（上方） -->
             <div class="feedback-section">
-                <h3>📝與我聯繫</h3>
-                <p>有任何建議或意見嗎？歡迎填寫回饋表單！</p>
+                <h3 data-i18n="footer.contact">📝與我聯繫</h3>
+                <p data-i18n="footer.contactDesc">有任何建議或意見嗎？歡迎填寫回饋表單！</p>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfgqhDqccI-FwdwKCUL6EW7TqyJpCisUarKeyUu-Fv4BKidIA/viewform" 
                     target="_blank" 
-                    class="feedback-link">
+                    class="feedback-link"
+                    data-i18n="footer.feedbackLink">
                     🔗 點擊前往意見回饋表單
                 </a>
             </div>
             
             <!-- 👤 作者信息（下方） -->
             <div class="footer-info">
-                <p>Created by <strong>Orion</strong></p>
-                <p>Last Update: 2025/06/02 V2.4</p>
+                <p><span data-i18n="footer.createdBy">Created by</span> <strong data-i18n="footer.author">Orion</strong></p>
+                <p data-i18n="footer.lastUpdate">Last Update: 2025/06/02 V2.4</p>
             </div>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 </html> 
