@@ -17,8 +17,14 @@ export default {
     },
     
     title: {
-        main: '🐾 天堂W 寵物屬性計算器',
-        subtitle: '計算您的寵物成長潛力與評價'
+        main: '⚔️ 天堂W 綜合計算器',
+        subtitle: '專業的遊戲輔助計算工具'
+    },
+    
+    nav: {
+        petCalculator: '🐾 寵物屬性計算器',
+        jobChangeCalculator: '💎 轉職花費計算器',
+        moreFeatures: '🚀 更多功能'
     },
     
     pets: {
@@ -162,5 +168,85 @@ export default {
         speed: '迴避',
         hp: 'HP',
         none: '無加成'
+    },
+    
+    jobChange: {
+        title: '💎 轉職花費計算器',
+        description: '計算在NCSOFT規範下轉職所需的花費',
+        simpleCalculator: '📊 簡易計算',
+        detailedCalculator: '🔍 詳細計算',
+        
+        costSummary: {
+            baseCost: '基本轉職費用:',
+            coinCost: '轉職硬幣總花費:',
+            totalCost: '總計花費:',
+            packageDiscount: '轉職硬幣禮包 (-300枚)',
+            packageNote: '勾選後可節省300枚轉職硬幣'
+        },
+        
+        categories: {
+            equipment: '🛡️ 裝備',
+            weapon: '⚔️ 武器',
+            armor: '🛡️ 防具', 
+            accessory: '💍 飾品',
+            skill: '⚡ 技能',
+            spell: '🃏 咒語卡片',
+            cash: '🛍️ 商城裝備',
+            itemSelection: '轉職物品選擇'
+        },
+        
+        items: {
+            rareWeapon: '稀有武器:',
+            heroWeapon: '英雄武器:',
+            legendWeapon: '傳說武器:',
+            mythicWeapon: '神話武器:',
+            rareArmor: '稀有防具:',
+            heroArmor: '英雄防具:',
+            legendArmor: '傳說防具:',
+            mythicArmor: '神話防具:',
+            rareAccessory: '稀有飾品:',
+            heroAccessory: '英雄飾品:',
+            legendAccessory: '傳說飾品:',
+            mythicAccessory: '神話飾品:',
+            rareSkill: '稀有技能:',
+            heroSkill: '英雄技能:',
+            legendSkill: '傳說技能:',
+            mythicSkill: '神話技能:',
+            rareSpell: '稀有咒語卡:',
+            heroSpell: '英雄咒語卡:',
+            legendSpell: '傳說咒語卡:',
+            mythicSpell: '神話咒語卡:',
+            cashShirt: '商城T恤:',
+            cashShoulder: '商城肩甲:',
+            cashMask: '商城面甲:'
+        },
+        
+        costs: {
+            onePerItem: '(1枚/件)',
+            ninePerItem: '(9枚/件)',
+            twentySevenPerItem: '(27枚/件)',
+            eightyOnePerItem: '(81枚/件)',
+            onePerSkill: '(1枚/個)',
+            onePerCard: '(1枚/張)',
+            eightyOnePerCard: '(81枚/張)',
+            fivePerItem: '(5枚/件)',
+            complexCalculation: '(複雜計算)'
+        },
+        
+        costDetails: {
+            title: '詳細花費明細',
+            noItems: '請選擇要轉職的物品'
+        },
+        
+        detailed: {
+            title: '詳細裝備分類'
+        },
+        
+        qualities: {
+            rare: '稀有',
+            hero: '英雄', 
+            legend: '傳說',
+            mythic: '神話'
+        }
     }
 }; 

@@ -17,8 +17,14 @@ export default {
     },
     
     title: {
-        main: '🐾 Lineage W Pet Stats Calculator',
-        subtitle: 'Calculate your pet\'s growth potential and rating'
+        main: '⚔️ Lineage W Comprehensive Calculator',
+        subtitle: 'Professional game assistant tools'
+    },
+    
+    nav: {
+        petCalculator: '🐾 Pet Stats Calculator',
+        jobChangeCalculator: '💎 Job Change Cost Calculator',
+        moreFeatures: '🚀 More Features'
     },
     
     pets: {
@@ -162,5 +168,85 @@ export default {
         speed: 'Dodge',
         hp: 'HP',
         none: 'No Bonus'
+    },
+    
+    jobChange: {
+        title: '💎 Job Change Cost Calculator',
+        description: 'Calculate job change costs according to NCSOFT specifications',
+        simpleCalculator: '📊 Simple Calculator',
+        detailedCalculator: '🔍 Detailed Calculator',
+        
+        costSummary: {
+            baseCost: 'Basic Job Change Cost:',
+            coinCost: 'Total Job Change Coins:',
+            totalCost: 'Total Cost:',
+            packageDiscount: 'Job Change Coin Package (-300 coins)',
+            packageNote: 'Check to save 300 job change coins'
+        },
+        
+        categories: {
+            equipment: '🛡️ Equipment',
+            weapon: '⚔️ Weapon',
+            armor: '🛡️ Armor', 
+            accessory: '💍 Accessory',
+            skill: '⚡ Skill',
+            spell: '🃏 Spell Card',
+            cash: '🛍️ Cash Equipment',
+            itemSelection: 'Job Change Item Selection'
+        },
+        
+        items: {
+            rareWeapon: 'Rare Weapon:',
+            heroWeapon: 'Hero Weapon:',
+            legendWeapon: 'Legend Weapon:',
+            mythicWeapon: 'Mythic Weapon:',
+            rareArmor: 'Rare Armor:',
+            heroArmor: 'Hero Armor:',
+            legendArmor: 'Legend Armor:',
+            mythicArmor: 'Mythic Armor:',
+            rareAccessory: 'Rare Accessory:',
+            heroAccessory: 'Hero Accessory:',
+            legendAccessory: 'Legend Accessory:',
+            mythicAccessory: 'Mythic Accessory:',
+            rareSkill: 'Rare Skill:',
+            heroSkill: 'Hero Skill:',
+            legendSkill: 'Legend Skill:',
+            mythicSkill: 'Mythic Skill:',
+            rareSpell: 'Rare Spell Card:',
+            heroSpell: 'Hero Spell Card:',
+            legendSpell: 'Legend Spell Card:',
+            mythicSpell: 'Mythic Spell Card:',
+            cashShirt: 'Cash T-Shirt:',
+            cashShoulder: 'Cash Shoulder:',
+            cashMask: 'Cash Mask:'
+        },
+        
+        costs: {
+            onePerItem: '(1 coin/item)',
+            ninePerItem: '(9 coins/item)',
+            twentySevenPerItem: '(27 coins/item)',
+            eightyOnePerItem: '(81 coins/item)',
+            onePerSkill: '(1 coin/skill)',
+            onePerCard: '(1 coin/card)',
+            eightyOnePerCard: '(81 coins/card)',
+            fivePerItem: '(5 coins/item)',
+            complexCalculation: '(Complex calculation)'
+        },
+        
+        costDetails: {
+            title: 'Detailed Cost Breakdown',
+            noItems: 'Please select items to transfer'
+        },
+        
+        detailed: {
+            title: 'Detailed Equipment Categories'
+        },
+        
+        qualities: {
+            rare: 'Rare',
+            hero: 'Hero', 
+            legend: 'Legend',
+            mythic: 'Mythic'
+        }
     }
 }; 

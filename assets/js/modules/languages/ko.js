@@ -17,8 +17,14 @@ export default {
     },
     
     title: {
-        main: '🐾 리니지W 펫 능력치 계산기',
-        subtitle: '펫의 성장 잠재력과 평가를 계산하세요'
+        main: '⚔️ 리니지W 종합 계산기',
+        subtitle: '전문 게임 보조 도구'
+    },
+    
+    nav: {
+        petCalculator: '🐾 펫 능력치 계산기',
+        jobChangeCalculator: '💎 전직 비용 계산기',
+        moreFeatures: '🚀 더 많은 기능'
     },
     
     pets: {
@@ -162,5 +168,85 @@ export default {
         speed: '회피율',
         hp: 'HP',
         none: '보너스 없음'
+    },
+    
+    jobChange: {
+        title: '💎 전직 비용 계산기',
+        description: 'NCSOFT 규격에 따른 전직 비용 계산',
+        simpleCalculator: '📊 간단 계산',
+        detailedCalculator: '🔍 상세 계산',
+        
+        costSummary: {
+            baseCost: '기본 전직 비용:',
+            coinCost: '전직 코인 총 비용:',
+            totalCost: '총 비용:',
+            packageDiscount: '전직 코인 패키지 (-300개)',
+            packageNote: '체크하면 전직 코인 300개 절약'
+        },
+        
+        categories: {
+            equipment: '🛡️ 장비',
+            weapon: '⚔️ 무기',
+            armor: '🛡️ 방어구', 
+            accessory: '💍  액세서리',
+            skill: '⚡ 스킬',
+            spell: '🃏 마법 카드',
+            cash: '🛍️ 캐시 장비',
+            itemSelection: '전직 아이템 선택'
+        },
+        
+        items: {
+            rareWeapon: '레어 무기:',
+            heroWeapon: '영웅 무기:',
+            legendWeapon: '전설 무기:',
+            mythicWeapon: '신화 무기:',
+            rareArmor: '레어 방어구:',
+            heroArmor: '영웅 방어구:',
+            legendArmor: '전설 방어구:',
+            mythicArmor: '신화 방어구:',
+            rareAccessory: '레어 액세서리:',
+            heroAccessory: '영웅 액세서리:',
+            legendAccessory: '전설 액세서리:',
+            mythicAccessory: '신화 액세서리:',
+            rareSkill: '레어 스킬:',
+            heroSkill: '영웅 스킬:',
+            legendSkill: '전설 스킬:',
+            mythicSkill: '신화 스킬:',
+            rareSpell: '레어 마법 카드:',
+            heroSpell: '영웅 마법 카드:',
+            legendSpell: '전설 마법 카드:',
+            mythicSpell: '신화 마법 카드:',
+            cashShirt: '캐시 티셔츠:',
+            cashShoulder: '캐시 어깨 방어구:',
+            cashMask: '캐시 마스크:'
+        },
+        
+        costs: {
+            onePerItem: '(1개/아이템)',
+            ninePerItem: '(9개/아이템)',
+            twentySevenPerItem: '(27개/아이템)',
+            eightyOnePerItem: '(81개/아이템)',
+            onePerSkill: '(1개/스킬)',
+            onePerCard: '(1개/카드)',
+            eightyOnePerCard: '(81개/카드)',
+            fivePerItem: '(5개/아이템)',
+            complexCalculation: '(복합 계산)'
+        },
+        
+        costDetails: {
+            title: '상세 비용 내역',
+            noItems: '전직할 아이템을 선택해주세요'
+        },
+        
+        detailed: {
+            title: '상세 장비 분류'
+        },
+        
+        qualities: {
+            rare: '레어',
+            hero: '영웅', 
+            legend: '전설',
+            mythic: '신화'
+        }
     }
 }; 

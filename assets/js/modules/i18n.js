@@ -115,7 +115,15 @@ class I18n {
             if (element.tagName === 'INPUT' && element.type !== 'button') {
                 element.placeholder = translation;
             } else {
-                element.textContent = translation;
+                // 檢查元素是否有子節點需要保留
+                const childElements = element.querySelectorAll('*');
+                if (childElements.length === 0) {
+                    // 沒有子元素，直接設置文字內容
+                    element.textContent = translation;
+                } else {
+                    // 有子元素，只更新直接的文字節點
+                    this.updateTextNodeOnly(element, translation);
+                }
             }
         });
 
@@ -136,6 +144,21 @@ class I18n {
         document.dispatchEvent(new CustomEvent('languageChanged', {
             detail: { language: this.currentLanguage }
         }));
+    }
+
+    // 只更新文字節點，保留子元素
+    updateTextNodeOnly(element, translation) {
+        // 找到第一個文字節點並更新
+        for (let node of element.childNodes) {
+            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                node.textContent = translation;
+                return;
+            }
+        }
+        
+        // 如果沒有找到文字節點，在開頭插入一個
+        const textNode = document.createTextNode(translation);
+        element.insertBefore(textNode, element.firstChild);
     }
 
     // 取得當前語言

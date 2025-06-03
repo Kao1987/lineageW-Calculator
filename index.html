@@ -35,19 +35,29 @@
 <body>
     <div class="container">
         <header>
-            <h1>⚔️ 天堂W 綜合計算器</h1>
-            <p class="subtitle">專業的遊戲輔助計算工具</p>
+            <h1 data-i18n="title.main">⚔️ 天堂W 綜合計算器</h1>
+            <p class="subtitle" data-i18n="title.subtitle">專業的遊戲輔助計算工具</p>
+            
+            <!-- 語言切換器 -->
+            <div class="language-switcher">
+                <label for="language-select" data-i18n="common.language">🌐 語言:</label>
+                <select id="language-select" class="language-select">
+                    <option value="zh-TW">繁體中文</option>
+                    <option value="en">English</option>
+                    <option value="ko">한국어</option>
+                </select>
+            </div>
         </header>
 
         <!-- 導航選單 -->
         <nav class="nav-tabs">
-            <button class="nav-tab active" data-page="pet-calculator">
+            <button class="nav-tab active" data-page="pet-calculator" data-i18n="nav.petCalculator">
                 🐾 寵物屬性計算器
             </button>
-            <button class="nav-tab" data-page="job-change-calculator">
+            <button class="nav-tab" data-page="job-change-calculator" data-i18n="nav.jobChangeCalculator">
                 💎 轉職花費計算器
             </button>
-            <button class="nav-tab disabled" data-page="coming-soon" title="即將推出更多功能">
+            <button class="nav-tab disabled" data-page="coming-soon" title="即將推出更多功能" data-i18n="nav.moreFeatures">
                 🚀 更多功能
             </button>
         </nav>
@@ -57,27 +67,27 @@
             <div class="main-content">
                 <!-- 寵物選擇區 -->
                 <section class="pet-selection" role="radiogroup" aria-labelledby="pet-selection-title">
-                    <h2 id="pet-selection-title">選擇寵物</h2>
+                    <h2 id="pet-selection-title" data-i18n="pets.select">選擇寵物</h2>
                     <div class="pet-grid">
                         <div class="pet-card" data-pet="wolf">
                             <img src="assets/images/pets/wolf.png" alt="狼" class="pet-icon">
-                            <h3>狼</h3>
-                            <p>主屬：體力(HP)</p>
+                            <h3 data-i18n="pets.wolf">狼</h3>
+                            <p data-i18n="pets.wolfDesc">主屬：體力(HP)</p>
                         </div>
                         <div class="pet-card" data-pet="dog">
                             <img src="assets/images/pets/dubin.png" alt="杜賓狗" class="pet-icon">
-                            <h3>杜賓狗</h3>
-                            <p>主屬：忠誠心(命中)</p>
+                            <h3 data-i18n="pets.dog">杜賓狗</h3>
+                            <p data-i18n="pets.dogDesc">主屬：忠誠心(命中)</p>
                         </div>
                         <div class="pet-card" data-pet="shepherd">
                             <img src="assets/images/pets/sheepdog.png" alt="牧羊犬" class="pet-icon">
-                            <h3>牧羊犬</h3>
-                            <p>主屬：忍耐力(物防)</p>
+                            <h3 data-i18n="pets.shepherd">牧羊犬</h3>
+                            <p data-i18n="pets.shepherdDesc">主屬：忍耐力(物防)</p>
                         </div>
                         <div class="pet-card" data-pet="hound">
                             <img src="assets/images/pets/beagle.png" alt="小獵犬" class="pet-icon">
-                            <h3>小獵犬</h3>
-                            <p>主屬：速度(迴避)</p>
+                            <h3 data-i18n="pets.hound">小獵犬</h3>
+                            <p data-i18n="pets.houndDesc">主屬：速度(迴避)</p>
                         </div>
                     </div>
                 </section>
@@ -85,58 +95,58 @@
                 <!-- 輸入區 -->
                 <section class="input-section">
                     <div class="input-group">
-                        <label for="level">寵物等級</label>
+                        <label for="level" data-i18n="common.level">寵物等級</label>
                         <input type="number" id="level" min="1" max="15" value="1">
                     </div>
 
                     <div class="stats-input">
                         <div class="stats-header">
-                            <h3>當前屬性值</h3>
-                            <button id="help-btn" class="help-btn">❓ 使用說明</button>
+                            <h3 data-i18n="stats.title">當前屬性值</h3>
+                            <button id="help-btn" class="help-btn" data-i18n="common.help">❓ 使用說明</button>
                         </div>
 
-                        <div class="warning">
+                        <div class="warning" data-i18n="stats.warning">
                             ⚠️ 請記得扣除技能加成的屬性點數
                         </div>
                         
                         <div class="stats-grid">
                             <div class="stat-input">
-                                <label for="endurance">忍耐力</label>
-                                <small class="stat-desc">5點=1物防</small>
+                                <label for="endurance" data-i18n="stats.endurance">忍耐力</label>
+                                <small class="stat-desc" data-i18n="stats.enduranceDesc">5點=1物防</small>
                                 <input type="number" id="endurance" min="0" value="0">
                             </div>
                             <div class="stat-input">
-                                <label for="loyalty">忠誠心</label>
-                                <small class="stat-desc">5點=1近/遠/魔命中</small>
+                                <label for="loyalty" data-i18n="stats.loyalty">忠誠心</label>
+                                <small class="stat-desc" data-i18n="stats.loyaltyDesc">5點=1近/遠/魔命中</small>
                                 <input type="number" id="loyalty" min="0" value="0">
                             </div>
                             <div class="stat-input">
-                                <label for="speed">速度</label>
-                                <small class="stat-desc">10點=1近/遠迴避</small>
+                                <label for="speed" data-i18n="stats.speed">速度</label>
+                                <small class="stat-desc" data-i18n="stats.speedDesc">10點=1近/遠迴避</small>
                                 <input type="number" id="speed" min="0" value="0">
                             </div>
                             <div class="stat-input">
-                                <label for="aggressiveness">積極性</label>
-                                <small class="stat-desc">3點=1攻擊力</small>
+                                <label for="aggressiveness" data-i18n="stats.aggressiveness">積極性</label>
+                                <small class="stat-desc" data-i18n="stats.aggressivenessDesc">3點=1攻擊力</small>
                                 <input type="number" id="aggressiveness" min="0" value="3" disabled>
-                                <small>※積極性固定為3，不會升級</small>
+                                <small data-i18n="stats.aggressivenessNote">※積極性固定為3，不會升級</small>
                             </div>
                             <div class="stat-input">
-                                <label for="hp">體力</label>
-                                <small class="stat-desc">1點=30HP</small>
+                                <label for="hp" data-i18n="stats.hp">體力</label>
+                                <small class="stat-desc" data-i18n="stats.hpDesc">1點=30HP</small>
                                 <input type="number" id="hp" min="0" value="0">
                             </div>
                         </div>
                     </div>
 
                     <div class="button-group">
-                        <button id="calculate" class="calculate-btn">🧮 計算屬性評價</button>
+                        <button id="calculate" class="calculate-btn" data-i18n="common.calculate">🧮 計算屬性評價</button>
                     </div>
                 </section>
 
                 <!-- 結果顯示區 -->
                 <section class="result-section" id="results" style="display: none;">
-                    <h2>計算結果</h2>
+                    <h2 data-i18n="results.title">計算結果</h2>
                     
                     <div class="pet-info">
                         <div class="selected-pet-display">
@@ -149,19 +159,19 @@
                     <div class="stats-comparison">
                         <div class="comparison-grid">
                             <div class="stat-row header">
-                                <div>屬性</div>
-                                <div>當前值</div>
-                                <div>基礎值</div>
-                                <div>成長值</div>
-                                <div>期望值</div>
-                                <div>角色加成</div>
-                                <div>評價</div>
+                                <div data-i18n="results.attribute">屬性</div>
+                                <div data-i18n="common.currentValue">當前值</div>
+                                <div data-i18n="common.baseValue">基礎值</div>
+                                <div data-i18n="common.growthValue">成長值</div>
+                                <div data-i18n="common.expectedValue">期望值</div>
+                                <div data-i18n="common.characterBonus">角色加成</div>
+                                <div data-i18n="common.rating">評價</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="overall-rating">
-                        <h3>整體評價</h3>
+                        <h3 data-i18n="results.overallRating">整體評價</h3>
                         <div class="rating-display">
                             <span class="rating-badge"></span>
                             <p class="rating-description"></p>
@@ -175,15 +185,15 @@
         <div class="page-content" id="job-change-calculator">
             <div class="main-content">
                 <section class="job-change-section">
-                    <h2>💎 轉職花費計算器</h2>
-                    <p class="section-description">計算在NCSOFT規範下轉職所需的花費</p>
+                    <h2 data-i18n="jobChange.title">💎 轉職花費計算器</h2>
+                    <p class="section-description" data-i18n="jobChange.description">計算在NCSOFT規範下轉職所需的花費</p>
 
                     <!-- 子導航 -->
                     <nav class="sub-nav-tabs">
-                        <button class="sub-nav-tab active" data-sub-page="simple-calculator">
+                        <button class="sub-nav-tab active" data-sub-page="simple-calculator" data-i18n="jobChange.simpleCalculator">
                             📊 簡易計算
                         </button>
-                        <button class="sub-nav-tab" data-sub-page="detailed-calculator">
+                        <button class="sub-nav-tab" data-sub-page="detailed-calculator" data-i18n="jobChange.detailedCalculator">
                             🔍 詳細計算
                         </button>
                     </nav>
@@ -194,15 +204,15 @@
                         <div class="cost-display">
                             <div class="cost-summary-live">
                                 <div class="cost-item">
-                                    <span class="cost-label">基本轉職費用:</span>
+                                    <span class="cost-label" data-i18n="jobChange.costSummary.baseCost">基本轉職費用:</span>
                                     <span class="cost-value">2000鑽</span>
                                 </div>
                                 <div class="cost-item">
-                                    <span class="cost-label">轉職硬幣總花費:</span>
+                                    <span class="cost-label" data-i18n="jobChange.costSummary.coinCost">轉職硬幣總花費:</span>
                                     <span class="cost-value" id="live-coin-cost">0枚</span>
                                 </div>
                                 <div class="cost-item total">
-                                    <span class="cost-label">總計花費:</span>
+                                    <span class="cost-label" data-i18n="jobChange.costSummary.totalCost">總計花費:</span>
                                     <span class="cost-value" id="live-total-cost">2000鑽</span>
                                 </div>
                             </div>
@@ -213,49 +223,49 @@
                             <label class="package-checkbox">
                                 <input type="checkbox" id="coin-package" class="package-input">
                                 <span class="checkmark">✓</span>
-                                <span class="package-text">轉職硬幣禮包 (-300枚)</span>
+                                <span class="package-text" data-i18n="jobChange.costSummary.packageDiscount">轉職硬幣禮包 (-300枚)</span>
                             </label>
-                            <small class="package-note">勾選後可節省300枚轉職硬幣</small>
+                            <small class="package-note" data-i18n="jobChange.costSummary.packageNote">勾選後可節省300枚轉職硬幣</small>
                         </div>
 
                         <!-- 轉職物品選擇 -->
                         <div class="job-change-items">
-                            <h3>轉職物品選擇</h3>
+                            <h3 data-i18n="jobChange.categories.itemSelection">轉職物品選擇</h3>
                             
                             <!-- 裝備類別 -->
                             <div class="item-category">
-                                <h4>🛡️ 裝備 <span class="category-cost" id="equipment-cost">0枚</span></h4>
+                                <h4 data-i18n="jobChange.categories.equipment">🛡️ 裝備 <span class="category-cost" id="equipment-cost">0枚</span></h4>
                                 <div class="equipment-grid">
                                     <!-- 武器 -->
                                     <div class="equipment-type">
-                                        <h5>⚔️ 武器 <span class="info-icon" data-info="weapon">ℹ️</span> <span class="type-cost" id="weapon-cost">0枚</span></h5>
+                                        <h5 data-i18n="jobChange.categories.weapon">⚔️ 武器</h5> <span class="info-icon" data-info="weapon">ℹ️</span> <span class="type-cost" id="weapon-cost">0枚</span>
                                         <div class="equipment-qualities">
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name rare">稀有武器:</span>
+                                                    <span class="quality-name rare" data-i18n="jobChange.items.rareWeapon">稀有武器:</span>
                                                     <input type="number" id="weapon-rare" min="0" max="1" value="0" class="equipment-input">
-                                                    <small class="item-limit">(1枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.onePerItem">(1枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name hero">英雄武器:</span>
+                                                    <span class="quality-name hero" data-i18n="jobChange.items.heroWeapon">英雄武器:</span>
                                                     <input type="number" id="weapon-hero" min="0" max="9" value="0" class="equipment-input">
-                                                    <small class="item-limit">(9枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.ninePerItem">(9枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name legend">傳說武器:</span>
+                                                    <span class="quality-name legend" data-i18n="jobChange.items.legendWeapon">傳說武器:</span>
                                                     <input type="number" id="weapon-legend" min="0" max="27" value="0" class="equipment-input">
-                                                    <small class="item-limit">(27枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.twentySevenPerItem">(27枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name mythic">神話武器:</span>
+                                                    <span class="quality-name mythic" data-i18n="jobChange.items.mythicWeapon">神話武器:</span>
                                                     <input type="number" id="weapon-mythic" min="0" max="81" value="0" class="equipment-input">
-                                                    <small class="item-limit">(81枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.eightyOnePerItem">(81枚/件)</small>
                                                 </label>
                                             </div>
                                         </div>
@@ -263,34 +273,34 @@
 
                                     <!-- 防具 -->
                                     <div class="equipment-type">
-                                        <h5>🛡️ 防具 <span class="info-icon" data-info="armor">ℹ️</span> <span class="type-cost" id="armor-cost">0枚</span></h5>
+                                        <h5 data-i18n="jobChange.categories.armor">🛡️ 防具</h5> <span class="info-icon" data-info="armor">ℹ️</span> <span class="type-cost" id="armor-cost">0枚</span>
                                         <div class="equipment-qualities">
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name rare">稀有防具:</span>
+                                                    <span class="quality-name rare" data-i18n="jobChange.items.rareArmor">稀有防具:</span>
                                                     <input type="number" id="armor-rare" min="0" max="1" value="0" class="equipment-input">
-                                                    <small class="item-limit">(1枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.onePerItem">(1枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name hero">英雄防具:</span>
+                                                    <span class="quality-name hero" data-i18n="jobChange.items.heroArmor">英雄防具:</span>
                                                     <input type="number" id="armor-hero" min="0" max="9" value="0" class="equipment-input">
-                                                    <small class="item-limit">(9枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.ninePerItem">(9枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name legend">傳說防具:</span>
+                                                    <span class="quality-name legend" data-i18n="jobChange.items.legendArmor">傳說防具:</span>
                                                     <input type="number" id="armor-legend" min="0" max="27" value="0" class="equipment-input">
-                                                    <small class="item-limit">(27枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.twentySevenPerItem">(27枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name mythic">神話防具:</span>
+                                                    <span class="quality-name mythic" data-i18n="jobChange.items.mythicArmor">神話防具:</span>
                                                     <input type="number" id="armor-mythic" min="0" max="81" value="0" class="equipment-input">
-                                                    <small class="item-limit">(81枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.eightyOnePerItem">(81枚/件)</small>
                                                 </label>
                                             </div>
                                         </div>
@@ -298,34 +308,34 @@
 
                                     <!-- 飾品 -->
                                     <div class="equipment-type">
-                                        <h5>💍 飾品 <span class="info-icon" data-info="accessory">ℹ️</span> <span class="type-cost" id="accessory-cost">0枚</span></h5>
+                                        <h5 data-i18n="jobChange.categories.accessory">💍 飾品</h5> <span class="info-icon" data-info="accessory">ℹ️</span> <span class="type-cost" id="accessory-cost">0枚</span>
                                         <div class="equipment-qualities">
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name rare">稀有飾品:</span>
+                                                    <span class="quality-name rare" data-i18n="jobChange.items.rareAccessory">稀有飾品:</span>
                                                     <input type="number" id="accessory-rare" min="0" max="1" value="0" class="equipment-input">
-                                                    <small class="item-limit">(1枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.onePerItem">(1枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name hero">英雄飾品:</span>
+                                                    <span class="quality-name hero" data-i18n="jobChange.items.heroAccessory">英雄飾品:</span>
                                                     <input type="number" id="accessory-hero" min="0" max="9" value="0" class="equipment-input">
-                                                    <small class="item-limit">(9枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.ninePerItem">(9枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name legend">傳說飾品:</span>
+                                                    <span class="quality-name legend" data-i18n="jobChange.items.legendAccessory">傳說飾品:</span>
                                                     <input type="number" id="accessory-legend" min="0" max="27" value="0" class="equipment-input">
-                                                    <small class="item-limit">(27枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.twentySevenPerItem">(27枚/件)</small>
                                                 </label>
                                             </div>
                                             <div class="quality-item">
                                                 <label>
-                                                    <span class="quality-name mythic">神話飾品:</span>
+                                                    <span class="quality-name mythic" data-i18n="jobChange.items.mythicAccessory">神話飾品:</span>
                                                     <input type="number" id="accessory-mythic" min="0" max="81" value="0" class="equipment-input">
-                                                    <small class="item-limit">(81枚/件)</small>
+                                                    <small class="item-limit" data-i18n="jobChange.costs.eightyOnePerItem">(81枚/件)</small>
                                                 </label>
                                             </div>
                                         </div>
@@ -335,34 +345,34 @@
 
                             <!-- 技能類別 -->
                             <div class="item-category">
-                                <h4>⚡ 技能 <span class="info-icon" data-info="skill">ℹ️</span> <span class="category-cost" id="skill-cost">0枚</span></h4>
+                                <h4 data-i18n="jobChange.categories.skill">⚡ 技能</h4> <span class="info-icon" data-info="skill">ℹ️</span> <span class="category-cost" id="skill-cost">0枚</span>
                                 <div class="skill-level-grid">
                                     <div class="skill-level-item">
                                         <label>
-                                            <span class="skill-name rare">稀有技能:</span>
+                                            <span class="skill-name rare" data-i18n="jobChange.items.rareSkill">稀有技能:</span>
                                             <input type="number" id="skill-rare" min="0" max="1" value="0" class="equipment-input">
-                                            <small class="item-limit">(1枚/個)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.onePerSkill">(1枚/個)</small>
                                         </label>
                                     </div>
                                     <div class="skill-level-item">
                                         <label>
-                                            <span class="skill-name hero">英雄技能:</span>
+                                            <span class="skill-name hero" data-i18n="jobChange.items.heroSkill">英雄技能:</span>
                                             <input type="number" id="skill-hero" min="0" max="9" value="0" class="equipment-input">
-                                            <small class="item-limit">(複雜計算)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.complexCalculation">(複雜計算)</small>
                                         </label>
                                     </div>
                                     <div class="skill-level-item">
                                         <label>
-                                            <span class="skill-name legend">傳說技能:</span>
+                                            <span class="skill-name legend" data-i18n="jobChange.items.legendSkill">傳說技能:</span>
                                             <input type="number" id="skill-legend" min="0" max="27" value="0" class="equipment-input">
-                                            <small class="item-limit">(複雜計算)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.complexCalculation">(複雜計算)</small>
                                         </label>
                                     </div>
                                     <div class="skill-level-item">
                                         <label>
-                                            <span class="skill-name mythic">神話技能:</span>
+                                            <span class="skill-name mythic" data-i18n="jobChange.items.mythicSkill">神話技能:</span>
                                             <input type="number" id="skill-mythic" min="0" max="81" value="0" class="equipment-input">
-                                            <small class="item-limit">(複雜計算)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.complexCalculation">(複雜計算)</small>
                                         </label>
                                     </div>
                                 </div>
@@ -370,34 +380,34 @@
 
                             <!-- 咒語卡片類別 -->
                             <div class="item-category">
-                                <h4>🃏 咒語卡片 <span class="info-icon" data-info="spell">ℹ️</span> <span class="category-cost" id="spell-cost">0枚</span></h4>
+                                <h4 data-i18n="jobChange.categories.spell">🃏 咒語卡片</h4> <span class="info-icon" data-info="spell">ℹ️</span> <span class="category-cost" id="spell-cost">0枚</span>
                                 <div class="spell-level-grid">
                                     <div class="spell-level-item">
                                         <label>
-                                            <span class="spell-name rare">稀有咒語卡:</span>
+                                            <span class="spell-name rare" data-i18n="jobChange.items.rareSpell">稀有咒語卡:</span>
                                             <input type="number" id="spell-rare" min="0" max="1" value="0" class="equipment-input">
-                                            <small class="item-limit">(1枚/張)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.onePerCard">(1枚/張)</small>
                                         </label>
                                     </div>
                                     <div class="spell-level-item">
                                         <label>
-                                            <span class="spell-name hero">英雄咒語卡:</span>
+                                            <span class="spell-name hero" data-i18n="jobChange.items.heroSpell">英雄咒語卡:</span>
                                             <input type="number" id="spell-hero" min="0" max="9" value="0" class="equipment-input">
-                                            <small class="item-limit">(複雜計算)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.complexCalculation">(複雜計算)</small>
                                         </label>
                                     </div>
                                     <div class="spell-level-item">
                                         <label>
-                                            <span class="spell-name legend">傳說咒語卡:</span>
+                                            <span class="spell-name legend" data-i18n="jobChange.items.legendSpell">傳說咒語卡:</span>
                                             <input type="number" id="spell-legend" min="0" max="27" value="0" class="equipment-input">
-                                            <small class="item-limit">(複雜計算)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.complexCalculation">(複雜計算)</small>
                                         </label>
                                     </div>
                                     <div class="spell-level-item">
                                         <label>
-                                            <span class="spell-name mythic">神話咒語卡:</span>
+                                            <span class="spell-name mythic" data-i18n="jobChange.items.mythicSpell">神話咒語卡:</span>
                                             <input type="number" id="spell-mythic" min="0" max="81" value="0" class="equipment-input">
-                                            <small class="item-limit">(81枚/張)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.eightyOnePerCard">(81枚/張)</small>
                                         </label>
                                     </div>
                                 </div>
@@ -405,27 +415,27 @@
 
                             <!-- 商城裝備類別 -->
                             <div class="item-category">
-                                <h4>🛍️ 商城裝備 <span class="info-icon" data-info="cash">ℹ️</span> <span class="category-cost" id="cash-cost">0枚</span></h4>
+                                <h4 data-i18n="jobChange.categories.cash">🛍️ 商城裝備</h4> <span class="info-icon" data-info="cash">ℹ️</span> <span class="category-cost" id="cash-cost">0枚</span>
                                 <div class="cash-equipment-grid">
                                     <div class="cash-equipment-item">
                                         <label>
-                                            <span class="cash-name">商城T恤:</span>
+                                            <span class="cash-name" data-i18n="jobChange.items.cashShirt">商城T恤:</span>
                                             <input type="number" id="cash-shirt" min="0" max="3" value="0" class="equipment-input">
-                                            <small class="item-limit">(5枚/件)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.fivePerItem">(5枚/件)</small>
                                         </label>
                                     </div>
                                     <div class="cash-equipment-item">
                                         <label>
-                                            <span class="cash-name">商城肩甲:</span>
+                                            <span class="cash-name" data-i18n="jobChange.items.cashShoulder">商城肩甲:</span>
                                             <input type="number" id="cash-shoulder" min="0" max="2" value="0" class="equipment-input">
-                                            <small class="item-limit">(5枚/件)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.fivePerItem">(5枚/件)</small>
                                         </label>
                                     </div>
                                     <div class="cash-equipment-item">
                                         <label>
-                                            <span class="cash-name">商城面甲:</span>
+                                            <span class="cash-name" data-i18n="jobChange.items.cashMask">商城面甲:</span>
                                             <input type="number" id="cash-mask" min="0" max="5" value="0" class="equipment-input">
-                                            <small class="item-limit">(5枚/件)</small>
+                                            <small class="item-limit" data-i18n="jobChange.costs.fivePerItem">(5枚/件)</small>
                                         </label>
                                     </div>
                                 </div>
@@ -435,11 +445,11 @@
                         <!-- 簡易版詳細花費明細 -->
                         <section class="job-change-result-bottom">
                             <div class="main-content">
-                                <h3>詳細花費明細</h3>
+                                <h3 data-i18n="jobChange.costDetails.title">詳細花費明細</h3>
                                 
                                 <div class="cost-breakdown">
                                     <div id="cost-details">
-                                        <p class="no-items">請選擇要轉職的物品</p>
+                                        <p class="no-items" data-i18n="jobChange.costDetails.noItems">請選擇要轉職的物品</p>
                                     </div>
                                 </div>
                             </div>
@@ -452,15 +462,15 @@
                         <div class="cost-display">
                             <div class="cost-summary-live">
                                 <div class="cost-item">
-                                    <span class="cost-label">基本轉職費用:</span>
+                                    <span class="cost-label" data-i18n="jobChange.costSummary.baseCost">基本轉職費用:</span>
                                     <span class="cost-value">2000鑽</span>
                                 </div>
                                 <div class="cost-item">
-                                    <span class="cost-label">轉職硬幣總花費:</span>
+                                    <span class="cost-label" data-i18n="jobChange.costSummary.coinCost">轉職硬幣總花費:</span>
                                     <span class="cost-value" id="detailed-live-coin-cost">0枚</span>
                                 </div>
                                 <div class="cost-item total">
-                                    <span class="cost-label">總計花費:</span>
+                                    <span class="cost-label" data-i18n="jobChange.costSummary.totalCost">總計花費:</span>
                                     <span class="cost-value" id="detailed-live-total-cost">2000鑽</span>
                                 </div>
                             </div>
@@ -471,14 +481,14 @@
                             <label class="package-checkbox">
                                 <input type="checkbox" id="detailed-coin-package" class="package-input">
                                 <span class="checkmark">✓</span>
-                                <span class="package-text">轉職硬幣禮包 (-300枚)</span>
+                                <span class="package-text" data-i18n="jobChange.costSummary.packageDiscount">轉職硬幣禮包 (-300枚)</span>
                             </label>
-                            <small class="package-note">勾選後可節省300枚轉職硬幣</small>
+                            <small class="package-note" data-i18n="jobChange.costSummary.packageNote">勾選後可節省300枚轉職硬幣</small>
                         </div>
 
                         <!-- 詳細裝備分類 -->
                         <div class="detailed-equipment-section">
-                            <h3>詳細裝備分類</h3>
+                            <h3 data-i18n="jobChange.detailed.title">詳細裝備分類</h3>
                             
                             <!-- 武器類 -->
                             <div class="detailed-category">
@@ -887,7 +897,7 @@
 
                             <!-- 技能類別 -->
                             <div class="detailed-category">
-                                <h4>⚡ 技能 <span class="info-icon" data-info="skill">ℹ️</span> <span class="category-cost" id="detailed-skill-cost">0枚</span></h4>
+                                <h4>⚡ 技能 <span class="info-icon" data-info="detailed-skill">ℹ️</span> <span class="category-cost" id="detailed-skill-cost">0枚</span></h4>
                                 <div class="skill-detailed-grid">
                                     <div class="skill-detailed-item">
                                         <label>
@@ -922,7 +932,7 @@
 
                             <!-- 咒語卡片類別 -->
                             <div class="detailed-category">
-                                <h4>🃏 咒語卡片 <span class="info-icon" data-info="spell">ℹ️</span> <span class="category-cost" id="detailed-spell-cost">0枚</span></h4>
+                                <h4>🃏 咒語卡片 <span class="info-icon" data-info="detailed-spell">ℹ️</span> <span class="category-cost" id="detailed-spell-cost">0枚</span></h4>
                                 <div class="spell-detailed-grid">
                                     <div class="spell-detailed-item">
                                         <label>
@@ -992,65 +1002,65 @@
         <div id="help-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 id="modal-title">🐾 使用說明</h2>
-                    <span class="close" aria-label="關閉說明視窗">&times;</span>
+                    <h2 id="modal-title" data-i18n="help.title">🐾 使用說明</h2>
+                    <span class="close" aria-label="關閉說明視窗" data-i18n="common.close">&times;</span>
                 </div>
                 <div class="modal-body">
                     <!-- 標籤按鈕 -->
                     <div class="help-tabs">
-                        <button class="help-tab-btn active" data-tab="usage-tab">使用方法</button>
-                        <button class="help-tab-btn" data-tab="calculation-tab">計算原理</button>
-                        <button class="help-tab-btn" data-tab="rating-tab">評價等級</button>
+                        <button class="help-tab-btn active" data-tab="usage-tab" data-i18n="help.usage">使用方法</button>
+                        <button class="help-tab-btn" data-tab="calculation-tab" data-i18n="help.calculation">計算原理</button>
+                        <button class="help-tab-btn" data-tab="rating-tab" data-i18n="help.ratingSystem">評價等級</button>
                     </div>
 
                     <!-- 使用方法標籤 -->
                     <div class="help-tab-content active" id="usage-tab">
-                        <h3>🚀 使用步驟</h3>
+                        <h3 data-i18n="help.steps.title">🚀 使用步驟</h3>
                         <div class="steps">
                             <div class="step-item">
                                 <span class="step-num">1</span>
-                                <div>選擇您的寵物類型</div>
+                                <div data-i18n="help.steps.step1">選擇您的寵物類型</div>
                             </div>
                             <div class="step-item">
                                 <span class="step-num">2</span>
-                                <div>輸入寵物等級（1-15）</div>
+                                <div data-i18n="help.steps.step2">輸入寵物等級（1-15）</div>
                             </div>
                             <div class="step-item">
                                 <span class="step-num">3</span>
-                                <div>輸入各屬性數值（⚠️請扣除技能加成）</div>
+                                <div data-i18n="help.steps.step3">輸入各屬性數值（⚠️請扣除技能加成）</div>
                             </div>
                             <div class="step-item">
                                 <span class="step-num">4</span>
-                                <div>點擊計算按鈕查看評價</div>
+                                <div data-i18n="help.steps.step4">點擊計算按鈕查看評價</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- 計算原理標籤 -->
                     <div class="help-tab-content" id="calculation-tab">
-                        <h3>🧮 計算原理</h3>
-                        <p>寵物屬性評價基於統計學原理計算...</p>
+                        <h3 data-i18n="help.calculationPrinciple.title">🧮 計算原理</h3>
+                        <p data-i18n="help.calculationPrinciple.mainStat">寵物屬性評價基於統計學原理計算...</p>
                     </div>
 
                     <!-- 評價等級標籤 -->
                     <div class="help-tab-content" id="rating-tab">
-                        <h3>⭐ 評價等級</h3>
+                        <h3 data-i18n="help.ratingLevels.title">⭐ 評價等級</h3>
                         <div class="rating-list">
                             <div class="rating-item excellent">
-                                <span class="rating-badge">極品</span>
-                                <span>超過期望值很多</span>
+                                <span class="rating-badge" data-i18n="ratings.excellent">極品</span>
+                                <span data-i18n="help.ratingLevels.excellent140">超過期望值很多</span>
                             </div>
                             <div class="rating-item good">
-                                <span class="rating-badge">良好</span>
-                                <span>超過期望值</span>
+                                <span class="rating-badge" data-i18n="ratings.good">良好</span>
+                                <span data-i18n="help.ratingLevels.good105">超過期望值</span>
                             </div>
                             <div class="rating-item average">
-                                <span class="rating-badge">普通</span>
-                                <span>接近期望值</span>
+                                <span class="rating-badge" data-i18n="ratings.average">普通</span>
+                                <span data-i18n="help.ratingLevels.normal100">接近期望值</span>
                             </div>
                             <div class="rating-item poor">
-                                <span class="rating-badge">不佳</span>
-                                <span>低於期望值</span>
+                                <span class="rating-badge" data-i18n="ratings.poor">不佳</span>
+                                <span data-i18n="help.ratingLevels.poor85">低於期望值</span>
                             </div>
                         </div>
                     </div>
@@ -1059,6 +1069,7 @@
         </div>
     </div>
 
+    <script type="module" src="assets/js/modules/i18n.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/job-change.js"></script>
 </body>

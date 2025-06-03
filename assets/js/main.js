@@ -265,8 +265,7 @@ function updateBaseStatsDisplay() {
     // 計算期望值並更新顯示
     const expectedStats = calculateExpectedStats(pet, level);
     
-    // 這裡可以添加基礎屬性顯示邏輯
-    console.log('Updated base stats for:', pet.name, 'Level:', level);
+    // 這裡可以添加基礎屬性顯示邏輯（如果需要的話）
 }
 
 // 計算期望屬性值
@@ -399,16 +398,16 @@ function analyzeStats(pet, level, currentStats, expectedStats) {
     // 整體評級
     if (analysis.overallScore >= 140) {
         analysis.rating = 'excellent';
-        analysis.description = '🌟 極品寵物！屬性成長遠超預期，值得重點培養！';
+        analysis.description = window.i18n?.t('descriptions.godTier') || '🌟 極品寵物！屬性成長遠超預期，值得重點培養！';
     } else if (analysis.overallScore >= 120) {
         analysis.rating = 'good';
-        analysis.description = '⭐ 優秀寵物！屬性成長良好，推薦培養！';
+        analysis.description = window.i18n?.t('descriptions.highQuality') || '⭐ 優秀寵物！屬性成長良好，推薦培養！';
     } else if (analysis.overallScore >= 85) {
         analysis.rating = 'average';
-        analysis.description = '✅ 普通寵物，屬性成長合乎預期，可正常使用。';
+        analysis.description = window.i18n?.t('descriptions.normal') || '✅ 普通寵物，屬性成長合乎預期，可正常使用。';
     } else {
         analysis.rating = 'poor';
-        analysis.description = '⚠️ 屬性成長不佳，建議考慮重新培養。';
+        analysis.description = window.i18n?.t('descriptions.needImprovement') || '⚠️ 屬性成長不佳，建議考慮重新培養。';
     }
     
     return analysis;
@@ -449,7 +448,7 @@ function displayResults(pet, level, currentStats, expectedStats, analysis) {
             row.className = `stat-row rating-${stat.rating}`;
             
             row.innerHTML = `
-                <div>${statNames[statName]}${stat.isMainStat ? ' ⭐' : ''}</div>
+                <div>${window.i18n?.t(`stats.${statName}`) || statNames[statName]}${stat.isMainStat ? ' ⭐' : ''}</div>
                 <div>${stat.current}</div>
                 <div>${stat.base}</div>
                 <div>${stat.growth}</div>
@@ -470,10 +469,10 @@ function displayResults(pet, level, currentStats, expectedStats, analysis) {
         ratingBadge.className = `rating-badge ${analysis.rating}`;
         
         const ratingTexts = {
-            excellent: '極品',
-            good: '優秀', 
-            average: '普通',
-            poor: '不佳'
+            excellent: window.i18n?.t('ratings.excellent') || '極品',
+            good: window.i18n?.t('ratings.good') || '優秀', 
+            average: window.i18n?.t('ratings.average') || '普通',
+            poor: window.i18n?.t('ratings.poor') || '不佳'
         };
         
         ratingBadge.textContent = ratingTexts[analysis.rating] || '未知';
@@ -498,10 +497,88 @@ function formatNumber(num) {
     return Math.round(num * 100) / 100;
 }
 
-// 當頁面載入完成後初始化寵物計算器
-document.addEventListener('DOMContentLoaded', () => {
-    // 延遲初始化以確保頁面完全載入
-    setTimeout(() => {
-        initPetCalculator();
-    }, 100);
+// 初始化應用
+document.addEventListener('DOMContentLoaded', async function() {
+    // 初始化寵物計算器
+    initPetCalculator();
+    
+    // 等待 i18n 模組載入 - 增加更長的等待時間和重試機制
+    let retryCount = 0;
+    const maxRetries = 10;
+    
+    const waitForI18n = async () => {
+        if (window.i18n && typeof window.i18n.loadAllLanguages === 'function') {
+            await initI18n();
+            return true;
+        }
+        
+        if (retryCount < maxRetries) {
+            retryCount++;
+            console.log(`等待 i18n 模組載入... (${retryCount}/${maxRetries})`);
+            setTimeout(waitForI18n, 200);
+        } else {
+            console.error('無法載入 i18n 模組，請檢查 i18n.js 文件');
+        }
+    };
+    
+    // 開始等待並初始化 i18n
+    await waitForI18n();
 });
+
+// 初始化多語系
+async function initI18n() {
+    try {
+        console.log('開始初始化多語系...');
+        
+        // 檢查 i18n 是否存在
+        if (!window.i18n) {
+            console.error('i18n 模組未載入');
+            return;
+        }
+        
+        // 載入所有語言
+        console.log('載入語言檔案...');
+        await window.i18n.loadAllLanguages();
+        
+        // 設置語言選擇器
+        console.log('設置語言選擇器...');
+        setupLanguageSelector();
+        
+        // 更新頁面內容
+        console.log('更新頁面內容...');
+        window.i18n.updatePageContent();
+        
+        console.log('多語系初始化完成，當前語言：', window.i18n.getCurrentLanguage());
+    } catch (error) {
+        console.error('多語系初始化失敗:', error);
+    }
+}
+
+// 設置語言選擇器
+function setupLanguageSelector() {
+    const languageSelect = document.getElementById('language-select');
+    if (languageSelect) {
+        // 設置當前語言
+        languageSelect.value = window.i18n.getCurrentLanguage();
+        
+        // 監聽語言變更
+        languageSelect.addEventListener('change', async function() {
+            const newLanguage = this.value;
+            const success = await window.i18n.changeLanguage(newLanguage);
+            
+            if (success) {
+                // 顯示語言切換成功通知
+                const languageNames = {
+                    'zh-TW': '繁體中文',
+                    'en': 'English',
+                    'ko': '한국어'
+                };
+                showNotification(`語言已切換至 ${languageNames[newLanguage]}`, 'success');
+            } else {
+                // 語言切換失敗，恢復原來的選擇
+                languageSelect.value = window.i18n.getCurrentLanguage();
+                showNotification('語言切換失敗', 'error');
+            }
+        });
+    }
+}
