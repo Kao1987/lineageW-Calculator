@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>天堂W 寵物屬性計算器 - 專業寵物成長評估工具</title>
-    <meta name="description" content="天堂W寵物屬性計算器 - 專業的寵物成長潛力評估工具，支援狼、杜賓狗、牧羊犬、小獵犬四種寵物類型，智能分析屬性成長，提供詳細評價建議。">
-    <meta name="keywords" content="天堂W,寵物計算器,屬性評價,成長分析,Lineage W">
+    <title>天堂W 綜合計算器 - 專業遊戲輔助工具</title>
+    <meta name="description" content="天堂W綜合計算器 - 包含寵物屬性評估、轉職花費計算等專業遊戲輔助工具，助您在天堂W中精確規劃成長路線。">
+    <meta name="keywords" content="天堂W,計算器,寵物屬性,轉職計算,花費估算,Lineage W">
     <meta name="author" content="Orien">
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%2361dafb'/><text x='16' y='22' text-anchor='middle' font-size='18' fill='white'>O</text></svg>">
@@ -13,14 +13,14 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="天堂W 寵物屬性計算器">
-    <meta property="og:description" content="計算您的寵物成長潛力與評價">
-    <meta property="og:site_name" content="天堂W 寵物屬性計算器">
+    <meta property="og:title" content="天堂W 綜合計算器">
+    <meta property="og:description" content="專業的天堂W遊戲輔助計算工具">
+    <meta property="og:site_name" content="天堂W 綜合計算器">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary">
-    <meta property="twitter:title" content="天堂W 寵物屬性計算器">
-    <meta property="twitter:description" content="計算您的寵物成長潛力與評價">
+    <meta property="twitter:title" content="天堂W 綜合計算器">
+    <meta property="twitter:description" content="專業的天堂W遊戲輔助計算工具">
     
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- Google tag (gtag.js) -->
@@ -29,331 +29,1037 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-6RPKQGPBG0');
     </script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 data-i18n="title.main">🐾 天堂W 寵物屬性計算器</h1>
-            <p class="subtitle" data-i18n="title.subtitle">計算您的寵物成長潛力與評價</p>
+            <h1>⚔️ 天堂W 綜合計算器</h1>
+            <p class="subtitle">專業的遊戲輔助計算工具</p>
         </header>
 
-        <div class="main-content">
-            <!-- 寵物選擇區 -->
-            <section class="pet-selection" role="radiogroup" aria-labelledby="pet-selection-title">
-                <h2 id="pet-selection-title" data-i18n="pets.select">選擇寵物</h2>
-                <div class="pet-grid">
-                    <div class="pet-card" data-pet="wolf">
-                        <img src="assets/images/pets/wolf.png" alt="狼" class="pet-icon">
-                        <h3 data-i18n="pets.wolf">狼</h3>
-                        <p data-i18n="pets.wolfDesc">主屬：體力(HP)</p>
-                    </div>
-                    <div class="pet-card" data-pet="dog">
-                        <img src="assets/images/pets/dubin.png" alt="杜賓狗" class="pet-icon">
-                        <h3 data-i18n="pets.dog">杜賓狗</h3>
-                        <p data-i18n="pets.dogDesc">主屬：忠誠心(命中)</p>
-                    </div>
-                    <div class="pet-card" data-pet="shepherd">
-                        <img src="assets/images/pets/sheepdog.png" alt="牧羊犬" class="pet-icon">
-                        <h3 data-i18n="pets.shepherd">牧羊犬</h3>
-                        <p data-i18n="pets.shepherdDesc">主屬：忍耐力(物防)</p>
-                    </div>
-                    <div class="pet-card" data-pet="hound">
-                        <img src="assets/images/pets/beagle.png" alt="小獵犬" class="pet-icon">
-                        <h3 data-i18n="pets.hound">小獵犬</h3>
-                        <p data-i18n="pets.houndDesc">主屬：速度(迴避)</p>
-                    </div>
-                </div>
-            </section>
+        <!-- 導航選單 -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-page="pet-calculator">
+                🐾 寵物屬性計算器
+            </button>
+            <button class="nav-tab" data-page="job-change-calculator">
+                💎 轉職花費計算器
+            </button>
+            <button class="nav-tab disabled" data-page="coming-soon" title="即將推出更多功能">
+                🚀 更多功能
+            </button>
+        </nav>
 
-            <!-- 輸入區 -->
-            <section class="input-section">
-                <div class="input-group">
-                    <label for="level" data-i18n="common.level">寵物等級</label>
-                    <input type="number" id="level" min="1" max="15" value="1">
-                </div>
+        <!-- 寵物屬性計算器頁面 -->
+        <div class="page-content active" id="pet-calculator">
+            <div class="main-content">
+                <!-- 寵物選擇區 -->
+                <section class="pet-selection" role="radiogroup" aria-labelledby="pet-selection-title">
+                    <h2 id="pet-selection-title">選擇寵物</h2>
+                    <div class="pet-grid">
+                        <div class="pet-card" data-pet="wolf">
+                            <img src="assets/images/pets/wolf.png" alt="狼" class="pet-icon">
+                            <h3>狼</h3>
+                            <p>主屬：體力(HP)</p>
+                        </div>
+                        <div class="pet-card" data-pet="dog">
+                            <img src="assets/images/pets/dubin.png" alt="杜賓狗" class="pet-icon">
+                            <h3>杜賓狗</h3>
+                            <p>主屬：忠誠心(命中)</p>
+                        </div>
+                        <div class="pet-card" data-pet="shepherd">
+                            <img src="assets/images/pets/sheepdog.png" alt="牧羊犬" class="pet-icon">
+                            <h3>牧羊犬</h3>
+                            <p>主屬：忍耐力(物防)</p>
+                        </div>
+                        <div class="pet-card" data-pet="hound">
+                            <img src="assets/images/pets/beagle.png" alt="小獵犬" class="pet-icon">
+                            <h3>小獵犬</h3>
+                            <p>主屬：速度(迴避)</p>
+                        </div>
+                    </div>
+                </section>
 
-                <div class="stats-input">
-                    <div class="stats-header">
-                        <h3 data-i18n="stats.title">當前屬性值</h3>
-                        <button id="help-btn" class="help-btn" data-i18n="common.help">❓ 使用說明</button>
+                <!-- 輸入區 -->
+                <section class="input-section">
+                    <div class="input-group">
+                        <label for="level">寵物等級</label>
+                        <input type="number" id="level" min="1" max="15" value="1">
                     </div>
 
-                    <div class="warning" data-i18n="stats.warning">
-                        ⚠️ 請記得扣除技能加成的屬性點數
+                    <div class="stats-input">
+                        <div class="stats-header">
+                            <h3>當前屬性值</h3>
+                            <button id="help-btn" class="help-btn">❓ 使用說明</button>
+                        </div>
+
+                        <div class="warning">
+                            ⚠️ 請記得扣除技能加成的屬性點數
+                        </div>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-input">
+                                <label for="endurance">忍耐力</label>
+                                <small class="stat-desc">5點=1物防</small>
+                                <input type="number" id="endurance" min="0" value="0">
+                            </div>
+                            <div class="stat-input">
+                                <label for="loyalty">忠誠心</label>
+                                <small class="stat-desc">5點=1近/遠/魔命中</small>
+                                <input type="number" id="loyalty" min="0" value="0">
+                            </div>
+                            <div class="stat-input">
+                                <label for="speed">速度</label>
+                                <small class="stat-desc">10點=1近/遠迴避</small>
+                                <input type="number" id="speed" min="0" value="0">
+                            </div>
+                            <div class="stat-input">
+                                <label for="aggressiveness">積極性</label>
+                                <small class="stat-desc">3點=1攻擊力</small>
+                                <input type="number" id="aggressiveness" min="0" value="3" disabled>
+                                <small>※積極性固定為3，不會升級</small>
+                            </div>
+                            <div class="stat-input">
+                                <label for="hp">體力</label>
+                                <small class="stat-desc">1點=30HP</small>
+                                <input type="number" id="hp" min="0" value="0">
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="button-group">
+                        <button id="calculate" class="calculate-btn">🧮 計算屬性評價</button>
+                    </div>
+                </section>
+
+                <!-- 結果顯示區 -->
+                <section class="result-section" id="results" style="display: none;">
+                    <h2>計算結果</h2>
                     
-                    <div class="stats-grid">
-                        <div class="stat-input">
-                            <label for="endurance" data-i18n="stats.endurance">忍耐力</label>
-                            <small class="stat-desc" data-i18n="stats.enduranceDesc">5點=1物防</small>
-                            <input type="number" id="endurance" min="0" value="0">
-                        </div>
-                        <div class="stat-input">
-                            <label for="loyalty" data-i18n="stats.loyalty">忠誠心</label>
-                            <small class="stat-desc" data-i18n="stats.loyaltyDesc">5點=1近/遠/魔命中</small>
-                            <input type="number" id="loyalty" min="0" value="0">
-                        </div>
-                        <div class="stat-input">
-                            <label for="speed" data-i18n="stats.speed">速度</label>
-                            <small class="stat-desc" data-i18n="stats.speedDesc">10點=1近/遠迴避</small>
-                            <input type="number" id="speed" min="0" value="0">
-                        </div>
-                        <div class="stat-input">
-                            <label for="aggressiveness" data-i18n="stats.aggressiveness">積極性</label>
-                            <small class="stat-desc" data-i18n="stats.aggressivenessDesc">3點=1攻擊力</small>
-                            <input type="number" id="aggressiveness" min="0" value="3" disabled>
-                            <small data-i18n="stats.aggressivenessNote">※積極性固定為3，不會升級</small>
-                        </div>
-                        <div class="stat-input">
-                            <label for="hp" data-i18n="stats.hp">體力</label>
-                            <small class="stat-desc" data-i18n="stats.hpDesc">1點=30HP</small>
-                            <input type="number" id="hp" min="0" value="0">
+                    <div class="pet-info">
+                        <div class="selected-pet-display">
+                            <span class="pet-emoji"></span>
+                            <span class="pet-name"></span>
+                            <span class="pet-level"></span>
                         </div>
                     </div>
-                </div>
 
-                <div class="button-group">
-                    <button id="calculate" class="calculate-btn" data-i18n="common.calculate">🧮 計算屬性評價</button>
-                </div>
-            </section>
-
-            <!-- 結果顯示區 -->
-            <section class="result-section" id="results" style="display: none;">
-                <h2 data-i18n="results.title">計算結果</h2>
-                
-                <div class="pet-info">
-                    <div class="selected-pet-display">
-                        <span class="pet-emoji"></span>
-                        <span class="pet-name"></span>
-                        <span class="pet-level"></span>
-                    </div>
-                </div>
-
-                <div class="stats-comparison">
-                    <div class="comparison-grid">
-                        <div class="stat-row header">
-                            <div data-i18n="results.attribute">屬性</div>
-                            <div data-i18n="common.currentValue">當前值</div>
-                            <div data-i18n="common.baseValue">基礎值</div>
-                            <div data-i18n="common.growthValue">成長值</div>
-                            <div data-i18n="common.expectedValue">期望值</div>
-                            <div data-i18n="common.characterBonus">角色加成</div>
-                            <div data-i18n="common.rating">評價</div>
+                    <div class="stats-comparison">
+                        <div class="comparison-grid">
+                            <div class="stat-row header">
+                                <div>屬性</div>
+                                <div>當前值</div>
+                                <div>基礎值</div>
+                                <div>成長值</div>
+                                <div>期望值</div>
+                                <div>角色加成</div>
+                                <div>評價</div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="overall-rating">
-                    <h3 data-i18n="results.overallRating">整體評價</h3>
-                    <div class="rating-display">
-                        <span class="rating-badge"></span>
-                        <p class="rating-description"></p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 彈出式說明視窗 -->
-            <div id="help-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 id="modal-title" data-i18n="help.title">🐾 使用說明</h2>
-                        <span class="close" data-i18n-attr="aria-label:common.close" aria-label="關閉說明視窗">&times;</span>
-                    </div>
-                    <div class="modal-body">
-                        <!-- 標籤按鈕 -->
-                        <div class="help-tabs">
-                            <button class="help-tab-btn active" data-tab="usage-tab" data-i18n="help.usage">使用方法</button>
-                            <button class="help-tab-btn" data-tab="calculation-tab" data-i18n="help.calculation">計算原理</button>
-                            <button class="help-tab-btn" data-tab="rating-tab" data-i18n="help.ratingSystem">評價等級</button>
+                    <div class="overall-rating">
+                        <h3>整體評價</h3>
+                        <div class="rating-display">
+                            <span class="rating-badge"></span>
+                            <p class="rating-description"></p>
                         </div>
+                    </div>
+                </section>
+            </div>
+        </div>
 
-                        <!-- 使用方法標籤 -->
-                        <div class="help-tab-content active" id="usage-tab">
-                            <h3 data-i18n="help.steps.title">🚀 使用步驟</h3>
-                            <div class="steps">
-                                <div class="step-item">
-                                    <span class="step-num">1</span>
-                                    <div data-i18n="help.steps.step1">選擇您的寵物類型</div>
+        <!-- 轉職花費計算器頁面 -->
+        <div class="page-content" id="job-change-calculator">
+            <div class="main-content">
+                <section class="job-change-section">
+                    <h2>💎 轉職花費計算器</h2>
+                    <p class="section-description">計算在NCSOFT規範下轉職所需的花費</p>
+
+                    <!-- 子導航 -->
+                    <nav class="sub-nav-tabs">
+                        <button class="sub-nav-tab active" data-sub-page="simple-calculator">
+                            📊 簡易計算
+                        </button>
+                        <button class="sub-nav-tab" data-sub-page="detailed-calculator">
+                            🔍 詳細計算
+                        </button>
+                    </nav>
+
+                    <!-- 簡易計算器內容 -->
+                    <div class="sub-page-content active" id="simple-calculator">
+                        <!-- 即時費用顯示 -->
+                        <div class="cost-display">
+                            <div class="cost-summary-live">
+                                <div class="cost-item">
+                                    <span class="cost-label">基本轉職費用:</span>
+                                    <span class="cost-value">2000鑽</span>
                                 </div>
-                                <div class="step-item">
-                                    <span class="step-num">2</span>
-                                    <div data-i18n="help.steps.step2">輸入寵物等級（1-15）</div>
+                                <div class="cost-item">
+                                    <span class="cost-label">轉職硬幣總花費:</span>
+                                    <span class="cost-value" id="live-coin-cost">0枚</span>
                                 </div>
-                                <div class="step-item">
-                                    <span class="step-num">3</span>
-                                    <div data-i18n="help.steps.step3">輸入各屬性數值（⚠️請扣除技能加成）</div>
+                                <div class="cost-item total">
+                                    <span class="cost-label">總計花費:</span>
+                                    <span class="cost-value" id="live-total-cost">2000鑽</span>
                                 </div>
-                                <div class="step-item">
-                                    <span class="step-num">4</span>
-                                    <div data-i18n="help.steps.step4">點擊計算按鈕查看評價</div>
+                            </div>
+                        </div>
+
+                        <!-- 轉職硬幣禮包選項 -->
+                        <div class="package-option">
+                            <label class="package-checkbox">
+                                <input type="checkbox" id="coin-package" class="package-input">
+                                <span class="checkmark">✓</span>
+                                <span class="package-text">轉職硬幣禮包 (-300枚)</span>
+                            </label>
+                            <small class="package-note">勾選後可節省300枚轉職硬幣</small>
+                        </div>
+
+                        <!-- 轉職物品選擇 -->
+                        <div class="job-change-items">
+                            <h3>轉職物品選擇</h3>
+                            
+                            <!-- 裝備類別 -->
+                            <div class="item-category">
+                                <h4>🛡️ 裝備 <span class="category-cost" id="equipment-cost">0枚</span></h4>
+                                <div class="equipment-grid">
+                                    <!-- 武器 -->
+                                    <div class="equipment-type">
+                                        <h5>⚔️ 武器 <span class="info-icon" data-info="weapon">ℹ️</span> <span class="type-cost" id="weapon-cost">0枚</span></h5>
+                                        <div class="equipment-qualities">
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name rare">稀有武器:</span>
+                                                    <input type="number" id="weapon-rare" min="0" max="1" value="0" class="equipment-input">
+                                                    <small class="item-limit">(1枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name hero">英雄武器:</span>
+                                                    <input type="number" id="weapon-hero" min="0" max="9" value="0" class="equipment-input">
+                                                    <small class="item-limit">(9枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name legend">傳說武器:</span>
+                                                    <input type="number" id="weapon-legend" min="0" max="27" value="0" class="equipment-input">
+                                                    <small class="item-limit">(27枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name mythic">神話武器:</span>
+                                                    <input type="number" id="weapon-mythic" min="0" max="81" value="0" class="equipment-input">
+                                                    <small class="item-limit">(81枚/件)</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 防具 -->
+                                    <div class="equipment-type">
+                                        <h5>🛡️ 防具 <span class="info-icon" data-info="armor">ℹ️</span> <span class="type-cost" id="armor-cost">0枚</span></h5>
+                                        <div class="equipment-qualities">
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name rare">稀有防具:</span>
+                                                    <input type="number" id="armor-rare" min="0" max="1" value="0" class="equipment-input">
+                                                    <small class="item-limit">(1枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name hero">英雄防具:</span>
+                                                    <input type="number" id="armor-hero" min="0" max="9" value="0" class="equipment-input">
+                                                    <small class="item-limit">(9枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name legend">傳說防具:</span>
+                                                    <input type="number" id="armor-legend" min="0" max="27" value="0" class="equipment-input">
+                                                    <small class="item-limit">(27枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name mythic">神話防具:</span>
+                                                    <input type="number" id="armor-mythic" min="0" max="81" value="0" class="equipment-input">
+                                                    <small class="item-limit">(81枚/件)</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 飾品 -->
+                                    <div class="equipment-type">
+                                        <h5>💍 飾品 <span class="info-icon" data-info="accessory">ℹ️</span> <span class="type-cost" id="accessory-cost">0枚</span></h5>
+                                        <div class="equipment-qualities">
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name rare">稀有飾品:</span>
+                                                    <input type="number" id="accessory-rare" min="0" max="1" value="0" class="equipment-input">
+                                                    <small class="item-limit">(1枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name hero">英雄飾品:</span>
+                                                    <input type="number" id="accessory-hero" min="0" max="9" value="0" class="equipment-input">
+                                                    <small class="item-limit">(9枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name legend">傳說飾品:</span>
+                                                    <input type="number" id="accessory-legend" min="0" max="27" value="0" class="equipment-input">
+                                                    <small class="item-limit">(27枚/件)</small>
+                                                </label>
+                                            </div>
+                                            <div class="quality-item">
+                                                <label>
+                                                    <span class="quality-name mythic">神話飾品:</span>
+                                                    <input type="number" id="accessory-mythic" min="0" max="81" value="0" class="equipment-input">
+                                                    <small class="item-limit">(81枚/件)</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <h3 data-i18n="help.baseData.title">🎯 寵物基礎數據</h3>
-                            <table class="base-table">
-                                <tr>
-                                    <th data-i18n="pets.select">寵物</th>
-                                    <th data-i18n="stats.endurance">忍耐力</th>
-                                    <th data-i18n="stats.loyalty">忠誠心</th>
-                                    <th data-i18n="stats.speed">速度</th>
-                                    <th data-i18n="stats.hp">體力</th>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/pets/wolf.png" alt="狼" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 狼</td>
-                                    <td>6</td>
-                                    <td>6</td>
-                                    <td>6</td>
-                                    <td><strong>14</strong></td>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/pets/dubin.png" alt="杜賓狗" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 杜賓狗</td>
-                                    <td>6</td>
-                                    <td><strong>14</strong></td>
-                                    <td>6</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/pets/sheepdog.png" alt="牧羊犬" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 牧羊犬</td>
-                                    <td><strong>14</strong></td>
-                                    <td>6</td>
-                                    <td>6</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td><img src="assets/images/pets/beagle.png" alt="小獵犬" style="width: 20px; height: 20px; border-radius: 50%; margin-right: 5px; vertical-align: middle;"> 小獵犬</td>
-                                    <td>6</td>
-                                    <td>6</td>
-                                    <td><strong>14</strong></td>
-                                    <td>6</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <!-- 計算原理標籤 -->
-                        <div class="help-tab-content" id="calculation-tab">
-                            <h3 data-i18n="help.calculationPrinciple.title">🧮 計算原理</h3>
-                            <div class="calc-section">
-                                <h4 data-i18n="help.calculationPrinciple.upgradeRates">升級機率</h4>
-                                <div class="probability-section">
-                                    <div class="prob-item">
-                                        <strong data-i18n="help.calculationPrinciple.mainStat">主屬性：+1(5%), +2(15%), +3(30%), +4(20%), +5(15%), +6(10%), +7(5%)</strong>
-                                        <br><small data-i18n="help.calculationPrinciple.mainStatExpected">預期值：每級 +3.75 點</small>
+                            <!-- 技能類別 -->
+                            <div class="item-category">
+                                <h4>⚡ 技能 <span class="info-icon" data-info="skill">ℹ️</span> <span class="category-cost" id="skill-cost">0枚</span></h4>
+                                <div class="skill-level-grid">
+                                    <div class="skill-level-item">
+                                        <label>
+                                            <span class="skill-name rare">稀有技能:</span>
+                                            <input type="number" id="skill-rare" min="0" max="1" value="0" class="equipment-input">
+                                            <small class="item-limit">(1枚/個)</small>
+                                        </label>
                                     </div>
-                                    <div class="prob-item">
-                                        <strong data-i18n="help.calculationPrinciple.subStat">副屬性：+0(15%), +1(50%), +2(30%), +3(5%)</strong>
-                                        <br><small data-i18n="help.calculationPrinciple.subStatExpected">預期值：每級 +1.25 點</small>
+                                    <div class="skill-level-item">
+                                        <label>
+                                            <span class="skill-name hero">英雄技能:</span>
+                                            <input type="number" id="skill-hero" min="0" max="9" value="0" class="equipment-input">
+                                            <small class="item-limit">(複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="skill-level-item">
+                                        <label>
+                                            <span class="skill-name legend">傳說技能:</span>
+                                            <input type="number" id="skill-legend" min="0" max="27" value="0" class="equipment-input">
+                                            <small class="item-limit">(複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="skill-level-item">
+                                        <label>
+                                            <span class="skill-name mythic">神話技能:</span>
+                                            <input type="number" id="skill-mythic" min="0" max="81" value="0" class="equipment-input">
+                                            <small class="item-limit">(複雜計算)</small>
+                                        </label>
                                     </div>
                                 </div>
+                            </div>
+
+                            <!-- 咒語卡片類別 -->
+                            <div class="item-category">
+                                <h4>🃏 咒語卡片 <span class="info-icon" data-info="spell">ℹ️</span> <span class="category-cost" id="spell-cost">0枚</span></h4>
+                                <div class="spell-level-grid">
+                                    <div class="spell-level-item">
+                                        <label>
+                                            <span class="spell-name rare">稀有咒語卡:</span>
+                                            <input type="number" id="spell-rare" min="0" max="1" value="0" class="equipment-input">
+                                            <small class="item-limit">(1枚/張)</small>
+                                        </label>
+                                    </div>
+                                    <div class="spell-level-item">
+                                        <label>
+                                            <span class="spell-name hero">英雄咒語卡:</span>
+                                            <input type="number" id="spell-hero" min="0" max="9" value="0" class="equipment-input">
+                                            <small class="item-limit">(複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="spell-level-item">
+                                        <label>
+                                            <span class="spell-name legend">傳說咒語卡:</span>
+                                            <input type="number" id="spell-legend" min="0" max="27" value="0" class="equipment-input">
+                                            <small class="item-limit">(複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="spell-level-item">
+                                        <label>
+                                            <span class="spell-name mythic">神話咒語卡:</span>
+                                            <input type="number" id="spell-mythic" min="0" max="81" value="0" class="equipment-input">
+                                            <small class="item-limit">(81枚/張)</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 商城裝備類別 -->
+                            <div class="item-category">
+                                <h4>🛍️ 商城裝備 <span class="info-icon" data-info="cash">ℹ️</span> <span class="category-cost" id="cash-cost">0枚</span></h4>
+                                <div class="cash-equipment-grid">
+                                    <div class="cash-equipment-item">
+                                        <label>
+                                            <span class="cash-name">商城T恤:</span>
+                                            <input type="number" id="cash-shirt" min="0" max="3" value="0" class="equipment-input">
+                                            <small class="item-limit">(5枚/件)</small>
+                                        </label>
+                                    </div>
+                                    <div class="cash-equipment-item">
+                                        <label>
+                                            <span class="cash-name">商城肩甲:</span>
+                                            <input type="number" id="cash-shoulder" min="0" max="2" value="0" class="equipment-input">
+                                            <small class="item-limit">(5枚/件)</small>
+                                        </label>
+                                    </div>
+                                    <div class="cash-equipment-item">
+                                        <label>
+                                            <span class="cash-name">商城面甲:</span>
+                                            <input type="number" id="cash-mask" min="0" max="5" value="0" class="equipment-input">
+                                            <small class="item-limit">(5枚/件)</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 簡易版詳細花費明細 -->
+                        <section class="job-change-result-bottom">
+                            <div class="main-content">
+                                <h3>詳細花費明細</h3>
                                 
-                                <h4 data-i18n="help.calculationPrinciple.formula">評分公式</h4>
-                                <div class="formula">
-                                    <div class="formula-step">
-                                        <strong data-i18n="help.calculationPrinciple.formula1">1. 計算預期值</strong><br>
-                                        <span data-i18n="help.calculationPrinciple.formula1Desc">預期值 = 基礎值 + (等級-1) × 每級預期成長</span>
+                                <div class="cost-breakdown">
+                                    <div id="cost-details">
+                                        <p class="no-items">請選擇要轉職的物品</p>
                                     </div>
-                                    <div class="formula-step">
-                                        <strong data-i18n="help.calculationPrinciple.formula2">2. 計算成長率</strong><br>
-                                        <span data-i18n="help.calculationPrinciple.formula2Desc">成長率 = (當前值 - 基礎值) ÷ (預期值 - 基礎值)</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- 詳細計算器內容 -->
+                    <div class="sub-page-content" id="detailed-calculator">
+                        <!-- 即時費用顯示 -->
+                        <div class="cost-display">
+                            <div class="cost-summary-live">
+                                <div class="cost-item">
+                                    <span class="cost-label">基本轉職費用:</span>
+                                    <span class="cost-value">2000鑽</span>
+                                </div>
+                                <div class="cost-item">
+                                    <span class="cost-label">轉職硬幣總花費:</span>
+                                    <span class="cost-value" id="detailed-live-coin-cost">0枚</span>
+                                </div>
+                                <div class="cost-item total">
+                                    <span class="cost-label">總計花費:</span>
+                                    <span class="cost-value" id="detailed-live-total-cost">2000鑽</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 轉職硬幣禮包選項 -->
+                        <div class="package-option">
+                            <label class="package-checkbox">
+                                <input type="checkbox" id="detailed-coin-package" class="package-input">
+                                <span class="checkmark">✓</span>
+                                <span class="package-text">轉職硬幣禮包 (-300枚)</span>
+                            </label>
+                            <small class="package-note">勾選後可節省300枚轉職硬幣</small>
+                        </div>
+
+                        <!-- 詳細裝備分類 -->
+                        <div class="detailed-equipment-section">
+                            <h3>詳細裝備分類</h3>
+                            
+                            <!-- 武器類 -->
+                            <div class="detailed-category">
+                                <h4>⚔️ 武器類 <span class="category-cost" id="detailed-weapon-cost">0枚</span></h4>
+                                <div class="detailed-equipment-grid">
+                                    <!-- 武器 -->
+                                    <div class="equipment-slot">
+                                        <h5>武器 <span class="slot-limit">(上限3件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-weapon-rare" min="0" max="3" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-weapon-hero" min="0" max="3" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-weapon-legend" min="0" max="3" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-weapon-mythic" min="0" max="3" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="formula-step">
-                                        <strong data-i18n="help.calculationPrinciple.formula3">3. 主屬性加權</strong><br>
-                                        <span data-i18n="help.calculationPrinciple.formula3Desc">主屬性分數 × 1.5 倍加權</span>
+                                </div>
+                            </div>
+
+                            <!-- 防具類 -->
+                            <div class="detailed-category">
+                                <h4>🛡️ 防具類 <span class="category-cost" id="detailed-armor-cost">0枚</span></h4>
+                                <div class="detailed-equipment-grid">
+                                    <!-- 頭盔 -->
+                                    <div class="equipment-slot">
+                                        <h5>頭盔 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-helmet-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-helmet-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-helmet-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-helmet-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 盔甲 -->
+                                    <div class="equipment-slot">
+                                        <h5>盔甲 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-chest-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-chest-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-chest-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-chest-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 臂甲 -->
+                                    <div class="equipment-slot">
+                                        <h5>臂甲 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-arms-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-arms-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-arms-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-arms-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 手套 -->
+                                    <div class="equipment-slot">
+                                        <h5>手套 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-gloves-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-gloves-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-gloves-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-gloves-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 脛甲 -->
+                                    <div class="equipment-slot">
+                                        <h5>脛甲 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-legs-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-legs-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-legs-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-legs-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 鞋子 -->
+                                    <div class="equipment-slot">
+                                        <h5>鞋子 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-boots-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-boots-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-boots-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-boots-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 皮帶 -->
+                                    <div class="equipment-slot">
+                                        <h5>皮帶 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-belt-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-belt-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-belt-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-belt-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 斗篷 -->
+                                    <div class="equipment-slot">
+                                        <h5>斗篷 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-cloak-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-cloak-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-cloak-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-cloak-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 飾品類 -->
+                            <div class="detailed-category">
+                                <h4>💍 飾品類 <span class="category-cost" id="detailed-accessory-cost">0枚</span></h4>
+                                <div class="detailed-equipment-grid">
+                                    <!-- 項鍊 -->
+                                    <div class="equipment-slot">
+                                        <h5>項鍊 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-necklace-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-necklace-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-necklace-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-necklace-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 耳環 -->
+                                    <div class="equipment-slot">
+                                        <h5>耳環 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-earring-rare" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-earring-hero" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-earring-legend" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-earring-mythic" min="0" max="2" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 戒指 -->
+                                    <div class="equipment-slot">
+                                        <h5>戒指 <span class="slot-limit">(上限4件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-ring-rare" min="0" max="4" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-ring-hero" min="0" max="4" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-ring-legend" min="0" max="4" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-ring-mythic" min="0" max="4" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 符石 -->
+                                    <div class="equipment-slot">
+                                        <h5>符石 <span class="slot-limit">(上限1件)</span></h5>
+                                        <div class="quality-inputs">
+                                            <div class="quality-row">
+                                                <span class="quality-label rare">稀有</span>
+                                                <input type="number" id="detailed-rune-rare" min="0" max="1" value="0" class="detailed-input">
+                                                <span class="cost-per-item">1枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label hero">英雄</span>
+                                                <input type="number" id="detailed-rune-hero" min="0" max="1" value="0" class="detailed-input">
+                                                <span class="cost-per-item">9枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label legend">傳說</span>
+                                                <input type="number" id="detailed-rune-legend" min="0" max="1" value="0" class="detailed-input">
+                                                <span class="cost-per-item">27枚/件</span>
+                                            </div>
+                                            <div class="quality-row">
+                                                <span class="quality-label mythic">神話</span>
+                                                <input type="number" id="detailed-rune-mythic" min="0" max="1" value="0" class="detailed-input">
+                                                <span class="cost-per-item">81枚/件</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 商城裝備類 -->
+                            <div class="detailed-category">
+                                <h4>🛍️ 商城裝備類 <span class="category-cost" id="detailed-cash-cost">0枚</span></h4>
+                                <div class="detailed-equipment-grid">
+                                    <!-- 商城T恤 -->
+                                    <div class="equipment-slot cash-equipment">
+                                        <h5>商城T恤 <span class="slot-limit">(上限3件)</span></h5>
+                                        <div class="cash-input-row">
+                                            <span class="cash-label">數量:</span>
+                                            <input type="number" id="detailed-cash-shirt" min="0" max="3" value="0" class="detailed-input">
+                                            <span class="cost-per-item special">5枚/件</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 商城肩甲 -->
+                                    <div class="equipment-slot cash-equipment">
+                                        <h5>商城肩甲 <span class="slot-limit">(上限2件)</span></h5>
+                                        <div class="cash-input-row">
+                                            <span class="cash-label">數量:</span>
+                                            <input type="number" id="detailed-cash-shoulder" min="0" max="2" value="0" class="detailed-input">
+                                            <span class="cost-per-item special">5枚/件</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 商城面甲 -->
+                                    <div class="equipment-slot cash-equipment">
+                                        <h5>商城面甲 <span class="slot-limit">(上限5件)</span></h5>
+                                        <div class="cash-input-row">
+                                            <span class="cash-label">數量:</span>
+                                            <input type="number" id="detailed-cash-mask" min="0" max="5" value="0" class="detailed-input">
+                                            <span class="cost-per-item special">5枚/件</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 技能類別 -->
+                            <div class="detailed-category">
+                                <h4>⚡ 技能 <span class="info-icon" data-info="skill">ℹ️</span> <span class="category-cost" id="detailed-skill-cost">0枚</span></h4>
+                                <div class="skill-detailed-grid">
+                                    <div class="skill-detailed-item">
+                                        <label>
+                                            <span class="skill-name rare">稀有技能</span>
+                                            <input type="number" id="detailed-skill-rare" min="0" max="1" value="0" class="detailed-input">
+                                            <small class="item-limit">上限1個 (1枚/個)</small>
+                                        </label>
+                                    </div>
+                                    <div class="skill-detailed-item">
+                                        <label>
+                                            <span class="skill-name hero">英雄技能</span>
+                                            <input type="number" id="detailed-skill-hero" min="0" max="9" value="0" class="detailed-input">
+                                            <small class="item-limit">上限9個 (複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="skill-detailed-item">
+                                        <label>
+                                            <span class="skill-name legend">傳說技能</span>
+                                            <input type="number" id="detailed-skill-legend" min="0" max="27" value="0" class="detailed-input">
+                                            <small class="item-limit">上限27個 (複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="skill-detailed-item">
+                                        <label>
+                                            <span class="skill-name mythic">神話技能</span>
+                                            <input type="number" id="detailed-skill-mythic" min="0" max="81" value="0" class="detailed-input">
+                                            <small class="item-limit">上限81個 (複雜計算)</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 咒語卡片類別 -->
+                            <div class="detailed-category">
+                                <h4>🃏 咒語卡片 <span class="info-icon" data-info="spell">ℹ️</span> <span class="category-cost" id="detailed-spell-cost">0枚</span></h4>
+                                <div class="spell-detailed-grid">
+                                    <div class="spell-detailed-item">
+                                        <label>
+                                            <span class="spell-name rare">稀有咒語卡</span>
+                                            <input type="number" id="detailed-spell-rare" min="0" max="20" value="0" class="detailed-input">
+                                            <small class="item-limit">上限20張 (複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="spell-detailed-item">
+                                        <label>
+                                            <span class="spell-name hero">英雄咒語卡</span>
+                                            <input type="number" id="detailed-spell-hero" min="0" max="20" value="0" class="detailed-input">
+                                            <small class="item-limit">上限20張 (複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="spell-detailed-item">
+                                        <label>
+                                            <span class="spell-name legend">傳說咒語卡</span>
+                                            <input type="number" id="detailed-spell-legend" min="0" max="20" value="0" class="detailed-input">
+                                            <small class="item-limit">上限20張 (複雜計算)</small>
+                                        </label>
+                                    </div>
+                                    <div class="spell-detailed-item">
+                                        <label>
+                                            <span class="spell-name mythic">神話咒語卡</span>
+                                            <input type="number" id="detailed-spell-mythic" min="0" max="20" value="0" class="detailed-input">
+                                            <small class="item-limit">上限20張 (81枚/張)</small>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 評價等級標籤 -->
-                        <div class="help-tab-content" id="rating-tab">
-                            <h3 data-i18n="help.ratingLevels.title">🏆 評價等級</h3>
-                            <div class="rating-list">
-                                <div class="rating-item excellent">
-                                    <span class="rating-badge" data-i18n="ratings.excellent">頂級</span>
-                                    <div class="rating-info">
-                                        <strong>≥140%</strong> - <span data-i18n="help.ratingLevels.excellent140">神級寵物，極品成長</span>
-                                    </div>
-                                </div>
-                                <div class="rating-item excellent">
-                                    <span class="rating-badge" data-i18n="ratings.good">優秀</span>
-                                    <div class="rating-info">
-                                        <strong>120-139%</strong> - <span data-i18n="help.ratingLevels.excellent120">品質優良，推薦培養</span>
-                                    </div>
-                                </div>
-                                <div class="rating-item good">
-                                    <span class="rating-badge" data-i18n="ratings.average">良好</span>
-                                    <div class="rating-info">
-                                        <strong>105-119%</strong> - <span data-i18n="help.ratingLevels.good105">超出預期，值得培養</span>
-                                    </div>
-                                </div>
-                                <div class="rating-item average">
-                                    <span class="rating-badge" data-i18n="ratings.normal">普通</span>
-                                    <div class="rating-info">
-                                        <strong>100-104%</strong> - <span data-i18n="help.ratingLevels.normal100">合乎預期，可正常使用</span>
-                                    </div>
-                                </div>
-                                <div class="rating-item average">
-                                    <span class="rating-badge" data-i18n="ratings.poor">待加強</span>
-                                    <div class="rating-info">
-                                        <strong>85-99%</strong> - <span data-i18n="help.ratingLevels.poor85">低於平均，建議強化或替換</span>
-                                    </div>
-                                </div>
-                                <div class="rating-item poor">
-                                    <span class="rating-badge" data-i18n="ratings.bad">不佳</span>
-                                    <div class="rating-info">
-                                        <strong>&lt;85%</strong> - <span data-i18n="help.ratingLevels.bad">明顯不佳，建議重練</span>
+                        <!-- 詳細花費明細 -->
+                        <section class="detailed-job-result-bottom">
+                            <div class="main-content">
+                                <h3>詳細花費明細</h3>
+                                
+                                <div class="cost-breakdown">
+                                    <div id="detailed-cost-details">
+                                        <p class="no-items">請選擇要轉職的物品</p>
                                     </div>
                                 </div>
                             </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
 
-                            <div class="bonus-info">
-                                <h4 data-i18n="help.ratingLevels.explanation">💡 評分說明</h4>
-                                <ul>
-                                    <li><strong data-i18n="help.ratingLevels.expected">預期值 (100%)：根據升級機率計算的平均成長表現</strong></li>
-                                    <li><strong data-i18n="help.ratingLevels.logic">評分邏輯：以預期值為基準，評估寵物實際成長相對於理論平均值的表現</strong></li>
-                                    <li><strong data-i18n="help.ratingLevels.mainWeight">主屬性加權：主屬性評分 × 1.5 倍，更重視寵物的主要特性</strong></li>
-                                    <li><strong data-i18n="help.ratingLevels.overall">整體評價：綜合所有屬性的加權平均分數</strong></li>
-                                    <li><strong data-i18n="help.ratingLevels.improvement">「待加強」：明確提示該寵物需要更多投入或考慮替換</strong></li>
-                                </ul>
+        <!-- 硬幣消耗說明視窗 -->
+        <div id="info-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="info-modal-title" aria-hidden="true">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="info-modal-title">💰 轉職硬幣消耗說明</h2>
+                    <span class="close" aria-label="關閉說明視窗">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="info-content">
+                        <!-- 動態內容將由JavaScript填充 -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                <h4 data-i18n="help.ratingLevels.bonusTitle">💪 角色加成效果</h4>
-                                <ul>
-                                    <li><strong data-i18n="help.ratingLevels.enduranceBonus">忍耐力：每5點 = +1物理防禦</strong></li>
-                                    <li><strong data-i18n="help.ratingLevels.loyaltyBonus">忠誠心：每5點 = +1近/遠/魔命中</strong></li>
-                                    <li><strong data-i18n="help.ratingLevels.speedBonus">速度：每10點 = +1近/遠迴避</strong></li>
-                                    <li><strong data-i18n="help.ratingLevels.hpBonus">體力：每1點 = +30HP</strong></li>
-                                    <li><strong data-i18n="help.ratingLevels.aggressivenessBonus">積極性：影響攻擊積極度，固定為3</strong></li>
-                                </ul>
+        <!-- 幫助說明視窗 -->
+        <div id="help-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">🐾 使用說明</h2>
+                    <span class="close" aria-label="關閉說明視窗">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <!-- 標籤按鈕 -->
+                    <div class="help-tabs">
+                        <button class="help-tab-btn active" data-tab="usage-tab">使用方法</button>
+                        <button class="help-tab-btn" data-tab="calculation-tab">計算原理</button>
+                        <button class="help-tab-btn" data-tab="rating-tab">評價等級</button>
+                    </div>
+
+                    <!-- 使用方法標籤 -->
+                    <div class="help-tab-content active" id="usage-tab">
+                        <h3>🚀 使用步驟</h3>
+                        <div class="steps">
+                            <div class="step-item">
+                                <span class="step-num">1</span>
+                                <div>選擇您的寵物類型</div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">2</span>
+                                <div>輸入寵物等級（1-15）</div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">3</span>
+                                <div>輸入各屬性數值（⚠️請扣除技能加成）</div>
+                            </div>
+                            <div class="step-item">
+                                <span class="step-num">4</span>
+                                <div>點擊計算按鈕查看評價</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 計算原理標籤 -->
+                    <div class="help-tab-content" id="calculation-tab">
+                        <h3>🧮 計算原理</h3>
+                        <p>寵物屬性評價基於統計學原理計算...</p>
+                    </div>
+
+                    <!-- 評價等級標籤 -->
+                    <div class="help-tab-content" id="rating-tab">
+                        <h3>⭐ 評價等級</h3>
+                        <div class="rating-list">
+                            <div class="rating-item excellent">
+                                <span class="rating-badge">極品</span>
+                                <span>超過期望值很多</span>
+                            </div>
+                            <div class="rating-item good">
+                                <span class="rating-badge">良好</span>
+                                <span>超過期望值</span>
+                            </div>
+                            <div class="rating-item average">
+                                <span class="rating-badge">普通</span>
+                                <span>接近期望值</span>
+                            </div>
+                            <div class="rating-item poor">
+                                <span class="rating-badge">不佳</span>
+                                <span>低於期望值</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <footer class="footer">
-            <!-- 📝 意見回饋表單（上方） -->
-            <div class="feedback-section">
-                <h3 data-i18n="footer.contact">📝與我聯繫</h3>
-                <p data-i18n="footer.contactDesc">有任何建議或意見嗎？歡迎填寫回饋表單！</p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfgqhDqccI-FwdwKCUL6EW7TqyJpCisUarKeyUu-Fv4BKidIA/viewform" 
-                    target="_blank" 
-                    class="feedback-link"
-                    data-i18n="footer.feedbackLink">
-                    🔗 點擊前往意見回饋表單
-                </a>
-            </div>
-            
-            <!-- 👤 作者信息（下方） -->
-            <div class="footer-info">
-                <p><span data-i18n="footer.createdBy">Created by</span> <strong data-i18n="footer.author">Orion</strong></p>
-                <p data-i18n="footer.lastUpdate">Last Update: 2025/06/02 V2.4</p>
-            </div>
-        </footer>
     </div>
 
-    <script type="module" src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/job-change.js"></script>
 </body>
 </html> 

@@ -1178,4 +1178,1779 @@ header h1 {
     color: #61dafb;
     margin: 15px 0 10px 0;
     font-size: 1.1rem;
+}
+
+/* 導航標籤樣式 */
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-tab {
+    background: linear-gradient(135deg, #3e4451 0%, #282c34 100%);
+    color: #abb2bf;
+    border: 2px solid #3e4451;
+    border-radius: 15px;
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+    text-align: center;
+}
+
+.nav-tab:hover {
+    border-color: #61dafb;
+    background: linear-gradient(135deg, #61dafb 0%, #56b6c2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(97, 218, 251, 0.3);
+}
+
+.nav-tab.active {
+    background: linear-gradient(135deg, #98c379 0%, #87a96b 100%);
+    border-color: #98c379;
+    color: white;
+    box-shadow: 0 8px 25px rgba(152, 195, 121, 0.4);
+}
+
+.nav-tab.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #3e4451;
+}
+
+.nav-tab.disabled:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #3e4451;
+    background: #3e4451;
+    color: #abb2bf;
+}
+
+/* 頁面內容樣式 */
+.page-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.page-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 轉職花費計算器樣式 */
+.job-change-section {
+    margin-bottom: 40px;
+}
+
+.job-change-section h2 {
+    color: #e5c07b;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.section-description {
+    color: #abb2bf;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.job-change-settings {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: #282c34;
+    border-radius: 15px;
+    border: 1px solid #3e4451;
+}
+
+.job-change-settings h3 {
+    color: #e5c07b;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.setting-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.setting-group label {
+    color: #e5c07b;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.setting-group input {
+    padding: 12px;
+    border: 2px solid #3e4451;
+    border-radius: 8px;
+    background: #323844;
+    color: #abb2bf;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.setting-group input:focus {
+    outline: none;
+    border-color: #61dafb;
+    box-shadow: 0 0 10px rgba(97, 218, 251, 0.3);
+}
+
+.setting-group small {
+    color: #98c379;
+    font-size: 0.9rem;
+}
+
+/* 轉職物品選擇樣式 */
+.job-change-items {
+    margin-bottom: 40px;
+}
+
+.job-change-items h3 {
+    color: #e5c07b;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.item-category {
+    margin-bottom: 35px;
+    padding: 25px;
+    background: #282c34;
+    border-radius: 15px;
+    border: 1px solid #3e4451;
+}
+
+.item-category h4 {
+    color: #c678dd;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.item-card {
+    background: #323844;
+    border: 2px solid #3e4451;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.item-card:hover {
+    border-color: #61dafb;
+    box-shadow: 0 8px 25px rgba(97, 218, 251, 0.2);
+}
+
+.item-card h5 {
+    color: #61dafb;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.quality-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.quality-selector label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #abb2bf;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+.quality-selector label:hover {
+    background: #3e4451;
+}
+
+.quality-selector input[type="radio"] {
+    margin: 0;
+    accent-color: #61dafb;
+}
+
+.quantity-input label {
+    color: #e5c07b;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-input input {
+    width: 80px;
+    padding: 8px;
+    border: 2px solid #3e4451;
+    border-radius: 6px;
+    background: #282c34;
+    color: #abb2bf;
+    text-align: center;
+}
+
+.quantity-input input:focus {
+    outline: none;
+    border-color: #61dafb;
+}
+
+/* 技能選擇樣式 */
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    background: #323844;
+    border: 2px solid #3e4451;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+    border-color: #98c379;
+    box-shadow: 0 8px 25px rgba(152, 195, 121, 0.2);
+}
+
+.skill-card h5 {
+    color: #98c379;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.level-selector label {
+    color: #e5c07b;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.level-selector select {
+    padding: 8px 12px;
+    border: 2px solid #3e4451;
+    border-radius: 6px;
+    background: #282c34;
+    color: #abb2bf;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.level-selector select:focus {
+    outline: none;
+    border-color: #98c379;
+}
+
+/* 咒語卡選擇樣式 */
+.spell-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.spell-card {
+    background: #323844;
+    border: 2px solid #3e4451;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.spell-card:hover {
+    border-color: #c678dd;
+    box-shadow: 0 8px 25px rgba(198, 120, 221, 0.2);
+}
+
+.spell-card h5 {
+    color: #c678dd;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* 轉職結果樣式 */
+.job-change-result {
+    margin-top: 40px;
+    padding: 30px;
+    background: #282c34;
+    border-radius: 15px;
+    border: 1px solid #3e4451;
+}
+
+.job-change-result h3 {
+    color: #e5c07b;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.cost-summary {
+    background: #323844;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 2px solid #3e4451;
+}
+
+.cost-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #3e4451;
+}
+
+.cost-item:last-child {
+    border-bottom: none;
+}
+
+.cost-item.total {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #e5c07b;
+    border-top: 2px solid #e5c07b;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+.cost-label {
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+.cost-value {
+    color: #61dafb;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.cost-item.total .cost-value {
+    color: #98c379;
+    font-size: 1.3rem;
+}
+
+.cost-breakdown {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #323844;
+    border-radius: 12px;
+    border: 1px solid #3e4451;
+}
+
+.cost-breakdown h4 {
+    color: #c678dd;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.cost-tips {
+    padding: 20px;
+    background: #323844;
+    border-radius: 12px;
+    border: 1px solid #3e4451;
+}
+
+.cost-tips h4 {
+    color: #98c379;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.cost-tips ul {
+    list-style: none;
+    padding: 0;
+}
+
+.cost-tips li {
+    color: #abb2bf;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.cost-tips li:before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .nav-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-tab {
+        min-width: 250px;
+    }
+    
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .item-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .spell-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quality-selector {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .cost-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* 即時費用顯示樣式 */
+.cost-display {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: linear-gradient(135deg, #98c379 0%, #87a96b 100%);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(152, 195, 121, 0.3);
+}
+
+.cost-summary-live {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.cost-summary-live .cost-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.cost-summary-live .cost-item:last-child {
+    border-bottom: none;
+}
+
+.cost-summary-live .cost-item.total {
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+.cost-summary-live .cost-label {
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cost-summary-live .cost-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.cost-summary-live .cost-item.total .cost-value {
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* 裝備網格樣式 */
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.equipment-type {
+    background: #323844;
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.equipment-type:hover {
+    border-color: #61dafb;
+    box-shadow: 0 8px 25px rgba(97, 218, 251, 0.2);
+}
+
+.equipment-type h5 {
+    color: #61dafb;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.equipment-qualities {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quality-item {
+    background: #282c34;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #3e4451;
+}
+
+.quality-item label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+.quality-name {
+    font-weight: 600;
+    min-width: 100px;
+}
+
+.quality-name.rare {
+    color: #4169E1; /* 深藍色 */
+}
+
+.quality-name.hero {
+    color: #DC143C; /* 紅色 */
+}
+
+.quality-name.legend {
+    color: #9370DB; /* 紫色 */
+}
+
+.quality-name.mythic {
+    color: #FFD700; /* 金色 */
+}
+
+.equipment-input {
+    width: 80px;
+    padding: 8px 12px;
+    border: 2px solid #3e4451;
+    border-radius: 6px;
+    background: #21252b;
+    color: #abb2bf;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.equipment-input:focus {
+    outline: none;
+    border-color: #61dafb;
+    box-shadow: 0 0 10px rgba(97, 218, 251, 0.3);
+}
+
+.equipment-input:hover {
+    border-color: #98c379;
+}
+
+.quality-item small {
+    color: #98c379;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+/* 技能等級網格樣式 */
+.skill-level-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.skill-level-item {
+    background: #323844;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.skill-level-item:hover {
+    border-color: #98c379;
+    box-shadow: 0 8px 25px rgba(152, 195, 121, 0.2);
+}
+
+.skill-level-item label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+.skill-name {
+    font-weight: 600;
+    min-width: 100px;
+}
+
+.skill-name.rare {
+    color: #4169E1; /* 深藍色 */
+}
+
+.skill-name.hero {
+    color: #DC143C; /* 紅色 */
+}
+
+.skill-name.legend {
+    color: #9370DB; /* 紫色 */
+}
+
+.skill-name.mythic {
+    color: #FFD700; /* 金色 */
+}
+
+/* 咒語卡等級網格樣式 */
+.spell-level-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.spell-level-item {
+    background: #323844;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.spell-level-item:hover {
+    border-color: #c678dd;
+    box-shadow: 0 8px 25px rgba(198, 120, 221, 0.2);
+}
+
+.spell-level-item label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+.spell-name {
+    font-weight: 600;
+    min-width: 120px;
+}
+
+.spell-name.rare {
+    color: #4169E1; /* 深藍色 */
+}
+
+.spell-name.hero {
+    color: #DC143C; /* 紅色 */
+}
+
+.spell-name.legend {
+    color: #9370DB; /* 紫色 */
+}
+
+.spell-name.mythic {
+    color: #FFD700; /* 金色 */
+}
+
+/* 詳細花費明細樣式 */
+.job-change-result {
+    margin-top: 40px;
+    padding: 30px;
+    background: #282c34;
+    border-radius: 15px;
+    border: 1px solid #3e4451;
+}
+
+.job-change-result h3 {
+    color: #e5c07b;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.cost-breakdown {
+    background: #323844;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 2px solid #3e4451;
+}
+
+.no-items {
+    color: #abb2bf;
+    text-align: center;
+    font-style: italic;
+    padding: 20px;
+}
+
+#cost-details h5 {
+    color: #61dafb;
+    margin: 20px 0 10px 0;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #3e4451;
+    padding-bottom: 5px;
+}
+
+#cost-details h5:first-child {
+    margin-top: 0;
+}
+
+#cost-details ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+#cost-details li {
+    background: #282c34;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border-left: 4px solid #98c379;
+    color: #abb2bf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cost-details li:last-child {
+    margin-bottom: 0;
+}
+
+/* 響應式設計調整 */
+@media (max-width: 768px) {
+    .equipment-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-level-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .spell-level-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quality-item label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .skill-level-item label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .spell-level-item label {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .cost-summary-live .cost-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* 信息圖標樣式 */
+.info-icon {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 4px 8px;
+    background: linear-gradient(135deg, #61dafb 0%, #56b6c2 100%);
+    color: white;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 12px;
+    box-shadow: 0 2px 8px rgba(97, 218, 251, 0.3);
+}
+
+.info-icon:hover {
+    background: linear-gradient(135deg, #56b6c2 0%, #61dafb 100%);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(97, 218, 251, 0.5);
+}
+
+/* 信息內容樣式 */
+#info-content {
+    color: #abb2bf;
+    line-height: 1.6;
+}
+
+#info-content h3 {
+    color: #e5c07b;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+#info-content .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background: #282c34;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#info-content .cost-table th,
+#info-content .cost-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #3e4451;
+}
+
+#info-content .cost-table th {
+    background: linear-gradient(135deg, #c678dd, #61dafb);
+    color: white;
+    font-weight: 600;
+}
+
+#info-content .cost-table tr:nth-child(even) {
+    background: #323844;
+}
+
+#info-content .cost-table .rare {
+    color: #4169E1;
+    font-weight: 600;
+}
+
+#info-content .cost-table .hero {
+    color: #DC143C;
+    font-weight: 600;
+}
+
+#info-content .cost-table .legend {
+    color: #9370DB;
+    font-weight: 600;
+}
+
+#info-content .cost-table .mythic {
+    color: #FFD700;
+    font-weight: 600;
+}
+
+#info-content .special-rule {
+    background: #463c0f;
+    border: 1px solid #d19a66;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    color: #e5c07b;
+    font-weight: 500;
+}
+
+#info-content .special-rule h4 {
+    color: #d19a66;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+#info-content .special-rule ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+#info-content .special-rule li {
+    margin-bottom: 8px;
+}
+
+/* 轉職硬幣禮包選項樣式 */
+.package-option {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #61dafb 0%, #56b6c2 100%);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(97, 218, 251, 0.3);
+}
+
+.package-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.package-input {
+    display: none;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: transparent;
+    transition: all 0.3s ease;
+}
+
+.package-input:checked + .checkmark {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 1);
+    color: #61dafb;
+    transform: scale(1.1);
+}
+
+.package-text {
+    flex: 1;
+}
+
+.package-note {
+    display: block;
+    margin-top: 8px;
+    margin-left: 36px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* 類別花費顯示樣式 */
+.category-cost {
+    display: inline-block;
+    background: linear-gradient(135deg, #98c379 0%, #87a96b 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 10px;
+    box-shadow: 0 2px 8px rgba(152, 195, 121, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.type-cost {
+    display: inline-block;
+    background: linear-gradient(135deg, #61dafb 0%, #56b6c2 100%);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 8px;
+    box-shadow: 0 2px 6px rgba(97, 218, 251, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 底部結果區塊樣式 */
+.job-change-result-bottom {
+    margin-top: 40px;
+    padding: 0 20px 40px 20px;
+}
+
+.job-change-result-bottom .main-content {
+    background: #282c34;
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid #3e4451;
+}
+
+.job-change-result-bottom h3 {
+    color: #e5c07b;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* 響應式設計調整 */
+@media (max-width: 768px) {
+    .package-checkbox {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .package-note {
+        margin-left: 0;
+    }
+    
+    .category-cost {
+        display: block;
+        margin-left: 0;
+        margin-top: 8px;
+        text-align: center;
+    }
+    
+    .type-cost {
+        display: block;
+        margin-left: 0;
+        margin-top: 6px;
+        text-align: center;
+    }
+    
+    .cost-summary-live .cost-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .job-change-result-bottom {
+        padding: 0 10px 40px 10px;
+    }
+}
+
+/* 商城裝備樣式 */
+.cash-equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.cash-equipment-item {
+    background: #323844;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.cash-equipment-item:hover {
+    border-color: #d19a66;
+    box-shadow: 0 8px 25px rgba(209, 154, 102, 0.2);
+}
+
+.cash-equipment-item label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+.cash-name {
+    font-weight: 600;
+    color: #d19a66;
+    min-width: 100px;
+}
+
+/* 詳細計算頁面樣式 */
+.detailed-job-section {
+    margin-bottom: 40px;
+}
+
+.detailed-job-section h2 {
+    color: #e5c07b;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.detailed-equipment-section {
+    margin-bottom: 40px;
+}
+
+.detailed-equipment-section h3 {
+    color: #e5c07b;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.detailed-category {
+    margin-bottom: 35px;
+    padding: 25px;
+    background: #282c34;
+    border-radius: 15px;
+    border: 1px solid #3e4451;
+}
+
+.detailed-category h4 {
+    color: #c678dd;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detailed-equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.equipment-slot {
+    background: #323844;
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.equipment-slot:hover {
+    border-color: #61dafb;
+    box-shadow: 0 8px 25px rgba(97, 218, 251, 0.2);
+}
+
+.equipment-slot h5 {
+    color: #61dafb;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slot-limit {
+    font-size: 0.8rem;
+    color: #98c379;
+    font-weight: 500;
+}
+
+.quality-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quality-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    background: #282c34;
+    border-radius: 8px;
+    border: 1px solid #3e4451;
+}
+
+.quality-label {
+    font-weight: 600;
+    min-width: 80px;
+    font-size: 0.9rem;
+}
+
+.quality-label.rare {
+    color: #4169E1;
+}
+
+.quality-label.hero {
+    color: #DC143C;
+}
+
+.quality-label.legend {
+    color: #9370DB;
+}
+
+.quality-label.mythic {
+    color: #FFD700;
+}
+
+.detailed-input {
+    width: 80px;
+    padding: 8px 12px;
+    border: 2px solid #3e4451;
+    border-radius: 6px;
+    background: #21252b;
+    color: #abb2bf;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.detailed-input:focus {
+    outline: none;
+    border-color: #61dafb;
+    box-shadow: 0 0 10px rgba(97, 218, 251, 0.3);
+}
+
+.detailed-input:hover {
+    border-color: #98c379;
+}
+
+.cost-per-item {
+    color: #98c379;
+    font-size: 0.8rem;
+    font-weight: 500;
+    min-width: 60px;
+    text-align: right;
+}
+
+.cost-per-item.special {
+    color: #d19a66;
+    font-weight: 600;
+}
+
+/* 商城裝備特殊樣式 */
+.equipment-slot.cash-equipment {
+    background: linear-gradient(135deg, #d19a66 0%, #e5c07b 100%);
+    color: white;
+}
+
+.equipment-slot.cash-equipment h5 {
+    color: white;
+}
+
+.cash-input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.cash-label {
+    font-weight: 600;
+    color: white;
+    min-width: 100px;
+}
+
+.cash-input-row .detailed-input {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.cash-input-row .detailed-input:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 技能詳細樣式 */
+.skill-detailed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.skill-detailed-item {
+    background: #323844;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.skill-detailed-item:hover {
+    border-color: #98c379;
+    box-shadow: 0 8px 25px rgba(152, 195, 121, 0.2);
+}
+
+.skill-detailed-item label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+/* 咒語卡詳細樣式 */
+.spell-detailed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.spell-detailed-item {
+    background: #323844;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.spell-detailed-item:hover {
+    border-color: #c678dd;
+    box-shadow: 0 8px 25px rgba(198, 120, 221, 0.2);
+}
+
+.spell-detailed-item label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+/* 詳細結果區塊樣式 */
+.detailed-job-result-bottom {
+    margin-top: 40px;
+    padding: 0 20px 40px 20px;
+}
+
+.detailed-job-result-bottom .main-content {
+    background: #282c34;
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid #3e4451;
+}
+
+.detailed-job-result-bottom h3 {
+    color: #e5c07b;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* 響應式設計調整 */
+@media (max-width: 768px) {
+    .detailed-equipment-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quality-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .cash-input-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .skill-detailed-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .spell-detailed-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cash-equipment-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .detailed-job-result-bottom {
+        padding: 0 10px 40px 10px;
+    }
+}
+
+/* 子導航樣式 */
+.sub-nav-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 10px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sub-nav-tab {
+    background: linear-gradient(135deg, #3e4451 0%, #282c34 100%);
+    color: #abb2bf;
+    border: 2px solid #3e4451;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+    text-align: center;
+}
+
+.sub-nav-tab:hover {
+    border-color: #61dafb;
+    background: linear-gradient(135deg, #61dafb 0%, #56b6c2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(97, 218, 251, 0.3);
+}
+
+.sub-nav-tab.active {
+    background: linear-gradient(135deg, #c678dd 0%, #9370db 100%);
+    border-color: #c678dd;
+    color: white;
+    box-shadow: 0 8px 25px rgba(198, 120, 221, 0.4);
+}
+
+/* 子頁面內容樣式 */
+.sub-page-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.sub-page-content.active {
+    display: block;
+}
+
+/* 物品限制樣式修正 - 防止斷字 */
+.item-limit {
+    color: #98c379;
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap; /* 防止斷字 */
+    display: inline-block;
+    min-width: 120px; /* 確保有足夠寬度 */
+}
+
+/* 詳細設備分類樣式 */
+.detailed-equipment-section {
+    margin-bottom: 40px;
+}
+
+.detailed-equipment-section h3 {
+    color: #e5c07b;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+.detailed-category {
+    margin-bottom: 35px;
+    padding: 25px;
+    background: #282c34;
+    border-radius: 15px;
+    border: 1px solid #3e4451;
+}
+
+.detailed-category h4 {
+    color: #c678dd;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detailed-equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.equipment-slot {
+    background: #323844;
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.equipment-slot:hover {
+    border-color: #61dafb;
+    box-shadow: 0 8px 25px rgba(97, 218, 251, 0.2);
+}
+
+.equipment-slot h5 {
+    color: #61dafb;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slot-limit {
+    font-size: 0.8rem;
+    color: #98c379;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.quality-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quality-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+    background: #282c34;
+    border-radius: 8px;
+    border: 1px solid #3e4451;
+}
+
+.quality-label {
+    font-weight: 600;
+    min-width: 60px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.quality-label.rare {
+    color: #4169E1;
+}
+
+.quality-label.hero {
+    color: #DC143C;
+}
+
+.quality-label.legend {
+    color: #9370DB;
+}
+
+.quality-label.mythic {
+    color: #FFD700;
+}
+
+.detailed-input {
+    width: 80px;
+    padding: 8px 12px;
+    border: 2px solid #3e4451;
+    border-radius: 6px;
+    background: #21252b;
+    color: #abb2bf;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.detailed-input:focus {
+    outline: none;
+    border-color: #61dafb;
+    box-shadow: 0 0 10px rgba(97, 218, 251, 0.3);
+}
+
+.detailed-input:hover {
+    border-color: #98c379;
+}
+
+.cost-per-item {
+    color: #98c379;
+    font-size: 0.8rem;
+    font-weight: 500;
+    min-width: 80px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.cost-per-item.special {
+    color: #d19a66;
+    font-weight: 600;
+}
+
+/* 商城裝備特殊樣式 */
+.equipment-slot.cash-equipment {
+    background: linear-gradient(135deg, #d19a66 0%, #e5c07b 100%);
+    color: white;
+}
+
+.equipment-slot.cash-equipment h5 {
+    color: white;
+}
+
+.cash-input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.cash-label {
+    font-weight: 600;
+    color: white;
+    min-width: 60px;
+    white-space: nowrap;
+}
+
+.cash-input-row .detailed-input {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.cash-input-row .detailed-input:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 技能詳細樣式 */
+.skill-detailed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.skill-detailed-item {
+    background: #323844;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.skill-detailed-item:hover {
+    border-color: #98c379;
+    box-shadow: 0 8px 25px rgba(152, 195, 121, 0.2);
+}
+
+.skill-detailed-item label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+/* 咒語卡詳細樣式 */
+.spell-detailed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.spell-detailed-item {
+    background: #323844;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #3e4451;
+    transition: all 0.3s ease;
+}
+
+.spell-detailed-item:hover {
+    border-color: #c678dd;
+    box-shadow: 0 8px 25px rgba(198, 120, 221, 0.2);
+}
+
+.spell-detailed-item label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+/* 詳細結果區塊樣式 */
+.detailed-job-result-bottom {
+    margin-top: 40px;
+    padding: 0 20px 40px 20px;
+}
+
+.detailed-job-result-bottom .main-content {
+    background: #282c34;
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid #3e4451;
+}
+
+.detailed-job-result-bottom h3 {
+    color: #e5c07b;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* 響應式設計調整 */
+@media (max-width: 768px) {
+    .sub-nav-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .sub-nav-tab {
+        min-width: 200px;
+    }
+    
+    .detailed-equipment-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quality-row {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .quality-label {
+        min-width: 80px;
+    }
+    
+    .cost-per-item {
+        min-width: auto;
+        text-align: left;
+    }
+    
+    .cash-input-row {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .skill-detailed-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .spell-detailed-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .detailed-job-result-bottom {
+        padding: 0 10px 40px 10px;
+    }
 } 
