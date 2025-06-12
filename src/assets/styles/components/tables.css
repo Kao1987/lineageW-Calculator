@@ -1,0 +1,112 @@
+/* 需要修改 */
+/* 響應式表格樣式 */
+.responsive-table {
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border-primary);
+  width: 100%;
+}
+
+.table-header {
+  background: var(--color-bg-tertiary);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.table-row {
+  display: grid;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-primary);
+  transition: all var(--transition-base);
+  align-items: center;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:not(.table-header):hover {
+  background: color-mix(in hsl, var(--color-text-accent) 5%, transparent);
+}
+
+.table-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.table-cell-center {
+  justify-content: center;
+  text-align: center;
+}
+
+.table-cell-right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .responsive-table {
+    border: none;
+    background: transparent;
+  }
+
+  .table-header {
+    display: none;
+  }
+
+  .table-row:not(.table-header) {
+    background: var(--color-bg-secondary);
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-primary);
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+  }
+
+  .table-cell {
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+  }
+
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+  }
+}
+
+/* 資料顯示樣式 */
+.stat-highlight {
+  background: var(--color-text-accent);
+  color: var(--color-bg-primary);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.growth-positive {
+  color: var(--color-text-success);
+  font-weight: 600;
+}
+
+.growth-negative {
+  color: var(--color-text-error);
+  font-weight: 600;
+}
+
+.growth-neutral {
+  color: var(--color-text-warning);
+}
+
+.numeric-value {
+  font-family: 'Monaco', 'Consolas', monospace;
+  font-weight: 600;
+}

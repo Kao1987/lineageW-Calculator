@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "modules/**/*", "modules/**/*.vue"],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    "paths": {
+      "@/job-change/*": ["./modules/job-change/*"],
+      "@/pet-evaluate/*": ["./modules/pet-evaluate/*"],
+      "@/shared/*": ["./modules/shared/*"],
+      "@/modules/*": ["./modules/*"],
+      "@/*": ["./src/*"]
+    }
+  }
+}

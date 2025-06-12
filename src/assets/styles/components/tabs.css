@@ -1,0 +1,129 @@
+/* 需要修改 */
+/* 幫助系統標籤頁 */
+.help-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--color-border-primary);
+}
+
+.help-tab-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-primary);
+    padding: var(--spacing-sm) 24px;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    border-bottom: 3px solid transparent;
+    font-size: var(--font-size-base);
+}
+
+.help-tab-btn.active {
+    color: var(--color-text-accent);
+    border-bottom-color: var(--color-text-accent);
+}
+
+.help-tab-btn:hover {
+    color: var(--color-text-accent);
+}
+
+.help-tab-content {
+    display: none;
+}
+
+.help-tab-content.active {
+    display: block;
+}
+
+/* 導航標籤樣式 */
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-xl);
+    gap: 5px;
+    background: var(--color-bg-primary);
+    padding: 5px;
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-tab {
+    background: transparent;
+    color: var(--color-text-primary);
+    border: none;
+    padding: var(--spacing-sm) 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+}
+
+.nav-tab:hover {
+    background: rgba(97, 218, 251, 0.1);
+    color: var(--color-text-accent);
+    transform: translateY(-1px);
+}
+
+.nav-tab.active {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.nav-tab.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.nav-tab.disabled:hover {
+    background: transparent;
+    color: var(--color-text-primary);
+    transform: none;
+}
+
+/* 頁面內容樣式 */
+.page-content {
+    display: none;
+}
+
+.page-content.active {
+    display: block;
+}
+
+/* Vue 過渡動畫支持 */
+.tab-enter-active,
+.tab-leave-active {
+    transition: all var(--transition-base);
+}
+
+.tab-enter-from {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.tab-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .nav-tabs {
+        flex-wrap: wrap;
+        gap: 3px;
+    }
+
+    .nav-tab {
+        padding: 10px 16px;
+        font-size: var(--font-size-sm);
+    }
+
+    .help-tabs {
+        flex-wrap: wrap;
+    }
+
+    .help-tab-btn {
+        padding: 10px 16px;
+        font-size: var(--font-size-sm);
+    }
+}

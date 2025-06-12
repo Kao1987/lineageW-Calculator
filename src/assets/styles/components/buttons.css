@@ -1,0 +1,134 @@
+/* 需要修改 */
+/* 主要按鈕樣式 */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(97, 218, 251, 0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 計算按鈕 - 帶動畫效果 */
+.btn-calculate {
+  background: var(--gradient-success);
+  color: white;
+  border: none;
+  padding: 15px var(--spacing-xl);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: 0 6px 20px rgba(152, 195, 121, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-calculate::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn-calculate:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(152, 195, 121, 0.4);
+}
+
+.btn-calculate:hover::before {
+  left: 100%;
+}
+
+/* 次要按鈕 */
+.btn-secondary {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border-primary);
+  padding: 10px var(--spacing-md);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-text-accent);
+  color: var(--color-text-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 幫助按鈕 */
+.btn-help {
+  background: var(--color-text-secondary);
+  color: var(--color-bg-primary);
+  border: none;
+  padding: var(--spacing-xs) 16px;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: 0 3px 10px rgba(229, 192, 123, 0.3);
+}
+
+.btn-help:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(229, 192, 123, 0.4);
+}
+
+/* 刪除/清除按鈕 */
+.btn-danger {
+  background: var(--color-text-error);
+  color: white;
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.btn-danger:hover {
+  background: color-mix(in hsl, var(--color-text-error) 85%, black);
+  transform: translateY(-1px);
+}
+
+.btn-danger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 按鈕大小變體 */
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-xl);
+}

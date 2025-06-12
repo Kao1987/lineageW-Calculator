@@ -1,0 +1,93 @@
+/* Light Theme (預設) */
+:root {
+  /* Light Theme 色彩系統 */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f0f4f8;
+  --color-bg-tertiary: #e2e8f0;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #0f172a;
+  --color-text-accent: #0ea5e9;
+  --color-text-purple: #8b5cf6;
+  --color-text-success: #10b981;
+  --color-text-warning: #f59e0b;
+  --color-text-error: #ef4444;
+  --color-text-muted: #64748b;
+  --color-border-primary: #cbd5e1;
+
+  /* 品質等級色彩（依照規範）*/
+  --quality-rare: #0154a0;
+  --quality-hero: #e90003;
+  --quality-legend: #4e0180;
+  --quality-mythic: #ffc801;
+  --quality-cash: #ffc801;
+
+  /* 邊框和陰影 */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
+
+  /* 漸變 */
+  --gradient-primary: linear-gradient(135deg, #0ea5e9, #3b82f6);
+  --gradient-success: linear-gradient(135deg, #10b981, #06b6d4);
+  --gradient-bg: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --gradient-text: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+
+  /* 間距系統 */
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 20px;
+  --spacing-lg: 30px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 60px;
+
+  /* 字體大小 */
+  --font-size-xs: 0.9rem;
+  --font-size-sm: 0.95rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.1rem;
+  --font-size-xl: 1.2rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 4rem;
+
+  /* 圓角 */
+  --radius-sm: 8px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
+  --radius-xl: 25px;
+  --radius-full: 50px;
+
+  /* 過渡動畫 */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Dark Theme */
+:root.dark-theme {
+  /* One Dark Pro 色彩系統 */
+  --color-bg-primary: #282c34;
+  --color-bg-secondary: #323844;
+  --color-bg-tertiary: #21252b;
+  --color-text-primary: #abb2bf;
+  --color-text-secondary: #e5c07b;
+  --color-text-accent: #61dafb;
+  --color-text-purple: #c678dd;
+  --color-text-success: #98c379;
+  --color-text-warning: #e5c07b;
+  --color-text-error: #e06c75;
+  --color-text-muted: #5c6370;
+  --color-border-primary: #3e4451;
+
+  /* 邊框和陰影 - Dark Mode */
+  --shadow-sm: 0 4px 15px rgba(97, 218, 251, 0.2);
+  --shadow-md: 0 6px 20px rgba(97, 218, 251, 0.3);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+  /* 漸變 - Dark Mode */
+  --gradient-primary: linear-gradient(135deg, #61dafb, #56b6c2);
+  --gradient-success: linear-gradient(135deg, #98c379, #56b6c2);
+  --gradient-bg: linear-gradient(135deg, #282c34 0%, #21252b 100%);
+  --gradient-text: linear-gradient(135deg, #61dafb, #c678dd);
+}
