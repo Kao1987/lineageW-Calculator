@@ -11,11 +11,11 @@
         :aria-labelledby="activeModal?.id + '-title'"
         aria-hidden="false"
       >
-        <div 
+        <div
           class="modal-content"
           :class="[
             `modal-${activeModal?.size || 'medium'}`,
-            `modal-${activeModal?.type || 'custom'}`
+            `modal-${activeModal?.type || 'custom'}`,
           ]"
           @click.stop
         >
@@ -41,10 +41,17 @@
             <div v-if="activeModal?.type === 'help'" class="help-content">
               <HelpTabs />
             </div>
-            
+
             <!-- 一般資訊內容 -->
-            <div v-else-if="activeModal?.content" class="info-content" v-html="activeModal.content"></div>
-            
+            <div
+              v-else-if="activeModal?.content"
+              class="info-content"
+              v-html="activeModal.content"
+            ></div>
+
+            <!-- 隱私權政策內容 -->
+            <PrivacyPolicy v-else-if="activeModal?.component === 'PrivacyPolicy'" />
+
             <!-- 自定義內容插槽 -->
             <div v-else class="custom-content">
               <slot name="content" :modal="activeModal">
@@ -61,6 +68,7 @@
 <script setup lang="ts">
 import { useModal } from '../composables/useModal'
 import HelpTabs from './HelpTabs.vue'
+import PrivacyPolicy from './PrivacyPolicy.vue'
 
 const { isOpen, activeModal, closeModal, handleBackdropClick } = useModal()
 </script>
@@ -199,27 +207,27 @@ const { isOpen, activeModal, closeModal, handleBackdropClick } = useModal()
   .modal-backdrop {
     padding: 10px;
   }
-  
+
   .modal-content {
     max-height: 95vh;
   }
-  
+
   .modal-large,
   .modal-medium,
   .modal-small {
     max-width: 100%;
   }
-  
+
   .modal-header {
     padding: 16px 20px;
   }
-  
+
   .modal-body {
     padding: 20px;
   }
-  
+
   .modal-title {
     font-size: 1.1rem;
   }
 }
-</style> 
+</style>

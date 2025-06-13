@@ -29,6 +29,7 @@ declare module 'vue' {
     PetSelector: typeof import('./modules/pet-evaluate/components/PetSelector.vue')['default']
     PetSkillSelector: typeof import('./modules/pet-evaluate/components/PetSkillSelector.vue')['default']
     PetStatsInput: typeof import('./modules/pet-evaluate/components/PetStatsInput.vue')['default']
+    PrivacyPolicy: typeof import('./modules/shared/components/PrivacyPolicy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
