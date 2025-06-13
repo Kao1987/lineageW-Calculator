@@ -1,10 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
+import { defineConfig, ServerOptions } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { createMimeFixPlugin } from './vite-plugins/mime-fix'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     createMimeFixPlugin(),
+    basicSsl(),
     AutoImport({
       imports: [
         'vue',
@@ -70,13 +72,14 @@ export default defineConfig({
     },
   },
   server: {
+    https: {},
     port: 3000,
     fs: {
       // 允許服務超出根目錄的檔案
       allow: ['..'],
     },
     middlewareMode: false,
-  },
+  } as ServerOptions,
   optimizeDeps: {
     include: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
   },

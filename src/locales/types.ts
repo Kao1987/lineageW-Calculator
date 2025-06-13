@@ -208,27 +208,26 @@ export interface RatingsTranslations {
   normal: string
   poor: string
   bad: string
-  fixed: string
   godTier: string
   highQuality: string
   normalPet: string
   needImprovement: string
   tragic: string
   poorQuality: string
+  not_rated: string
 }
 
 export interface DescriptionsTranslations {
   godTier: string
   highQuality: string
-  normal: string
+  normalPet: string
   needImprovement: string
   tragic: string
   excellent: string
   good: string
   average: string
-  normalGrowth: string
   poor: string
-  fixed: string
+  bad: string
 }
 
 export interface HelpTranslations {
@@ -260,6 +259,10 @@ export interface HelpTranslations {
     formula2Desc: string
     formula3: string
     formula3Desc: string
+  }
+  skillRules: {
+    title: string
+    rule1: string
   }
 }
 

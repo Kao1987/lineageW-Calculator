@@ -236,37 +236,33 @@ const en: TranslationSchema = {
   },
 
   ratings: {
-    excellent: 'Excellent',
-    good: 'Good',
-    average: 'Average',
-    normal: 'Normal',
-    poor: 'Poor',
-    bad: 'Bad',
-    fixed: 'Fixed',
+    excellent: 'Godlike',
+    good: 'Great',
+    average: 'Decent',
+    normal: 'Common',
+    poor: 'Common',
+    bad: 'Trash',
     godTier: 'God-tier Pet',
     highQuality: 'High Quality Pet',
     normalPet: 'Normal Pet',
     needImprovement: 'Needs Improvement',
     tragic: 'Tragic',
     poorQuality: 'Poor Quality',
+    not_rated: 'Not Rated',
   },
 
   descriptions: {
     godTier:
-      '🌟 God-tier Pet! Attribute growth far exceeds expectations, worth focusing on cultivating! This is an extremely rare top-quality pet!',
-    highQuality:
-      '⭐ High-quality pet! Attribute growth is above average, recommended for continued cultivation.',
-    normal: '✅ Normal pet, attribute growth meets expectations, can be used normally.',
-    needImprovement:
-      '⚠️ This pet s growth is below average, it is recommended to strengthen or find a better replacement.',
-    tragic:
-      '😭 Tragic! This pet s attribute growth is severely insufficient, with almost no cultivation value.',
-    excellent: 'God-tier pet, top-quality growth',
-    good: 'Excellent quality, recommended for cultivation',
-    average: 'Meets expectations, normal level',
-    normalGrowth: 'Close to average, acceptable',
-    poor: 'Below expectations, suggest retraining',
-    fixed: 'Fixed attribute',
+      '🌟 God-tier Pet! Attribute growth far exceeds expectations, highly recommended for training!',
+    highQuality: '⭐ High Quality Pet! Attribute growth is good, recommended for training.',
+    normalPet: '✅ Normal Pet, attribute growth meets expectations, can be used normally.',
+    needImprovement: '⚠️ Attribute growth is poor, consider re-training.',
+    tragic: '💔 Tragic Pet, attribute growth is extremely poor, strongly recommend re-training.',
+    excellent: '🌟 Top-tier growth',
+    good: '⭐ Excellent growth',
+    average: '✅ Good growth',
+    poor: '➡️ Average growth',
+    bad: '⚠️ Needs improvement',
   },
 
   help: {
@@ -295,10 +291,15 @@ const en: TranslationSchema = {
       formula1:
         'Expected Growth = (Level - 1) * (Expected Main Stat Growth + Expected Sub Stat Growth * 3)',
       formula1Desc: ' ',
-      formula2: ' ',
-      formula2Desc: ' ',
-      formula3: ' ',
-      formula3Desc: ' ',
+      formula2: 'Growth Value / Expected Growth Value',
+      formula2Desc: 'Growth Value / Expected Growth Value',
+      formula3: 'Attribute Rating Score',
+      formula3Desc: 'Main stat weight is 1.5, sub-stat is 1.0',
+    },
+    skillRules: {
+      title: 'Skill Rules',
+      rule1:
+        'A maximum of 3 skills can be selected for each skill stage (Stage 1, Stage 2, Stage 3).',
     },
   },
 

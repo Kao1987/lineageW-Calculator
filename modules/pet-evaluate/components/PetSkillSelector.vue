@@ -31,8 +31,8 @@
                 :key="stage"
                 class="stage-btn"
                 :class="{
-                  active: getSelectedSkillStage(skill.id) === stage,
-                  disabled: !canSelectStage(skill),
+                  active: isSkillStageSelected(skill.id, stage),
+                  disabled: !canSelectStage(skill, stage),
                 }"
                 @click="selectSkillStage(skill, stage)"
               >
@@ -62,8 +62,8 @@
                 :key="stage"
                 class="stage-btn"
                 :class="{
-                  active: getSelectedSkillStage(skill.id) === stage,
-                  disabled: !canSelectStage(skill),
+                  active: isSkillStageSelected(skill.id, stage),
+                  disabled: !canSelectStage(skill, stage),
                 }"
                 @click="selectSkillStage(skill, stage)"
               >
@@ -93,8 +93,8 @@
                 :key="stage"
                 class="stage-btn"
                 :class="{
-                  active: getSelectedSkillStage(skill.id) === stage,
-                  disabled: !canSelectStage(skill),
+                  active: isSkillStageSelected(skill.id, stage),
+                  disabled: !canSelectStage(skill, stage),
                 }"
                 @click="selectSkillStage(skill, stage)"
               >
@@ -110,10 +110,19 @@
     <div v-if="selectedSkills.length > 0 && !isCollapsed" class="selected-skills-summary">
       <h4>{{ t('pets.selectedSkills') }} ({{ selectedSkills.length }})</h4>
       <div class="skill-tags-container">
-        <div v-for="selectedSkill in selectedSkills" :key="selectedSkill.skillId" class="skill-tag">
+        <div
+          v-for="selectedSkill in selectedSkills"
+          :key="`${selectedSkill.skillId}-${selectedSkill.stage}`"
+          class="skill-tag"
+        >
           <span class="skill-tag-name">{{ getSkillDisplayName(selectedSkill.skillId) }}</span>
           <span class="skill-tag-stage">{{ selectedSkill.stage }}階</span>
-          <button @click="removeSkill(selectedSkill.skillId)" class="skill-tag-remove">×</button>
+          <button
+            @click="removeSkill(selectedSkill.skillId, selectedSkill.stage)"
+            class="skill-tag-remove"
+          >
+            ×
+          </button>
         </div>
       </div>
     </div>
@@ -169,40 +178,52 @@ function getStatName(stat: StatType): string {
   return t(`stats.${stat}`)
 }
 
-// 檢查技能是否已選擇
-function isSkillSelected(skillId: string): boolean {
-  return props.selectedSkills.some((skill) => skill.skillId === skillId)
+// 檢查特定技能的特定階段是否已選擇
+function isSkillStageSelected(skillId: string, stage: number): boolean {
+  return props.selectedSkills.some((s) => s.skillId === skillId && s.stage === stage)
 }
 
 // 檢查技能是否可以選擇
-function canSelectStage(skill: PetSkill): boolean {
-  const isCurrentlySelected = isSkillSelected(skill.id)
+function canSelectStage(skill: PetSkill, stage: number): boolean {
+  const isSelected = isSkillStageSelected(skill.id, stage)
+  if (isSelected) return true // Alway allow deselecting
 
-  // 如果技能已選擇，可以選擇（用於切換階段或取消選擇）
-  if (isCurrentlySelected) {
-    return true
+  const skillDefs = [...stage1Skills.value, ...stage2Skills.value, ...stage3Skills.value]
+  const skillDef = skillDefs.find((s) => s.id === skill.id)
+
+  if (!skillDef) return false
+
+  let stageGroup: number | undefined
+  if (stage1Skills.value.some((s) => s.id === skill.id)) {
+    stageGroup = 1
+  } else if (stage2Skills.value.some((s) => s.id === skill.id)) {
+    stageGroup = 2
+  } else if (stage3Skills.value.some((s) => s.id === skill.id)) {
+    stageGroup = 3
   }
 
-  // 如果技能未選擇，檢查該技能階段的技能數量限制
-  const skillsInSameStage = props.selectedSkills.filter((s) => {
-    const selectedSkill = getSkillsByStage(skill.stage).find((sk) => sk.id === s.skillId)
-    return selectedSkill !== undefined
-  })
+  if (!stageGroup) return true // Fallback, should not happen
+
+  const selectedInGroup = props.selectedSkills.filter((s) => {
+    if (stageGroup === 1) return stage1Skills.value.some((sd) => sd.id === s.skillId)
+    if (stageGroup === 2) return stage2Skills.value.some((sd) => sd.id === s.skillId)
+    if (stageGroup === 3) return stage3Skills.value.some((sd) => sd.id === s.skillId)
+    return false
+  }).length
 
   // 每個技能階段最多3個技能
-  return skillsInSameStage.length < 3
+  if (stageGroup === 1) return selectedInGroup < 3
+  if (stageGroup === 2) return selectedInGroup < 3
+  if (stageGroup === 3) return selectedInGroup < 3
+
+  return true
 }
 
-// 獲取已選技能的階段
-function getSelectedSkillStage(skillId: string): number {
-  const selected = props.selectedSkills.find((skill) => skill.skillId === skillId)
-  return selected?.stage || 1
-}
-
-// 獲取已選技能的數值
+// 獲取已選技能的總數值
 function getSelectedSkillValue(skillId: string): number {
-  const selected = props.selectedSkills.find((skill) => skill.skillId === skillId)
-  return selected?.value || 1
+  return props.selectedSkills
+    .filter((skill) => skill.skillId === skillId)
+    .reduce((total, skill) => total + skill.value, 0)
 }
 
 // 獲取技能可用階段
@@ -216,47 +237,39 @@ function getAvailableStages(skill: PetSkill): number[] {
 
 // 選擇技能階段
 function selectSkillStage(skill: PetSkill, stage: number) {
-  const existingSkillIndex = props.selectedSkills.findIndex((s) => s.skillId === skill.id)
+  const existingSkillIndex = props.selectedSkills.findIndex(
+    (s) => s.skillId === skill.id && s.stage === stage,
+  )
 
-  // 如果技能未選擇且無法選擇（超過數量限制），直接返回
-  if (existingSkillIndex === -1 && !canSelectStage(skill)) {
-    return
-  }
+  const updatedSkills = [...props.selectedSkills]
 
-  if (existingSkillIndex === -1) {
-    // 技能未選擇，添加技能
+  if (existingSkillIndex !== -1) {
+    // 技能的此階段已被選擇，移除它
+    updatedSkills.splice(existingSkillIndex, 1)
+  } else {
+    // 技能的此階段未被選擇，添加它
+    if (!canSelectStage(skill, stage)) {
+      // 在這裡可以選擇性地顯示一個提示給用戶
+      console.warn(`Cannot select more skills for this stage group.`)
+      return
+    }
+
     const newSkill: SelectedSkill = {
       skillId: skill.id,
       stage,
-      value: stage,
+      value: stage, // 假設 value 等於 stage
     }
-    const updatedSkills = [...props.selectedSkills, newSkill]
-    emit('update:selectedSkills', updatedSkills)
-  } else {
-    if (stage === getSelectedSkillStage(skill.id)) {
-      // 點擊已選中的階段，移除技能
-      const updatedSkills = props.selectedSkills.filter((s) => s.skillId !== skill.id)
-      emit('update:selectedSkills', updatedSkills)
-    } else {
-      // 更新技能階段和數值
-      const updatedSkills = props.selectedSkills.map((s) => {
-        if (s.skillId === skill.id) {
-          return {
-            ...s,
-            stage,
-            value: stage, // 階段數值等於階段數
-          }
-        }
-        return s
-      })
-      emit('update:selectedSkills', updatedSkills)
-    }
+    updatedSkills.push(newSkill)
   }
+
+  emit('update:selectedSkills', updatedSkills)
 }
 
-// 移除技能
-function removeSkill(skillId: string) {
-  const updatedSkills = props.selectedSkills.filter((skill) => skill.skillId !== skillId)
+// 移除技能（現在需要 stage）
+function removeSkill(skillId: string, stage: number) {
+  const updatedSkills = props.selectedSkills.filter(
+    (s) => !(s.skillId === skillId && s.stage === stage),
+  )
   emit('update:selectedSkills', updatedSkills)
 }
 

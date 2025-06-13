@@ -44,7 +44,7 @@ export interface StatAnalysis {
   characterBonus: string
 }
 
-export type RatingLevel = 'excellent' | 'good' | 'average' | 'poor' | 'bad' | 'fixed' // 新增 'fixed'
+export type RatingLevel = 'excellent' | 'good' | 'average' | 'poor' | 'bad' | 'not_rated'
 
 // 新增 OverallRating 類型定義
 export type OverallRating = 'godTier' | 'highQuality' | 'normalPet' | 'needImprovement' | 'tragic'

@@ -346,10 +346,20 @@
             <p>{{ t('jobChange.terms.contact.description') }}</p>
             <ul>
               <li>Email: orion@lineagew-labs.com</li>
-              <li>Website: <a href="https://orionlabs.pro" target="_blank">orionlabs.pro</a></li>
+              <li>
+                Website:
+                <a href="https://orionlabs.pro" target="_blank" rel="noopener noreferrer"
+                  >orionlabs.pro</a
+                >
+              </li>
               <li>
                 GitHub:
-                <a href="https://github.com/kao1987/OrionLabs" target="_blank">kao1987/OrionLabs</a>
+                <a
+                  href="https://github.com/kao1987/OrionLabs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >kao1987/OrionLabs</a
+                >
               </li>
             </ul>
 

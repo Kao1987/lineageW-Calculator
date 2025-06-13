@@ -116,7 +116,7 @@ export function analyzeStatistic(
       growthValue: growth,
       growthRate: 1.0,
       score: 70,
-      rating: 'fixed' as RatingLevel,
+      rating: 'not_rated' as RatingLevel,
       isMainStat: false,
       characterBonus: calculateCharacterBonus(statName, currentValue),
     }
@@ -206,7 +206,6 @@ export function getRatingDescription(rating: string): string {
     average: '✅ 良好成長',
     poor: '➡️ 普通成長',
     bad: '⚠️ 待加強',
-    fixed: '🔒 固定值',
   }
 
   return descriptions[rating] || descriptions.normalPet

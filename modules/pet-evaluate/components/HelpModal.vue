@@ -93,6 +93,17 @@
               </div>
             </div>
           </div>
+
+          <!-- 新增技能規則 -->
+          <div v-if="activeTab === 'skillRules'" class="content-section">
+            <h3>{{ t('help.skillRules.title') }}</h3>
+            <div class="rules-list">
+              <div class="rule-item">
+                <div class="rule-icon">📜</div>
+                <div class="rule-desc">{{ t('help.skillRules.rule1') }}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -117,6 +128,7 @@ const tabs = computed(() => [
   { id: 'usage', label: t('help.usage') },
   { id: 'theory', label: t('help.calculation') },
   { id: 'grades', label: t('help.ratingSystem') },
+  { id: 'skillRules', label: t('help.skillRules.title') },
 ])
 
 // 方法
@@ -330,6 +342,30 @@ function closeModal() {
 .grade-desc {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+}
+
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.rule-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-primary);
+}
+
+.rule-icon {
+  font-size: 1.5rem;
+}
+
+.rule-desc {
+  color: var(--color-text-primary);
 }
 
 @media (max-width: 768px) {
