@@ -17,9 +17,10 @@ console.log(
   'color: #dc3545; font-size: 12px; font-weight: bold;',
 )
 console.log('%c🌐 Website: https://orionlabs.pro', 'color: #28a745; font-size: 12px;')
-// console.log('%c🔗 GitHub: https://github.com/kao1987/OrionLabs', 'color: #6f42c1; font-size: 12px;')
+console.log('%c🔗 GitHub: https://github.com/kao1987/OrionLabs', 'color: #6f42c1; font-size: 12px;')
 
-// 反除錯機制
+/*
+// 反除錯機制 (暫時禁用以方便調試)
 if (import.meta.env.PROD) {
   // 禁用右鍵
   document.addEventListener('contextmenu', (e) => {
@@ -53,6 +54,7 @@ if (import.meta.env.PROD) {
     }
   }, 1000)
 }
+*/
 
 import './assets/main.css'
 
