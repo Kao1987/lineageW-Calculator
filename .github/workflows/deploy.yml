@@ -24,9 +24,13 @@ jobs:
           node-version: '20' # 使用 Node.js 20.x 版本
           cache: 'npm' # 快取 npm 的套件，加速未來的 build
 
-      # 步驟 3: 安裝專案依賴
+      # 新增步驟: 根據 Rollup 錯誤提示，移除 lock 檔，強制重新解析依賴
+      - name: Remove package-lock.json
+        run: rm package-lock.json
+
+      # 步驟 3: 安裝專案依賴 (恢復成原本的 npm install)
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       # 步驟 4: 編譯專案
       - name: Build project
