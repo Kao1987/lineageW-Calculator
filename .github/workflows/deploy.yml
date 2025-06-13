@@ -26,7 +26,7 @@ jobs:
 
       # 步驟 3: 安裝專案依賴
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       # 步驟 4: 編譯專案
       - name: Build project
