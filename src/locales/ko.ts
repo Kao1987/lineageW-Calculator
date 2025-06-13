@@ -52,7 +52,7 @@ const ko: TranslationSchema = {
   },
 
   title: {
-    main: '⚔️ 리니지W 종합 계산기',
+    main: 'LineageW 데이터 연구소',
     subtitle: '전문 게임 보조 도구',
     lab: '데이터 연구소',
   },
@@ -462,15 +462,16 @@ const ko: TranslationSchema = {
     links: {
       title: '관련 링크',
       privacyPolicy: '개인정보 처리방침',
+      termsOfService: '서비스 이용 약관',
     },
     feedback: {
-      title: '제안이나 의견이 있으신가요?',
-      subtitle: '여러분의 피드백이 저희의 발전에 원동력이 됩니다!',
-      button: '피드백 양식 작성하기',
+      title: '여러분의 의견이 저희의 발전에 큰 힘이 됩니다',
+      subtitle: '문제를 발견하거나 기능 제안이 있으시면 알려주세요!',
+      button: '피드백 양식으로 이동',
     },
     meta: {
       lastUpdated: '마지막 업데이트:',
-      copyright: '© {year} OrionLabs. Created by Orion.',
+      copyright: 'OrionLabs. Built by Orion.',
     },
   },
 }

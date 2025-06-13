@@ -37,7 +37,7 @@
             {{ t('footer.meta.lastUpdated') }}<span id="last-updated-time">{{ lastUpdated }}</span>
           </div>
           <div class="copyright-info">
-            {{ t('footer.meta.copyright', { year: new Date().getFullYear() }) }}
+            © {{ new Date().getFullYear() }} {{ t('footer.meta.copyright') }}
           </div>
         </div>
       </div>

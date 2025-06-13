@@ -52,7 +52,7 @@ const zhTW: TranslationSchema = {
   },
 
   title: {
-    main: '⚔️ 天堂W 綜合計算器',
+    main: 'LineageW 數據實驗室',
     subtitle: '專業的遊戲輔助計算工具',
     lab: '數據實驗室',
   },
@@ -461,15 +461,16 @@ const zhTW: TranslationSchema = {
     links: {
       title: '相關連結',
       privacyPolicy: '隱私權政策',
+      termsOfService: '服務條款',
     },
     feedback: {
-      title: '有任何建議或意見嗎？',
-      subtitle: '您的回饋是我們進步的動力！',
-      button: '點擊填寫回饋表單',
+      title: '您的意見是我們進步的動力',
+      subtitle: '如果您發現任何問題或有功能建議，請告訴我們！',
+      button: '前往意見回饋',
     },
     meta: {
       lastUpdated: '最後更新：',
-      copyright: '© {year} OrionLabs. 由 Orion 建立。',
+      copyright: 'OrionLabs. 由 Orion 建立。',
     },
   },
 }

@@ -195,11 +195,12 @@ router.onError((routerError: Error) => {
 function updatePageTitle(titleKey: string): void {
   try {
     const { t } = useI18n()
-    const title = t(titleKey)
-    document.title = `${title} - LineageW 數據實驗室`
+    const baseTitle = t('title.main') // 使用 i18n 的主標題
+    const pageTitle = t(titleKey)
+    document.title = `${pageTitle} - ${baseTitle}`
   } catch (error) {
     console.warn('無法更新頁面標題:', error)
-    document.title = 'LineageW 數據實驗室'
+    document.title = 'LineageW 數據實驗室' // 備用標題也統一
   }
 }
 

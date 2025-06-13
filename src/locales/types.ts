@@ -445,6 +445,7 @@ export interface FooterTranslations {
   links: {
     title: string
     privacyPolicy: string
+    termsOfService: string
   }
   feedback: {
     title: string

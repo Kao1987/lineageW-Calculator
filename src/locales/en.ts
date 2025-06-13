@@ -52,7 +52,7 @@ const en: TranslationSchema = {
   },
 
   title: {
-    main: '⚔️ Lineage W Comprehensive Calculator',
+    main: 'LineageW Data Lab',
     subtitle: 'Professional game assistant tools',
     lab: 'Data Lab',
   },
@@ -472,17 +472,18 @@ const en: TranslationSchema = {
 
   footer: {
     links: {
-      title: 'Related Links',
+      title: 'Links',
       privacyPolicy: 'Privacy Policy',
+      termsOfService: 'Terms of Service',
     },
     feedback: {
-      title: 'Have any suggestions or comments?',
-      subtitle: 'Your feedback drives our improvement!',
-      button: 'Click to fill out the feedback form',
+      title: 'Your feedback drives our improvement',
+      subtitle: 'If you find any issues or have feature suggestions, please let us know!',
+      button: 'Go to Feedback Form',
     },
     meta: {
       lastUpdated: 'Last Updated:',
-      copyright: '© {year} OrionLabs. Created by Orion.',
+      copyright: 'OrionLabs. Built by Orion.',
     },
   },
 }
