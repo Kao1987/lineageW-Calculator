@@ -10,14 +10,12 @@
  */
 
 // 版權聲明 Console 輸出
-console.log('%c🔒 OrionLabs 轉職計算器 🔒', 'color: #007bff; font-size: 20px; font-weight: bold;')
 console.log('%cCopyright (c) 2025 Orion', 'color: #6c757d; font-size: 14px;')
 console.log(
   '%c⚠️ 本代碼受版權保護，未經授權禁止使用',
   'color: #dc3545; font-size: 12px; font-weight: bold;',
 )
 console.log('%c🌐 Website: https://orionlabs.pro', 'color: #28a745; font-size: 12px;')
-console.log('%c🔗 GitHub: https://github.com/kao1987/OrionLabs', 'color: #6f42c1; font-size: 12px;')
 
 /*
 // 反除錯機制 (暫時禁用以方便調試)

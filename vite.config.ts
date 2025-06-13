@@ -51,6 +51,9 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      // 強制 vue-i18n 使用 runtime-only 版本以符合 CSP
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
+
       // 模組特定路徑 - 必須放在通用 @ 路徑之前
       '@/job-change': fileURLToPath(new URL('./modules/job-change', import.meta.url)),
       '@/pet-evaluate': fileURLToPath(new URL('./modules/pet-evaluate', import.meta.url)),
