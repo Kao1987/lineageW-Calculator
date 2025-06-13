@@ -3,40 +3,40 @@
    =========================================== */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    /* One Dark Pro 色彩變數 */
-    --bg-primary: #282c34;
-    --bg-secondary: #323844;
-    --bg-gradient: linear-gradient(135deg, #282c34 0%, #21252b 100%);
-    --text-primary: #abb2bf;
-    --text-secondary: #e5c07b;
-    --text-accent: #61dafb;
-    --text-purple: #c678dd;
-    --border-color: #3e4451;
-    --success-color: #98c379;
-    --warning-color: #e5c07b;
-    --error-color: #e06c75;
-    --shadow-light: rgba(0,0,0,0.3);
-    --shadow-medium: rgba(0,0,0,0.5);
+  /* One Dark Pro 色彩變數 */
+  --bg-primary: #282c34;
+  --bg-secondary: #323844;
+  --bg-gradient: linear-gradient(135deg, #282c34 0%, #21252b 100%);
+  --text-primary: #abb2bf;
+  --text-secondary: #e5c07b;
+  --text-accent: #61dafb;
+  --text-purple: #c678dd;
+  --border-color: #3e4451;
+  --success-color: #98c379;
+  --warning-color: #e5c07b;
+  --error-color: #e06c75;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.5);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-gradient);
-    min-height: 100vh;
-    line-height: 1.6;
-    color: var(--text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  line-height: 1.6;
+  color: var(--text-primary);
 }
 
 .app-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* ===========================================
@@ -44,25 +44,25 @@ body {
    =========================================== */
 
 .app-header {
-    text-align: center;
-    margin-bottom: 40px;
-    color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--text-secondary);
 }
 
 .app-title {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 8px var(--shadow-medium);
-    background: linear-gradient(135deg, var(--text-accent), var(--text-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 8px var(--shadow-medium);
+  background: linear-gradient(135deg, var(--text-accent), var(--text-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .app-subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    color: var(--text-primary);
+  font-size: 1.2rem;
+  opacity: 0.9;
+  color: var(--text-primary);
 }
 
 /* ===========================================
@@ -70,52 +70,51 @@ body {
    =========================================== */
 
 .language-switcher {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .language-switcher label {
-    color: var(--text-secondary);
-    font-weight: 500;
-    font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 .language-select {
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    outline: none;
-    min-width: 120px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  min-width: 120px;
 }
 
 .language-select:hover {
-    border-color: var(--text-accent);
-    box-shadow: 0 0 8px rgba(97, 218, 251, 0.3);
+  border-color: var(--text-accent);
+  box-shadow: 0 0 8px rgba(97, 218, 251, 0.3);
 }
 
 .language-select:focus {
-    border-color: var(--text-accent);
-    box-shadow: 0 0 10px rgba(97, 218, 251, 0.4);
-  }
+  border-color: var(--text-accent);
+  box-shadow: 0 0 10px rgba(97, 218, 251, 0.4);
+}
 
 /* ===========================================
    主要內容區域
    =========================================== */
 
 .main-content {
-    background: var(--bg-secondary);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 20px 40px var(--shadow-light);
-    border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px var(--shadow-light);
+  border: 1px solid var(--border-color);
 }
 
 /* ===========================================
@@ -124,27 +123,27 @@ body {
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-    opacity: 0;
+  opacity: 0;
 }
 
 .slide-enter-active,
 .slide-leave-active {
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .slide-enter-from {
-    opacity: 0;
-    transform: translateX(20px);
+  opacity: 0;
+  transform: translateX(20px);
 }
 
 .slide-leave-to {
-    opacity: 0;
-    transform: translateX(-20px);
+  opacity: 0;
+  transform: translateX(-20px);
 }
 
 /* ===========================================
@@ -152,30 +151,30 @@ body {
    =========================================== */
 
 @media (max-width: 768px) {
-    .app-container {
-        padding: 15px;
-    }
+  .app-container {
+    padding: 15px;
+  }
 
-    .app-title {
-        font-size: 2.5rem;
-    }
+  .app-title {
+    font-size: 2.5rem;
+  }
 
-    .main-content {
-        padding: 20px;
-    }
+  .main-content {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 480px) {
-    .app-title {
-        font-size: 2rem;
-    }
+  .app-title {
+    font-size: 2rem;
+  }
 
-    .language-switcher {
-        flex-direction: column;
-        gap: 8px;
-    }
+  .language-switcher {
+    flex-direction: column;
+    gap: 8px;
+  }
 
-    .language-select {
-        min-width: 150px;
-    }
+  .language-select {
+    min-width: 150px;
+  }
 }

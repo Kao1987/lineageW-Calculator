@@ -165,14 +165,13 @@ const { toggleTheme } = appStore
 .header-actions {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-md);
 }
 
 .action-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 80px 1fr;
   align-items: center;
-  gap: var(--spacing-sm);
 }
 
 .action-label {

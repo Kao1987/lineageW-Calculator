@@ -131,6 +131,8 @@ onMounted(() => {
   height: 36px; /* 固定高度確保對齊 */
   display: flex;
   align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 
 .language-select:hover {

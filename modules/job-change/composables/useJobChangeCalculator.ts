@@ -11,7 +11,7 @@ import type {
   CashEquipmentType,
   JobChangeCalculatorState,
   CartItemInput,
-  EquipmentCategory
+  EquipmentCategory,
 } from '../types'
 import {
   calculateJobChangeCost,
@@ -22,7 +22,7 @@ import {
   validateCartItems,
   formatCost,
   formatCostSummary,
-  calculateSingleItemCost
+  calculateSingleItemCost,
 } from '../utils/calculations'
 import {
   JOB_CHANGE_COSTS,
@@ -36,7 +36,7 @@ import {
   SKILL_QUALITY_OPTIONS,
   SPELL_QUALITY_OPTIONS,
   getEquipmentName,
-  getEquipmentIcon
+  getEquipmentIcon,
 } from '../utils/costData'
 import { useJobChangeStore } from '../stores'
 import { trackEvent as sharedTrackEvent } from '../../shared/utils/analytics'
@@ -48,24 +48,24 @@ export interface JobChangeCalculatorService {
   cartItems: Ref<CartItem[]>
   costDetails: Ref<CostCalculationDetails | null>
   isCalculating: Ref<boolean>
-  
+
   // 計算方法
   calculate: () => Promise<CostCalculationDetails>
   addToCart: (item: Omit<CartItem, 'id' | 'cost'>) => boolean
   removeFromCart: (index: number) => void
   clearCart: () => void
   updateCartItem: (index: number, updates: Partial<CartItem>) => boolean
-  
+
   // 驗證方法
   validateInput: (equipmentType: string, quality: string, quantity: number) => ValidationResult
   validateCart: () => ValidationResult
-  
+
   // 工具方法
   formatCurrency: (amount: number, type?: 'coin' | 'diamond') => string
   getQualityName: (quality: QualityLevel) => string
   getEquipmentName: (equipment: EquipmentType | CashEquipmentType) => string
   getInfoContent: (type: string) => any
-  
+
   // 狀態管理
   setMode: (mode: CalculatorMode) => void
   setPackageDiscount: (enabled: boolean) => void
@@ -101,7 +101,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
     cartItems: [],
     hasPackageDiscount: false,
     currentPage: 'equipment',
-    currentSubPage: ''
+    currentSubPage: '',
   })
 
   const cartItems = ref<CartItem[]>([])
@@ -111,7 +111,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
   // 輸入值獲取器（模擬原始的 DOM 操作）
   const createInputGetter = () => {
     const inputValues = new Map<string, number>()
-    
+
     return (id: string): number => {
       // 在實際使用中，這裡應該從組件的響應式數據獲取值
       // 這裡提供一個基本實現
@@ -134,7 +134,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
         inputGetter,
         cartItems.value,
         state.hasPackageDiscount,
-        state.mode === 'detailed'
+        state.mode === 'detailed',
       )
 
       costDetails.value = result
@@ -146,7 +146,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
         value: result.totalCost,
         mode: state.mode,
         cart_items: cartItems.value.length,
-        package_discount: state.hasPackageDiscount
+        package_discount: state.hasPackageDiscount,
       })
 
       return result
@@ -177,7 +177,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
         id: generateId(),
         cost,
         unitCost: cost / item.quantity,
-        name: `${getEquipmentName(item.subtype)} (${getQualityName(item.quality as QualityLevel)})`
+        name: `${getEquipmentName(item.subtype)} (${getQualityName(item.quality as QualityLevel)})`,
       }
 
       cartItems.value.push(cartItem)
@@ -193,7 +193,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
         equipment_type: item.equipmentType,
         quality: item.quality,
         quantity: item.quantity,
-        cost: cost
+        cost: cost,
       })
 
       return true
@@ -216,7 +216,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
       trackEvent('item_removed_from_cart', {
         category: 'Job Change Calculator',
         label: removedItem.equipmentType,
-        item_id: removedItem.id
+        item_id: removedItem.id,
       })
     }
   }
@@ -232,7 +232,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
     trackEvent('cart_cleared', {
       category: 'Job Change Calculator',
       label: 'manual_clear',
-      items_removed: itemCount
+      items_removed: itemCount,
     })
   }
 
@@ -261,7 +261,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
   const validateInput = (
     equipmentType: string,
     quality: string,
-    quantity: number
+    quantity: number,
   ): ValidationResult => {
     const errors: string[] = []
     const warnings: string[] = []
@@ -281,7 +281,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
       if (equipmentConfig && quantity > equipmentConfig.max) {
         errors.push(
           t('validation.equipment_max', { max: equipmentConfig.max }) ||
-          `${getEquipmentName(equipmentType as EquipmentType)}最多只能轉職${equipmentConfig.max}件`
+            `${getEquipmentName(equipmentType as EquipmentType)}最多只能轉職${equipmentConfig.max}件`,
         )
       }
     } else {
@@ -289,7 +289,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
       if (cashConfig && quantity > cashConfig.max) {
         errors.push(
           t('validation.cash_equipment_max', { max: cashConfig.max }) ||
-          `${getEquipmentName(equipmentType as CashEquipmentType)}最多只能轉職${cashConfig.max}件`
+            `${getEquipmentName(equipmentType as CashEquipmentType)}最多只能轉職${cashConfig.max}件`,
         )
       }
     }
@@ -297,7 +297,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
     return {
       isValid: errors.length === 0,
       errors,
-      warnings
+      warnings,
     }
   }
 
@@ -310,13 +310,29 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
       warnings.push(t('validation.cart_empty') || '購物車是空的')
     }
 
-    // 檢查重複項目
-    const duplicates = cartItems.value.filter((item, index) =>
-      cartItems.value.findIndex(other =>
-        other.equipmentType === item.equipmentType &&
-        other.quality === item.quality &&
-        other.subtype === item.subtype
-      ) !== index
+    // 跨品質上限檢查
+    const subtypeTotals: Record<string, number> = {}
+    cartItems.value.forEach((item) => {
+      const key = item.subtype
+      subtypeTotals[key] = (subtypeTotals[key] || 0) + item.quantity
+    })
+
+    Object.entries(subtypeTotals).forEach(([subtype, qty]) => {
+      const equipCfg = JOB_CHANGE_COSTS.detailedEquipment as any
+      if (equipCfg[subtype] && qty > equipCfg[subtype].max) {
+        errors.push(`${getEquipmentName(subtype as any)} 總數已超過上限 ${equipCfg[subtype].max}`)
+      }
+    })
+
+    // 重複項目檢查
+    const duplicates = cartItems.value.filter(
+      (item, index) =>
+        cartItems.value.findIndex(
+          (other) =>
+            other.equipmentType === item.equipmentType &&
+            other.quality === item.quality &&
+            other.subtype === item.subtype,
+        ) !== index,
     )
 
     if (duplicates.length > 0) {
@@ -326,7 +342,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
     return {
       isValid: errors.length === 0,
       errors,
-      warnings
+      warnings,
     }
   }
 
@@ -334,7 +350,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
   const formatCurrency = (amount: number, type: 'coin' | 'diamond' = 'coin'): string => {
     const units = {
       coin: '枚',
-      diamond: '鑽'
+      diamond: '鑽',
     }
     return `${amount.toLocaleString()} ${units[type]}`
   }
@@ -357,23 +373,23 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
   // 設置計算器模式
   const setMode = (mode: CalculatorMode): void => {
     state.mode = mode
-    
+
     trackEvent('calculator_mode_changed', {
       category: 'Job Change Calculator',
-      label: mode
+      label: mode,
     })
   }
 
   // 設置禮包優惠
   const setPackageDiscount = (enabled: boolean): void => {
     state.hasPackageDiscount = enabled
-    
+
     // 重新計算成本
     calculate()
-    
+
     trackEvent('package_discount_toggled', {
       category: 'Job Change Calculator',
-      label: enabled ? 'enabled' : 'disabled'
+      label: enabled ? 'enabled' : 'disabled',
     })
   }
 
@@ -383,10 +399,10 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
     state.cartItems = []
     state.hasPackageDiscount = false
     costDetails.value = null
-    
+
     trackEvent('calculator_reset', {
       category: 'Job Change Calculator',
-      label: 'manual_reset'
+      label: 'manual_reset',
     })
   }
 
@@ -400,21 +416,24 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
     packageDiscount: 0,
     finalCoinCost: 0,
     baseCost: BASE_COST,
-    totalCost: BASE_COST
+    totalCost: BASE_COST,
   })
 
   // 監聽購物車變化，自動重新計算
-  watch(() => cartItems.value.length, () => {
-    if (cartItems.value.length > 0) {
-      calculate()
-    }
-  })
+  watch(
+    () => cartItems.value.length,
+    () => {
+      if (cartItems.value.length > 0) {
+        calculate()
+      }
+    },
+  )
 
   // 初始化追蹤
   trackEvent('job_change_calculator_initialized', {
     category: 'Job Change Calculator',
     label: 'calculator_ready',
-    calculator_type: 'job_change_calculator'
+    calculator_type: 'job_change_calculator',
   })
 
   return {
@@ -444,7 +463,7 @@ export function useJobChangeCalculator(): JobChangeCalculatorService {
     // 狀態管理
     setMode,
     setPackageDiscount,
-    reset
+    reset,
   }
 }
 

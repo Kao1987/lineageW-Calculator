@@ -7,7 +7,14 @@ import type {
   OverallRating,
   StatType,
 } from '../types'
-import { STAT_NAMES, MAIN_STAT_EXPECTED, SUB_STAT_EXPECTED, isMainStat } from './petData'
+import { STAT_NAMES, isMainStat } from './petData'
+import {
+  MAIN_STAT_EXPECTED_GROWTH,
+  SUB_STAT_EXPECTED_GROWTH,
+  GROWTH_SCORE_RULES,
+  OVERALL_RATING_RULES,
+} from '../constants'
+import { MAIN_STAT_WEIGHT } from '../constants'
 import { calculateCharacterBonus } from '../../shared/utils'
 
 /**
@@ -24,7 +31,9 @@ export function calculateExpectedStats(pet: PetType, level: number): PetStats {
 
     // 主屬性預期成長：每級 +3.75 點
     // 副屬性預期成長：每級 +1.25 點
-    const expectedGrowthPerLevel = isMainStatValue ? MAIN_STAT_EXPECTED : SUB_STAT_EXPECTED
+    const expectedGrowthPerLevel = isMainStatValue
+      ? MAIN_STAT_EXPECTED_GROWTH
+      : SUB_STAT_EXPECTED_GROWTH
     const expectedGrowth = growthLevels * expectedGrowthPerLevel
 
     expectedStats[statKey] = Math.round((baseValue + expectedGrowth) * 100) / 100
@@ -37,51 +46,25 @@ export function calculateExpectedStats(pet: PetType, level: number): PetStats {
  * 根據成長率獲取分數
  */
 export function getScoreByGrowthRate(growthRate: number): number {
-  if (growthRate >= 1.4) {
-    return 100 // 頂級
-  } else if (growthRate >= 1.2) {
-    return 85 // 優秀
-  } else if (growthRate >= 1.0) {
-    return 70 // 良好
-  } else if (growthRate >= 0.85) {
-    return 55 // 普通
-  } else {
-    return 30 // 待加強
-  }
+  const rule = GROWTH_SCORE_RULES.find((r) => growthRate >= r.minRate) || GROWTH_SCORE_RULES.at(-1)!
+  return rule.score
 }
 
 /**
  * 根據分數獲取評級
  */
 export function getRatingByScore(score: number): RatingLevel {
-  if (score >= 100) {
-    return 'excellent' // 頂級
-  } else if (score >= 85) {
-    return 'good' // 優秀
-  } else if (score >= 70) {
-    return 'average' // 良好
-  } else if (score >= 55) {
-    return 'poor' // 普通
-  } else {
-    return 'bad' // 待加強
-  }
+  const rule = GROWTH_SCORE_RULES.find((r) => score >= r.score) || GROWTH_SCORE_RULES.at(-1)!
+  return rule.rating
 }
 
 /**
  * 根據整體平均分數獲取整體評價
  */
 export function getOverallRating(averageScore: number): OverallRating {
-  if (averageScore >= 95) {
-    return 'godTier' // 神級寵物
-  } else if (averageScore >= 80) {
-    return 'highQuality' // 優質寵物
-  } else if (averageScore >= 60) {
-    return 'normalPet' // 普通寵物
-  } else if (averageScore >= 45) {
-    return 'needImprovement' // 待加強
-  } else {
-    return 'tragic' // 悲劇
-  }
+  const rule =
+    OVERALL_RATING_RULES.find((r) => averageScore >= r.minScore) || OVERALL_RATING_RULES.at(-1)!
+  return rule.rating
 }
 
 /**
@@ -170,7 +153,7 @@ export function calculatePetRating(
 
     // 排除積極性的權重計算
     if (statKey !== 'aggressiveness') {
-      const weight = statAnalysis.isMainStat ? 1.5 : 1.0
+      const weight = statAnalysis.isMainStat ? MAIN_STAT_WEIGHT : 1.0
       totalScore += statAnalysis.score * weight
       totalWeight += weight
     }
