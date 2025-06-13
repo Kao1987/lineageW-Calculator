@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, ServerOptions } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { createMimeFixPlugin } from './vite-plugins/mime-fix'
@@ -15,7 +14,6 @@ export default defineConfig({
       : '/', // 伺服器 (Nginx)
   plugins: [
     vue(),
-    vueDevTools(),
     createMimeFixPlugin(),
     basicSsl(),
     AutoImport({
@@ -82,5 +80,8 @@ export default defineConfig({
   } as ServerOptions,
   optimizeDeps: {
     include: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
+  },
+  build: {
+    sourcemap: 'hidden',
   },
 })
