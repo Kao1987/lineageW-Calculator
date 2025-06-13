@@ -34,7 +34,9 @@ jobs:
 
       # 步驟 4: 編譯專案
       - name: Build project
-        run: npm run build
+        run: |
+          export CI=server   # 隨便設，只要不是 'github'
+          npm run build
 
       # 步驟 5: 將編譯好的 dist 資料夾部署到你的伺服器
       - name: Deploy to server
