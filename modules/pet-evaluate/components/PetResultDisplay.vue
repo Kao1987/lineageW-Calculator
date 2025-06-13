@@ -174,7 +174,7 @@ function getRatingClass(rating: RatingLevel): string {
     average: 'rating-average',
     poor: 'rating-poor',
     bad: 'rating-poor',
-    fixed: 'rating-fixed',
+    not_rated: 'rating-not-rated',
   }
   return classMap[rating] || 'rating-average'
 }
@@ -438,7 +438,7 @@ function getOverallRatingText(rating: OverallRating): string {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
-.rating-fixed {
+.rating-not-rated {
   background: var(--color-bg-tertiary);
   color: var(--color-text-secondary);
   border-left: 3px solid var(--color-text-secondary);
@@ -561,7 +561,7 @@ function getOverallRatingText(rating: OverallRating): string {
   font-weight: 600;
   border: 1px solid #ffffff;
 }
-.rating-badge.rating-fixed {
+.rating-badge.rating-not-rated {
   background: rgba(92, 99, 112, 0.8);
   color: #abb2bf;
   border: 1px solid #5c6370;
