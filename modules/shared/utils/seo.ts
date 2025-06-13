@@ -63,7 +63,9 @@ function updateMetaTag(name: string, content?: string) {
 /**
  * 更新 property meta 標籤
  */
-export function updateMetaProperty(property: string, content: string): void {
+export function updateMetaProperty(property: string, content?: string): void {
+  if (content === undefined) return
+
   let element = document.querySelector(`meta[property="${property}"]`)
   if (!element) {
     element = document.createElement('meta')
