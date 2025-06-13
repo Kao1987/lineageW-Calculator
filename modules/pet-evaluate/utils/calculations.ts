@@ -46,7 +46,8 @@ export function calculateExpectedStats(pet: PetType, level: number): PetStats {
  * 根據成長率獲取分數
  */
 export function getScoreByGrowthRate(growthRate: number): number {
-  const rule = GROWTH_SCORE_RULES.find((r) => growthRate >= r.minRate) || GROWTH_SCORE_RULES.at(-1)!
+  const rule =
+    GROWTH_SCORE_RULES.find((r) => growthRate >= r.minRate) || GROWTH_SCORE_RULES.slice(-1)[0]
   return rule.score
 }
 
@@ -54,7 +55,7 @@ export function getScoreByGrowthRate(growthRate: number): number {
  * 根據分數獲取評級
  */
 export function getRatingByScore(score: number): RatingLevel {
-  const rule = GROWTH_SCORE_RULES.find((r) => score >= r.score) || GROWTH_SCORE_RULES.at(-1)!
+  const rule = GROWTH_SCORE_RULES.find((r) => score >= r.score) || GROWTH_SCORE_RULES.slice(-1)[0]
   return rule.rating
 }
 
@@ -63,7 +64,8 @@ export function getRatingByScore(score: number): RatingLevel {
  */
 export function getOverallRating(averageScore: number): OverallRating {
   const rule =
-    OVERALL_RATING_RULES.find((r) => averageScore >= r.minScore) || OVERALL_RATING_RULES.at(-1)!
+    OVERALL_RATING_RULES.find((r) => averageScore >= r.minScore) ||
+    OVERALL_RATING_RULES.slice(-1)[0]
   return rule.rating
 }
 
