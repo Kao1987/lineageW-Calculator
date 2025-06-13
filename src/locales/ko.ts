@@ -40,6 +40,8 @@ const ko: TranslationSchema = {
     toggleTheme: '테마 전환',
     startNow: '지금 시작',
     comingSoon: '곧 출시 예정',
+    switchTheme: '테마 변경',
+    switchLanguage: '언어 변경',
   },
 
   currency: {
@@ -52,6 +54,7 @@ const ko: TranslationSchema = {
   title: {
     main: '⚔️ 리니지W 종합 계산기',
     subtitle: '전문 게임 보조 도구',
+    lab: '데이터 연구소',
   },
 
   nav: {
@@ -248,51 +251,48 @@ const ko: TranslationSchema = {
   descriptions: {
     godTier:
       '🌟 신급 펫! 능력치 성장이 기댓값을 크게 초과하여 중점 육성할 가치가 있습니다! 극히 희귀한 최고급 펫입니다!',
-    highQuality: '⭐ 고품질 펫! 능력치 성장이 평균 수준을 초과하여 지속적인 육성을 권장합니다.',
-    normal: '✅ 일반 펫, 능력치 성장이 기댓값에 부합하여 정상적으로 사용 가능합니다.',
+    highQuality: '⭐ 고품질 펫! 능력치 성장이 평균 이상이므로 계속 육성하는 것을 추천합니다.',
+    normal: '✅ 일반 펫, 능력치 성장이 기대에 부합하며 정상적으로 사용할 수 있습니다.',
     needImprovement:
-      '⚠️ 이 펫의 성장이 평균 이하입니다. 강화하거나 더 좋은 대체재를 찾는 것을 권장합니다.',
-    tragic: '💔 비극적인 펫, 능력치 성장이 극도로 나빠서 재육성이나 교체를 강력히 권장합니다.',
-    excellent: '🌟 최고급 성장, 기댓값을 크게 초과!',
-    good: '⭐ 우수한 성장, 좋은 성과',
-    average: '✅ 양호한 성장, 기댓값에 부합',
-    normalGrowth: '➡️ 보통 성장, 평균에 근접',
-    poor: '⚠️ 개선 필요, 기댓값 이하',
-    fixed: '🔒 고정값, 점수에 포함되지 않음',
+      '⚠️ 이 펫의 성장이 평균 이하이므로 강화하거나 더 나은 대안을 찾는 것을 권장합니다.',
+    tragic: '😭 비극! 이 펫의 능력치 성장이 심각하게 부족하여 육성 가치가 거의 없습니다.',
+    excellent: '신급 펫, 최고급 성장',
+    good: '우수한 품질, 육성 추천',
+    average: '기대에 부합, 정상 수준',
+    normalGrowth: '평균에 가까움, 수용 가능',
+    poor: '기대 이하, 재훈련 제안',
+    fixed: '고정 속성',
   },
 
   help: {
-    title: '🐾 사용법 가이드',
-    usage: '사용 방법',
+    title: '🐾 도움말',
+    usage: '사용법',
     calculation: '계산 원리',
-    ratingSystem: '평가 시스템',
-
+    ratingSystem: '🏆 평가 등급',
     steps: {
       title: '🚀 사용 단계',
-      step1: '펫 타입을 선택하세요',
+      step1: '펫 종류를 선택하세요',
       step2: '펫 레벨을 입력하세요 (1-15)',
-      step3: '능력치 값을 입력하세요 (⚠️스킬 보너스 제외)',
+      step3: '각 능력치를 입력하세요 (⚠️스킬 보너스는 제외해주세요)',
       step4: '계산 버튼을 클릭하여 평가를 확인하세요',
     },
-
     baseData: {
-      title: '🎯 펫 기본 데이터',
+      title: '📋 레벨별 펫 기본 능력치 (체력/인내/충성/속도)',
     },
-
     calculationPrinciple: {
       title: '🧮 계산 원리',
       upgradeRates: '업그레이드 확률',
-      mainStat: '주능력: +1(5%), +2(15%), +3(30%), +4(20%), +5(15%), +6(10%), +7(5%)',
-      mainStatExpected: '기댓값: 레벨당 +3.75포인트',
-      subStat: '부능력: +0(15%), +1(50%), +2(30%), +3(5%)',
-      subStatExpected: '기댓값: 레벨당 +1.25포인트',
-      formula: '평가 공식',
-      formula1: '1. 기댓값 계산',
-      formula1Desc: '기댓값 = 기본값 + (레벨-1) × 레벨당 기대 성장',
-      formula2: '2. 성장률 계산',
-      formula2Desc: '성장률 = (현재값 - 기본값) ÷ (기댓값 - 기본값)',
-      formula3: '3. 주능력 가중치',
-      formula3Desc: '주능력 점수 × 1.5배 가중치',
+      mainStat: '주 능력치: +1(5%), +2(15%), +3(30%), +4(20%), +5(15%), +6(10%), +7(5%)',
+      mainStatExpected: '기대값: 레벨당 +3.75 포인트',
+      subStat: '부 능력치: +0(15%), +1(50%), +2(30%), +3(5%)',
+      subStatExpected: '기대값: 레벨당 +1.25 포인트',
+      formula: '평가 점수 = (실제 성장치 / 기대 성장치 - 1) * 100',
+      formula1: '기대 성장치 = (레벨 - 1) * (주 능력치 기대 성장률 + 부 능력치 기대 성장률 * 3)',
+      formula1Desc: ' ',
+      formula2: ' ',
+      formula2Desc: ' ',
+      formula3: ' ',
+      formula3Desc: ' ',
     },
   },
 
@@ -453,8 +453,24 @@ const ko: TranslationSchema = {
     warning: '경고',
     info: '정보',
     calculationComplete: '계산 완료',
-    dataLoaded: '데이터 로드 완료',
-    languageChanged: '언어가 변경되었습니다',
+    dataLoaded: '데이터 로드 성공',
+    languageChanged: '언어 변경됨',
+  },
+
+  footer: {
+    links: {
+      title: '관련 링크',
+      privacyPolicy: '개인정보 처리방침',
+    },
+    feedback: {
+      title: '제안이나 의견이 있으신가요?',
+      subtitle: '여러분의 피드백이 저희의 발전에 원동력이 됩니다!',
+      button: '피드백 양식 작성하기',
+    },
+    meta: {
+      lastUpdated: '마지막 업데이트:',
+      copyright: '© {year} OrionLabs. Created by Orion.',
+    },
   },
 }
 

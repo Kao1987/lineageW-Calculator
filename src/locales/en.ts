@@ -40,6 +40,8 @@ const en: TranslationSchema = {
     toggleTheme: 'Toggle Theme',
     startNow: 'Start Now',
     comingSoon: 'Coming Soon',
+    switchTheme: 'Switch Theme',
+    switchLanguage: 'Switch Language',
   },
 
   currency: {
@@ -52,6 +54,7 @@ const en: TranslationSchema = {
   title: {
     main: '⚔️ Lineage W Comprehensive Calculator',
     subtitle: 'Professional game assistant tools',
+    lab: 'Data Lab',
   },
 
   nav: {
@@ -250,53 +253,52 @@ const en: TranslationSchema = {
 
   descriptions: {
     godTier:
-      '🌟 God-tier Pet! Growth far exceeds expectations, worthy of heavy investment! This is an extremely rare premium pet!',
+      '🌟 God-tier Pet! Attribute growth far exceeds expectations, worth focusing on cultivating! This is an extremely rare top-quality pet!',
     highQuality:
-      '⭐ High Quality Pet! Growth exceeds average standards, recommended for continued development.',
-    normal: '✅ Normal Pet, growth meets expectations and can be used normally.',
+      '⭐ High-quality pet! Attribute growth is above average, recommended for continued cultivation.',
+    normal: '✅ Normal pet, attribute growth meets expectations, can be used normally.',
     needImprovement:
-      "⚠️ This pet's growth is below average, consider enhancement or finding a better replacement.",
-    tragic: '💔 Tragic Pet, extremely poor growth, strongly recommend retraining or replacing.',
-    excellent: '🌟 Excellent growth, far exceeds expectations!',
-    good: '⭐ Good growth, performing well',
-    average: '✅ Average growth, meets expectations',
-    normalGrowth: '➡️ Normal growth, close to average',
-    poor: '⚠️ Needs improvement, below expectations',
-    fixed: '🔒 Fixed value, not included in scoring',
+      '⚠️ This pet s growth is below average, it is recommended to strengthen or find a better replacement.',
+    tragic:
+      '😭 Tragic! This pet s attribute growth is severely insufficient, with almost no cultivation value.',
+    excellent: 'God-tier pet, top-quality growth',
+    good: 'Excellent quality, recommended for cultivation',
+    average: 'Meets expectations, normal level',
+    normalGrowth: 'Close to average, acceptable',
+    poor: 'Below expectations, suggest retraining',
+    fixed: 'Fixed attribute',
   },
 
   help: {
-    title: '🐾 Help Guide',
-    usage: 'How to Use',
-    calculation: 'Calculation Logic',
-    ratingSystem: 'Rating System',
-
+    title: '🐾 Help',
+    usage: 'Usage',
+    calculation: 'Calculation Theory',
+    ratingSystem: '🏆 Rating System',
     steps: {
       title: '🚀 Usage Steps',
       step1: 'Select your pet type',
       step2: 'Enter pet level (1-15)',
       step3: 'Enter attribute values (⚠️Please deduct skill bonuses)',
-      step4: 'Click calculate button to view rating',
+      step4: 'Click the calculate button to see the evaluation',
     },
-
     baseData: {
-      title: '🎯 Pet Base Data',
+      title: '📋 Pet Base Stats by Level (HP/Endurance/Loyalty/Speed)',
     },
-
     calculationPrinciple: {
-      title: '🧮 Calculation Logic',
-      upgradeRates: 'Upgrade Rates',
+      title: '🧮 Calculation Principle',
+      upgradeRates: 'Upgrade Probabilities',
       mainStat: 'Main Stat: +1(5%), +2(15%), +3(30%), +4(20%), +5(15%), +6(10%), +7(5%)',
-      mainStatExpected: 'Expected: +3.75 per level',
+      mainStatExpected: 'Expected Value: +3.75 points per level',
       subStat: 'Sub Stat: +0(15%), +1(50%), +2(30%), +3(5%)',
-      subStatExpected: 'Expected: +1.25 per level',
-      formula: 'Rating Formula',
-      formula1: '1. Calculate Expected Value',
-      formula1Desc: 'Expected = Base + (Level-1) × Expected Growth per Level',
-      formula2: '2. Calculate Growth Rate',
-      formula2Desc: 'Growth Rate = (Current - Base) ÷ (Expected - Base)',
-      formula3: '3. Main Stat Weighting',
-      formula3Desc: 'Main stat score × 1.5 multiplier',
+      subStatExpected: 'Expected Value: +1.25 points per level',
+      formula: 'Rating Score = (Actual Growth / Expected Growth - 1) * 100',
+      formula1:
+        'Expected Growth = (Level - 1) * (Expected Main Stat Growth + Expected Sub Stat Growth * 3)',
+      formula1Desc: ' ',
+      formula2: ' ',
+      formula2Desc: ' ',
+      formula3: ' ',
+      formula3Desc: ' ',
     },
   },
 
@@ -464,7 +466,23 @@ const en: TranslationSchema = {
     info: 'Information',
     calculationComplete: 'Calculation complete',
     dataLoaded: 'Data loaded successfully',
-    languageChanged: 'Language switched',
+    languageChanged: 'Language changed',
+  },
+
+  footer: {
+    links: {
+      title: 'Related Links',
+      privacyPolicy: 'Privacy Policy',
+    },
+    feedback: {
+      title: 'Have any suggestions or comments?',
+      subtitle: 'Your feedback drives our improvement!',
+      button: 'Click to fill out the feedback form',
+    },
+    meta: {
+      lastUpdated: 'Last Updated:',
+      copyright: '© {year} OrionLabs. Created by Orion.',
+    },
   },
 }
 

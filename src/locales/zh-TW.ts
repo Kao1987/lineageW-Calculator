@@ -40,6 +40,8 @@ const zhTW: TranslationSchema = {
     toggleTheme: '切換主題',
     startNow: '立即使用',
     comingSoon: '敬請期待',
+    switchTheme: '切換模式',
+    switchLanguage: '切換語言',
   },
 
   currency: {
@@ -52,6 +54,7 @@ const zhTW: TranslationSchema = {
   title: {
     main: '⚔️ 天堂W 綜合計算器',
     subtitle: '專業的遊戲輔助計算工具',
+    lab: '數據實驗室',
   },
 
   nav: {
@@ -248,20 +251,20 @@ const zhTW: TranslationSchema = {
     highQuality: '⭐ 優質寵物！屬性成長超出平均水準，推薦繼續培養。',
     normal: '✅ 普通寵物，屬性成長合乎預期，可正常使用。',
     needImprovement: '⚠️ 這隻寵物的成長低於平均，建議強化或尋找更好的替代。',
-    tragic: '💔 悲劇寵物，屬性成長極差，強烈建議重新培養或更換寵物。',
-    excellent: '🌟 頂級成長，遠超預期！',
-    good: '⭐ 優秀成長，表現良好',
-    average: '✅ 良好成長，合乎預期',
-    normalGrowth: '➡️ 普通成長，接近平均',
-    poor: '⚠️ 待加強，低於預期',
-    fixed: '🔒 固定值，不參與評分',
+    tragic: '😭 悲劇！這隻寵物的屬性成長嚴重不足，幾乎沒有培養價值。',
+    excellent: '神級寵物，極品成長',
+    good: '品質優良，推薦培養',
+    average: '符合預期，正常水準',
+    normalGrowth: '接近平均，可接受',
+    poor: '低於預期，建議重練',
+    fixed: '固定屬性',
   },
 
   help: {
     title: '🐾 使用說明',
     usage: '使用方法',
     calculation: '計算原理',
-    ratingSystem: '評價等級',
+    ratingSystem: '🏆 評價等級',
 
     steps: {
       title: '🚀 使用步驟',
@@ -272,23 +275,23 @@ const zhTW: TranslationSchema = {
     },
 
     baseData: {
-      title: '🎯 寵物基礎數據',
+      title: '📋 各等級寵物基礎值 (體力/忍耐/忠誠/速度)',
     },
 
     calculationPrinciple: {
       title: '🧮 計算原理',
       upgradeRates: '升級機率',
-      mainStat: '主屬性：+1(5%)，+2(15%)，+3(30%)，+4(20%)，+5(15%)，+6(10%)，+7(5%)',
-      mainStatExpected: '期望值：每級+3.75點',
-      subStat: '副屬性：+0(15%)，+1(50%)，+2(30%)，+3(5%)',
-      subStatExpected: '期望值：每級+1.25點',
-      formula: '評分公式',
-      formula1: '1. 計算期望值',
-      formula1Desc: '期望值 = 基礎值 + (等級-1) × 每級期望成長',
-      formula2: '2. 計算成長率',
-      formula2Desc: '成長率 = (當前值 - 基礎值) ÷ (期望值 - 基礎值)',
-      formula3: '3. 主屬性加權',
-      formula3Desc: '主屬性分數 × 1.5倍權重',
+      mainStat: '主屬性：+1(5%), +2(15%), +3(30%), +4(20%), +5(15%), +6(10%), +7(5%)',
+      mainStatExpected: '預期值：每級 +3.75 點',
+      subStat: '副屬性：+0(15%), +1(50%), +2(30%), +3(5%)',
+      subStatExpected: '預期值：每級 +1.25 點',
+      formula: '評價分數 = (實際成長值 / 期望成長值 - 1) * 100',
+      formula1: '期望成長值 = (等級 - 1) * (主屬性期望增長 + 副屬性期望增長 * 3)',
+      formula1Desc: ' ',
+      formula2: ' ',
+      formula2Desc: ' ',
+      formula3: ' ',
+      formula3Desc: ' ',
     },
   },
 
@@ -449,6 +452,22 @@ const zhTW: TranslationSchema = {
     calculationComplete: '計算完成',
     dataLoaded: '數據載入完成',
     languageChanged: '語言已切換',
+  },
+
+  footer: {
+    links: {
+      title: '相關連結',
+      privacyPolicy: '隱私權政策',
+    },
+    feedback: {
+      title: '有任何建議或意見嗎？',
+      subtitle: '您的回饋是我們進步的動力！',
+      button: '點擊填寫回饋表單',
+    },
+    meta: {
+      lastUpdated: '最後更新：',
+      copyright: '© {year} OrionLabs. 由 Orion 建立。',
+    },
   },
 }
 

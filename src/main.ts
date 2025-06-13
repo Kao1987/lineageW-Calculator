@@ -17,7 +17,7 @@ console.log(
   'color: #dc3545; font-size: 12px; font-weight: bold;',
 )
 console.log('%c🌐 Website: https://orionlabs.pro', 'color: #28a745; font-size: 12px;')
-console.log('%c🔗 GitHub: https://github.com/kao1987/OrionLabs', 'color: #6f42c1; font-size: 12px;')
+// console.log('%c🔗 GitHub: https://github.com/kao1987/OrionLabs', 'color: #6f42c1; font-size: 12px;')
 
 // 反除錯機制
 if (import.meta.env.PROD) {
@@ -66,6 +66,9 @@ import { setPageMeta, defaultMeta } from '../modules/shared/utils/seo'
 
 const app = createApp(App)
 
+console.log('App version:', '3.1.0')
+
+// 註冊 Pinia
 app.use(createPinia())
 app.use(router)
 app.use(i18n)

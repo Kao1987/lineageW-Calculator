@@ -2,7 +2,7 @@
   <div class="help-modal-overlay" @click="closeModal">
     <div class="help-modal" @click.stop>
       <div class="modal-header">
-        <h2>{{ t('help.title', '🐾 使用說明') }}</h2>
+        <h2>{{ t('help.title') }}</h2>
         <button class="close-btn" @click="closeModal">×</button>
       </div>
 
@@ -22,90 +22,74 @@
         <div class="tab-content">
           <!-- 使用方法 -->
           <div v-if="activeTab === 'usage'" class="content-section">
-            <h3>{{ t('help.steps.title', '🚀 使用步驟') }}</h3>
+            <h3>{{ t('help.steps.title') }}</h3>
             <div class="steps-list">
               <div class="step-item">
                 <div class="step-number">1</div>
-                <div class="step-desc">{{ t('help.steps.step1', '選擇您的寵物類型') }}</div>
+                <div class="step-desc">{{ t('help.steps.step1') }}</div>
               </div>
               <div class="step-item">
                 <div class="step-number">2</div>
-                <div class="step-desc">{{ t('help.steps.step2', '輸入寵物等級（1-15）') }}</div>
+                <div class="step-desc">{{ t('help.steps.step2') }}</div>
               </div>
               <div class="step-item">
                 <div class="step-number">3</div>
                 <div class="step-desc">
-                  {{ t('help.steps.step3', '輸入各屬性數值（⚠️請扣除技能加成）') }}
+                  {{ t('help.steps.step3') }}
                 </div>
               </div>
               <div class="step-item">
                 <div class="step-number">4</div>
-                <div class="step-desc">{{ t('help.steps.step4', '點擊計算按鈕查看評價') }}</div>
+                <div class="step-desc">{{ t('help.steps.step4') }}</div>
               </div>
             </div>
           </div>
 
           <!-- 計算原理 -->
           <div v-if="activeTab === 'theory'" class="content-section">
-            <h3>{{ t('help.calculationPrinciple.title', '🧮 計算原理') }}</h3>
+            <h3>{{ t('help.calculationPrinciple.title') }}</h3>
             <div class="theory-content">
-              <h4>{{ t('help.calculationPrinciple.upgradeRates', '升級機率') }}</h4>
+              <h4>{{ t('help.calculationPrinciple.upgradeRates') }}</h4>
               <p>
-                <strong>{{
-                  t(
-                    'help.calculationPrinciple.mainStat',
-                    '主屬性：+1(5%), +2(15%), +3(30%), +4(20%), +5(15%), +6(10%), +7(5%)',
-                  )
-                }}</strong>
+                <strong>{{ t('help.calculationPrinciple.mainStat') }}</strong>
               </p>
-              <p>{{ t('help.calculationPrinciple.mainStatExpected', '預期值：每級 +3.75 點') }}</p>
+              <p>{{ t('help.calculationPrinciple.mainStatExpected') }}</p>
 
               <p>
-                <strong>{{
-                  t(
-                    'help.calculationPrinciple.subStat',
-                    '副屬性：+0(15%), +1(50%), +2(30%), +3(5%)',
-                  )
-                }}</strong>
+                <strong>{{ t('help.calculationPrinciple.subStat') }}</strong>
               </p>
-              <p>{{ t('help.calculationPrinciple.subStatExpected', '預期值：每級 +1.25 點') }}</p>
+              <p>{{ t('help.calculationPrinciple.subStatExpected') }}</p>
             </div>
           </div>
 
           <!-- 評價等級 -->
           <div v-if="activeTab === 'grades'" class="content-section">
-            <h3>{{ t('help.ratingSystem', '🏆 評價等級') }}</h3>
+            <h3>{{ t('help.ratingSystem') }}</h3>
             <div class="grade-list">
               <div class="grade-item mythic-quality">
-                <span class="grade-label">{{ t('ratings.excellent', '頂級') }}</span>
+                <span class="grade-label">{{ t('ratings.excellent') }}</span>
                 <span class="grade-range">≥140%</span>
-                <span class="grade-desc">{{
-                  t('descriptions.excellent', '神級寵物，極品成長')
-                }}</span>
+                <span class="grade-desc">{{ t('descriptions.excellent') }}</span>
               </div>
               <div class="grade-item legend-quality">
-                <span class="grade-label">{{ t('ratings.good', '優秀') }}</span>
+                <span class="grade-label">{{ t('ratings.good') }}</span>
                 <span class="grade-range">120-139%</span>
-                <span class="grade-desc">{{ t('descriptions.good', '品質優良，推薦培養') }}</span>
+                <span class="grade-desc">{{ t('descriptions.good') }}</span>
               </div>
               <div class="grade-item hero-quality">
-                <span class="grade-label">{{ t('ratings.average', '良好') }}</span>
+                <span class="grade-label">{{ t('ratings.average') }}</span>
                 <span class="grade-range">100-119%</span>
-                <span class="grade-desc">{{
-                  t('descriptions.average', '符合預期，正常水準')
-                }}</span>
+                <span class="grade-desc">{{ t('descriptions.average') }}</span>
               </div>
               <div class="grade-item rare-quality">
-                <span class="grade-label">{{ t('ratings.normal', '普通') }}</span>
+                <span class="grade-label">{{ t('ratings.normal') }}</span>
                 <span class="grade-range">85-99%</span>
-                <span class="grade-desc">{{
-                  t('descriptions.normalGrowth', '接近平均，可接受')
-                }}</span>
+                <span class="grade-desc">{{ t('descriptions.normalGrowth') }}</span>
               </div>
               <div class="grade-item normal-quality">
-                <span class="grade-label">{{ t('ratings.poor', '待加強') }}</span>
+                <span class="grade-label">{{ t('ratings.poor') }}</span>
                 <span class="grade-range">&lt;85%</span>
-                <span class="grade-desc">{{ t('descriptions.poor', '低於預期，建議重練') }}</span>
+                <span class="grade-desc">{{ t('descriptions.poor') }}</span>
               </div>
             </div>
           </div>
@@ -116,7 +100,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -129,11 +113,11 @@ const emit = defineEmits<{
 // 響應式數據
 const activeTab = ref('usage')
 
-const tabs = [
-  { id: 'usage', label: t('help.usage', '使用方法') },
-  { id: 'theory', label: t('help.calculation', '計算原理') },
-  { id: 'grades', label: t('help.ratingSystem', '評價等級') },
-]
+const tabs = computed(() => [
+  { id: 'usage', label: t('help.usage') },
+  { id: 'theory', label: t('help.calculation') },
+  { id: 'grades', label: t('help.ratingSystem') },
+])
 
 // 方法
 function closeModal() {

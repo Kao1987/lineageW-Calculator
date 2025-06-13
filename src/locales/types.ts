@@ -38,6 +38,8 @@ export interface CommonTranslations {
   toggleTheme: string
   startNow: string
   comingSoon: string
+  switchTheme: string
+  switchLanguage: string
 }
 
 export interface CurrencyTranslations {
@@ -50,6 +52,7 @@ export interface CurrencyTranslations {
 export interface TitleTranslations {
   main: string
   subtitle: string
+  lab: string
 }
 
 export interface NavTranslations {
@@ -435,6 +438,22 @@ export interface SkillsTranslations {
   improved_speed: string
 }
 
+export interface FooterTranslations {
+  links: {
+    title: string
+    privacyPolicy: string
+  }
+  feedback: {
+    title: string
+    subtitle: string
+    button: string
+  }
+  meta: {
+    lastUpdated: string
+    copyright: string
+  }
+}
+
 export interface TranslationSchema extends Record<string, unknown> {
   common: CommonTranslations
   currency: CurrencyTranslations
@@ -451,6 +470,7 @@ export interface TranslationSchema extends Record<string, unknown> {
   jobChange: JobChangeTranslations
   modal: ModalTranslations
   notifications: NotificationsTranslations
+  footer: FooterTranslations
 }
 
 /**

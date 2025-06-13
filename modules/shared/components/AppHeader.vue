@@ -7,7 +7,7 @@
             <span class="logo-icon">⚔️</span>
             <div class="logo-text">
               <h1 class="app-title">LineageW</h1>
-              <span class="app-subtitle">數據實驗室</span>
+              <span class="app-subtitle">{{ t('title.lab') }}</span>
             </div>
           </div>
         </router-link>
@@ -25,14 +25,20 @@
       </nav>
 
       <div class="header-actions">
-        <LanguageSwitcher />
-        <button
-          class="theme-toggle-btn"
-          @click="toggleTheme"
-          :aria-label="t('common.toggleTheme', '切換主題')"
-        >
-          {{ isDarkTheme ? '🌞' : '🌙' }}
-        </button>
+        <div class="action-item">
+          <span class="action-label">{{ t('common.switchTheme', '切換模式') }}</span>
+          <button
+            class="theme-toggle-btn"
+            @click="toggleTheme"
+            :aria-label="t('common.toggleTheme', '切換主題')"
+          >
+            {{ isDarkTheme ? '🌞' : '🌙' }}
+          </button>
+        </div>
+        <div class="action-item">
+          <span class="action-label">{{ t('common.switchLanguage', '切換語言') }}</span>
+          <LanguageSwitcher />
+        </div>
       </div>
     </div>
   </header>
@@ -113,6 +119,7 @@ const { toggleTheme } = appStore
   animation: goldenShimmer 3s ease-in-out infinite;
   position: relative;
   display: inline-block;
+  transition: font-size 0.3s ease;
 }
 
 .main-nav {
@@ -157,10 +164,21 @@ const { toggleTheme } = appStore
 
 .header-actions {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+}
+
+.action-item {
+  display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  height: 40px; /* 統一高度確保對齊 */
-  justify-content: flex-end;
+}
+
+.action-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
 }
 
 .theme-toggle-btn {
@@ -290,6 +308,10 @@ const { toggleTheme } = appStore
 @media (min-width: 1400px) {
   .header-container {
     max-width: 1600px;
+  }
+
+  .app-subtitle {
+    font-size: var(--font-size-md);
   }
 }
 

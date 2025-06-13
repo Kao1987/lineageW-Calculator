@@ -64,28 +64,18 @@ function getSavedLanguage(): string | null {
 // 語言變更處理
 function handleLanguageChange() {
   saveLanguagePreference(currentLanguage.value)
-
-  // 觸發全局語言變更事件
-  window.dispatchEvent(
-    new CustomEvent('languageChanged', {
-      detail: { language: currentLanguage.value },
-    }),
-  )
-
-  // 更新頁面標題和 meta 標籤
-  updatePageMeta()
-
+  updatePageMeta(t)
   console.log('Language changed to:', currentLanguage.value)
 }
 
 // 更新頁面 meta 資訊
-function updatePageMeta() {
+function updatePageMeta(translator: (key: string) => string) {
   document.documentElement.lang = currentLanguage.value
 
   // 更新頁面標題
   const titleKey = getCurrentPageTitleKey()
   if (titleKey) {
-    document.title = t(titleKey)
+    document.title = translator(titleKey)
   }
 }
 
@@ -112,7 +102,7 @@ function initializeLanguage() {
     saveLanguagePreference(initialLanguage)
   }
 
-  updatePageMeta()
+  updatePageMeta(t)
 }
 
 onMounted(() => {
@@ -124,7 +114,7 @@ onMounted(() => {
 .language-switcher {
   display: flex;
   align-items: center;
-  height: 40px; /* 與主題按鈕同高 */
+  height: 36px; /* 與主題按鈕同高 */
 }
 
 .language-select {

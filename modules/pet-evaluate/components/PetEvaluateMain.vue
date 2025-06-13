@@ -203,8 +203,9 @@ function showHelpModal() {
 }
 
 .step-number {
-  background-color: var(--color-primary);
-  color: var(--color-bg-primary);
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold-dark));
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   width: 28px;
   height: 28px;
@@ -212,6 +213,8 @@ function showHelpModal() {
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  border: 1px solid var(--color-gold-dark);
+  box-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
 }
 
 .placeholder {

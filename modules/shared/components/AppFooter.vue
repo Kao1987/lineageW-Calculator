@@ -4,9 +4,13 @@
       <div class="footer-content">
         <!-- 左欄：相關連結 -->
         <div class="footer-column footer-links-area">
-          <h5 class="footer-title">相關連結</h5>
+          <h5 class="footer-title">{{ t('footer.links.title') }}</h5>
           <ul>
-            <li><a href="#" @click.prevent="openPrivacyPolicy">隱私權政策</a></li>
+            <li>
+              <a href="#" @click.prevent="openPrivacyPolicy">{{
+                t('footer.links.privacyPolicy')
+              }}</a>
+            </li>
           </ul>
         </div>
 
@@ -14,8 +18,8 @@
         <div class="footer-column footer-feedback-area">
           <div class="feedback-icon">📝</div>
           <div class="feedback-text">
-            <h4 class="feedback-title">有任何建議或意見嗎？</h4>
-            <p class="feedback-subtitle">您的回饋是我們進步的動力！</p>
+            <h4 class="feedback-title">{{ t('footer.feedback.title') }}</h4>
+            <p class="feedback-subtitle">{{ t('footer.feedback.subtitle') }}</p>
           </div>
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSfgqhDqccI-FwdwKCUL6EW7TqyJpCisUarKeyUu-Fv4BKidIA/viewform?usp=dialog"
@@ -23,17 +27,17 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            點擊填寫回饋表單
+            {{ t('footer.feedback.button') }}
           </a>
         </div>
 
         <!-- 右欄：Meta 資訊 -->
         <div class="footer-column footer-meta-area">
           <div class="last-updated">
-            最後更新：<span id="last-updated-time">{{ lastUpdated }}</span>
+            {{ t('footer.meta.lastUpdated') }}<span id="last-updated-time">{{ lastUpdated }}</span>
           </div>
           <div class="copyright-info">
-            &copy; {{ new Date().getFullYear() }} OrionLabs. Created by Orion.
+            {{ t('footer.meta.copyright', { year: new Date().getFullYear() }) }}
           </div>
         </div>
       </div>
@@ -44,8 +48,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useModal } from '@/shared/composables/useModal'
+import { useI18n } from 'vue-i18n'
 
-const lastUpdated = ref('讀取中...')
+const { t } = useI18n()
+const lastUpdated = ref(t('common.loading'))
 const { openModal, registerModal } = useModal()
 
 // 隱私權政策模態視窗的 ID
@@ -61,7 +67,7 @@ onMounted(async () => {
   registerModal({
     id: PRIVACY_POLICY_MODAL_ID,
     component: 'PrivacyPolicy',
-    title: '隱私權政策',
+    title: t('footer.links.privacyPolicy'),
     size: 'large',
   })
 
@@ -70,16 +76,21 @@ onMounted(async () => {
     if (!response.ok) {
       throw new Error('Build info not found')
     }
-    const data = await response.json()
-    const date = new Date(data.lastUpdated)
-    lastUpdated.value = date.toLocaleString('zh-TW', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    })
+    const contentType = response.headers.get('content-type')
+    if (contentType && contentType.includes('application/json')) {
+      const data = await response.json()
+      const date = new Date(data.lastUpdated)
+      lastUpdated.value = date.toLocaleString('zh-TW', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })
+    } else {
+      throw new Error('Response was not JSON')
+    }
   } catch (error) {
     console.error('Failed to load build info:', error)
     lastUpdated.value = '2025/06/13'
@@ -136,6 +147,7 @@ onMounted(async () => {
   text-align: right;
   flex: 1;
   gap: var(--spacing-xs); /* 為最後更新和版權資訊添加間距 */
+  min-width: 250px; /* 避免寬度過窄導致換行 */
 }
 
 .feedback-icon {
@@ -146,6 +158,7 @@ onMounted(async () => {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: var(--spacing-sm);
+  transition: text-shadow 0.3s ease;
 }
 
 .feedback-text {
@@ -230,6 +243,7 @@ onMounted(async () => {
 .copyright-info,
 .last-updated {
   font-size: var(--font-size-sm);
+  white-space: nowrap;
 }
 
 .copyright-info {
@@ -248,10 +262,25 @@ onMounted(async () => {
 
 #last-updated-time {
   color: var(--color-text-accent);
-  font-weight: 500;
-  background-color: rgba(var(--color-text-accent-rgb, 14, 165, 233), 0.1);
+  background-color: var(--color-bg-tertiary);
   padding: 2px 6px;
   border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Keyframes 和 Fallback Variables */
@@ -296,6 +325,24 @@ onMounted(async () => {
 
   .app-footer {
     margin-bottom: 60px; /* 為手機版底部導航留空間 */
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-column {
+    align-items: center;
+  }
+
+  .footer-meta-area,
+  .footer-links-area {
+    align-items: center;
+    text-align: center;
   }
 }
 </style>
