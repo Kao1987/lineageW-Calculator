@@ -8,7 +8,7 @@ import { createMimeFixPlugin } from './vite-plugins/mime-fix'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/LineageW-Labs/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/lineageW-Labs/' : '/',
   plugins: [
     vue(),
     vueDevTools(),

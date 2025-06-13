@@ -42,6 +42,7 @@ deploy.sh
 *.sw?
 
 *.tsbuildinfo
+*.txt
 
 /cypress/videos/
 /cypress/screenshots/
