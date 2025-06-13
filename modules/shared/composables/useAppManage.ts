@@ -43,14 +43,14 @@ export function useAppManage() {
     isMobile: false,
     isOnline: navigator.onLine || true,
     lastActivity: Date.now(),
-    debugMode: typeof window !== 'undefined' && location.hostname === 'localhost'
+    debugMode: typeof window !== 'undefined' && location.hostname === 'localhost',
   })
 
   // 效能指標
   const performanceMetrics = ref<PerformanceMetrics>({
     initTime: 0,
     pageLoadTime: 0,
-    errors: 0
+    errors: 0,
   })
 
   // 事件監聽器清理函數
@@ -58,9 +58,11 @@ export function useAppManage() {
 
   // 計算屬性
   const isReady = computed(() => appState.value.isInitialized && !appState.value.isLoading)
-  const isDarkMode = computed(() => 
-    appState.value.theme === 'dark' || 
-    (appState.value.theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  const isDarkMode = computed(
+    () =>
+      appState.value.theme === 'dark' ||
+      (appState.value.theme === 'auto' &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches),
   )
 
   /**
@@ -68,7 +70,7 @@ export function useAppManage() {
    */
   async function initializeApp(): Promise<void> {
     const startTime = performance.now()
-    
+
     try {
       console.log('🚀 開始初始化應用程式...')
       appState.value.isLoading = true
@@ -97,7 +99,7 @@ export function useAppManage() {
       // 初始化完成
       appState.value.isInitialized = true
       appState.value.isLoading = false
-      
+
       const endTime = performance.now()
       performanceMetrics.value.initTime = endTime - startTime
 
@@ -110,7 +112,7 @@ export function useAppManage() {
         value: Math.round(performanceMetrics.value.initTime),
         language: appState.value.language,
         theme: appState.value.theme,
-        is_mobile: appState.value.isMobile
+        is_mobile: appState.value.isMobile,
       })
 
       // 顯示歡迎通知
@@ -118,26 +120,25 @@ export function useAppManage() {
         setTimeout(() => {
           notifications.showSuccess('歡迎使用天堂W計算器', {
             duration: 5000,
-            position: 'top-center'
+            position: 'top-center',
           })
           localStorage.setItem('welcome_shown', 'true')
         }, 1000)
       }
-
     } catch (error) {
       console.error('❌ 應用程式初始化失敗:', error)
       appState.value.isLoading = false
       performanceMetrics.value.errors++
-      
+
       notifications.showError('應用程式初始化失敗', {
-        duration: 0 // 不自動關閉
+        duration: 0, // 不自動關閉
       })
 
       trackEvent('app_initialization_error', {
         category: 'Error',
         label: error instanceof Error ? error.message : 'unknown',
         error_type: 'initialization',
-        error_message: error instanceof Error ? error.message : String(error)
+        error_message: error instanceof Error ? error.message : String(error),
       })
     }
   }
@@ -146,11 +147,12 @@ export function useAppManage() {
    * 檢測裝置類型
    */
   function detectDeviceType(): void {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                     window.innerWidth <= 768
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+      window.innerWidth <= 768
 
     appState.value.isMobile = isMobile
-    
+
     // 設置 CSS 變數
     document.documentElement.classList.toggle('mobile', isMobile)
     document.documentElement.classList.toggle('desktop', !isMobile)
@@ -160,7 +162,7 @@ export function useAppManage() {
    * 初始化主題
    */
   async function initializeTheme(): Promise<void> {
-    const savedTheme = localStorage.getItem('app_theme') as AppState['theme'] || 'auto'
+    const savedTheme = (localStorage.getItem('app_theme') as AppState['theme']) || 'auto'
     appState.value.theme = savedTheme
     applyTheme(savedTheme)
   }
@@ -193,7 +195,7 @@ export function useAppManage() {
     const themes: AppState['theme'][] = ['light', 'dark', 'auto']
     const currentIndex = themes.indexOf(appState.value.theme)
     const nextTheme = themes[(currentIndex + 1) % themes.length]
-    
+
     setTheme(nextTheme)
   }
 
@@ -208,7 +210,7 @@ export function useAppManage() {
     trackEvent('theme_changed', {
       category: 'User Preference',
       label: theme,
-      theme: theme
+      theme: theme,
     })
   }
 
@@ -257,11 +259,9 @@ export function useAppManage() {
     }, 30000) // 每30秒更新一次
 
     const activityEvents = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart']
-    activityEvents.forEach(event => {
+    activityEvents.forEach((event) => {
       document.addEventListener(event, updateActivity, true)
-      cleanupFunctions.value.push(() => 
-        document.removeEventListener(event, updateActivity, true)
-      )
+      cleanupFunctions.value.push(() => document.removeEventListener(event, updateActivity, true))
     })
 
     // 主題媒體查詢變化
@@ -308,7 +308,7 @@ export function useAppManage() {
         error_type: 'javascript',
         error_message: event.message,
         error_filename: event.filename,
-        error_line: event.lineno
+        error_line: event.lineno,
       })
 
       if (appState.value.debugMode) {
@@ -325,7 +325,7 @@ export function useAppManage() {
         category: 'Error',
         label: 'unhandled_promise_rejection',
         error_type: 'promise',
-        error_message: String(event.reason)
+        error_message: String(event.reason),
       })
     }
 
@@ -356,7 +356,9 @@ export function useAppManage() {
     // 監控頁面載入時間
     if ('navigation' in performance) {
       nextTick(() => {
-        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
+        const navigation = performance.getEntriesByType(
+          'navigation',
+        )[0] as PerformanceNavigationTiming
         performanceMetrics.value.pageLoadTime = navigation.loadEventEnd - navigation.loadEventStart
       })
     }
@@ -386,7 +388,7 @@ export function useAppManage() {
     const settings = {
       theme: appState.value.theme,
       language: appState.value.language,
-      lastVisit: Date.now()
+      lastVisit: Date.now(),
     }
 
     localStorage.setItem('app_settings', JSON.stringify(settings))
@@ -406,9 +408,9 @@ export function useAppManage() {
   function reloadApp(): void {
     trackEvent('app_reload', {
       category: 'App Lifecycle',
-      label: 'manual_reload'
+      label: 'manual_reload',
     })
-    
+
     window.location.reload()
   }
 
@@ -420,7 +422,7 @@ export function useAppManage() {
     saveUserSettings()
 
     // 清理事件監聽器
-    cleanupFunctions.value.forEach(cleanup => cleanup())
+    cleanupFunctions.value.forEach((cleanup) => cleanup())
     cleanupFunctions.value.length = 0
 
     // 清理通知
@@ -434,12 +436,12 @@ export function useAppManage() {
    */
   function setupRouterWatcher(): void {
     router.afterEach((to) => {
-      appState.value.currentPage = to.name as string || 'unknown'
-      
+      appState.value.currentPage = (to.name as string) || 'unknown'
+
       // 更新頁面標題
       nextTick(() => {
         const title = to.meta?.title || 'app.title'
-        document.title = `${title} - 天堂W 綜合計算器`
+        document.title = `${title} - LineageW 數據實驗室`
       })
     })
   }
@@ -472,7 +474,7 @@ export function useAppManage() {
 
     // 工具方法
     detectDeviceType,
-    updateViewportHeight
+    updateViewportHeight,
   }
 }
 

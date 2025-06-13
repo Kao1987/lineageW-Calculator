@@ -1,10 +1,10 @@
 import { Plugin } from 'vite'
 
-export function createCspPlugin(): Plugin {
+export function createCspPlugin(mode: string): Plugin {
   return {
     name: 'vite-plugin-csp',
-    transformIndexHtml(html, ctx) {
-      const isDev = ctx.server?.config.mode === 'development'
+    transformIndexHtml(html) {
+      const isDev = mode === 'development'
 
       const cspContent = [
         "default-src 'self'",

@@ -27,7 +27,7 @@ const { t } = useI18n()
 onMounted(() => {
   // SEO 設定
   setPageMeta({
-    title: '天堂W 轉職硬幣計算器 - 精確計算轉職成本',
+    title: '轉職花費計算器 - LineageW 數據實驗室',
     description:
       '專業的天堂W轉職硬幣計算工具，支援裝備、技能、魔法等各項轉職成本計算，幫助玩家精確規劃轉職預算',
     keywords: '天堂W,轉職計算,硬幣計算,裝備轉職,技能轉職,魔法轉職,成本計算',

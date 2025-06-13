@@ -43,7 +43,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       createMimeFixPlugin(),
-      createCspPlugin(),
+      createCspPlugin(mode),
       basicSsl(),
       AutoImport({
         imports: [

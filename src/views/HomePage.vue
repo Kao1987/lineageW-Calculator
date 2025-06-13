@@ -87,10 +87,10 @@ const { t } = useI18n()
 
 onMounted(() => {
   // 設置頁面 Meta 標籤
-  setPageMeta(pageMeta.home)
+  setPageMeta({ ...pageMeta.home, title: '首頁 - LineageW 數據實驗室' })
 
   // 追蹤頁面瀏覽
-  trackPageView('home', '首頁 - 天堂W 綜合計算器')
+  trackPageView('home', '首頁 - LineageW 數據實驗室')
 })
 </script>
 

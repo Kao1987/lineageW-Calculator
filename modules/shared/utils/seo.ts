@@ -19,6 +19,8 @@ export function setPageMeta(config: MetaConfig) {
   // 設置頁面標題
   if (config.title) {
     document.title = config.title
+  } else {
+    document.title = 'LineageW 數據實驗室'
   }
 
   // 設置或更新 meta 標籤
@@ -29,7 +31,7 @@ export function setPageMeta(config: MetaConfig) {
   updateMetaProperty('og:title', config.ogTitle || config.title)
   updateMetaProperty('og:description', config.ogDescription || config.description)
   updateMetaProperty('og:image', config.ogImage)
-  updateMetaProperty('og:site_name', '天堂W 綜合計算器')
+  updateMetaProperty('og:site_name', 'LineageW 數據實驗室')
   updateMetaProperty('og:type', 'website')
 
   // Twitter 標籤
@@ -61,16 +63,22 @@ function updateMetaTag(name: string, content?: string) {
 /**
  * 更新 property meta 標籤
  */
-function updateMetaProperty(property: string, content?: string) {
-  if (!content) return
-
-  let meta = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement
-  if (!meta) {
-    meta = document.createElement('meta')
-    meta.setAttribute('property', property)
-    document.head.appendChild(meta)
+export function updateMetaProperty(property: string, content: string): void {
+  let element = document.querySelector(`meta[property="${property}"]`)
+  if (!element) {
+    element = document.createElement('meta')
+    element.setAttribute('property', property)
+    document.head.appendChild(element)
   }
-  meta.content = content
+  element.setAttribute('content', content)
+
+  // 特別處理 og:site_name
+  if (property === 'og:site_name') {
+    const siteNameElement = document.querySelector('meta[property="og:site_name"]')
+    if (siteNameElement) {
+      siteNameElement.setAttribute('content', 'LineageW 數據實驗室')
+    }
+  }
 }
 
 /**
@@ -131,22 +139,22 @@ export const defaultMeta: MetaConfig = {
 export const pageMeta = {
   home: {
     ...defaultMeta,
-    title: '天堂W 綜合計算器 - 首頁',
+    title: '首頁 - LineageW 數據實驗室',
     canonical: '/',
   },
   petEvaluate: {
     ...defaultMeta,
-    title: '寵物評價系統 - 天堂W 綜合計算器',
+    title: '寵物評價系統 - LineageW 數據實驗室',
     description: '評估您的天堂W寵物屬性成長潛力，分析寵物品質等級，提供專業的寵物培養建議。',
-    ogTitle: '寵物評價系統 - 天堂W',
+    ogTitle: '寵物評價系統 - LineageW',
     ogDescription: '評估寵物屬性成長潛力，分析寵物品質等級',
     canonical: '/pet-evaluate',
   },
   jobChange: {
     ...defaultMeta,
-    title: '轉職花費計算器 - 天堂W 綜合計算器',
+    title: '轉職花費計算器 - LineageW 數據實驗室',
     description: '計算天堂W轉職所需的材料和費用，幫助您規劃最經濟的轉職路線，精確估算轉職成本。',
-    ogTitle: '轉職花費計算器 - 天堂W',
+    ogTitle: '轉職花費計算器 - LineageW',
     ogDescription: '計算轉職所需材料和費用，規劃經濟轉職路線',
     canonical: '/job-change',
   },
