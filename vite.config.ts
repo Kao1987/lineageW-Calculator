@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-import { defineConfig, ServerOptions } from 'vite'
+import { defineConfig, ServerOptions, Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -7,6 +7,7 @@ import { createMimeFixPlugin } from './vite-plugins/mime-fix'
 import { createCspPlugin } from './vite-plugins/csp-plugin'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import compression from 'vite-plugin-compression'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -91,12 +92,19 @@ export default defineConfig(({ mode }) => {
         threshold: 1024,
         deleteOriginFile: false,
       }),
+
+      visualizer({
+        open: true,
+        filename: 'dist/stats.html',
+        gzipSize: true,
+        brotliSize: true,
+      }) as Plugin,
     ],
     resolve: {
       alias,
     },
     define: {
-      __VUE_I18N_FULL_INSTALL__: true,
+      __VUE_I18N_FULL_INSTALL__: false,
       __VUE_I18N_LEGACY_API__: false,
       __VUE_I18N_PROD_DEVTOOLS__: false,
       __INTLIFY_PROD_DEVTOOLS__: false,
@@ -118,6 +126,12 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks(id) {
+            // 將多國語系檔案分離成獨立的 chunk
+            if (id.includes('src/locales/')) {
+              const lang = id.toString().split('locales/')[1].split('.')[0]
+              return `locale-${lang}`
+            }
+
             if (id.includes('node_modules')) {
               if (id.includes('vue-i18n')) return 'vue-i18n'
               if (id.includes('pinia')) return 'pinia'
