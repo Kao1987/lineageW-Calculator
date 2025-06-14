@@ -361,7 +361,7 @@ onMounted(() => {
 
 .announcement-content p {
   margin: 0;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   font-size: var(--font-size-base);
   opacity: 0.95;
 }

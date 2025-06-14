@@ -5,10 +5,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import PetEvaluateMain from '../../modules/pet-evaluate/components/PetEvaluateMain.vue'
+import { onMounted, defineAsyncComponent } from 'vue'
 import { setPageMeta, pageMeta } from '../../modules/shared/utils/seo'
 import { trackPageView } from '../../modules/shared/utils/analytics'
+
+const PetEvaluateMain = defineAsyncComponent(
+  () => import('../../modules/pet-evaluate/components/PetEvaluateMain.vue'),
+)
 
 onMounted(() => {
   // Set page meta tags

@@ -31,6 +31,13 @@ body {
   min-height: 100vh;
   line-height: 1.6;
   color: var(--text-primary);
+  overflow-x: hidden; /* 防止小螢幕水平捲動 */
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden; /* 防止水平方向內容溢位 */
+  overscroll-behavior-x: none; /* 阻止 iOS 慣性左右滑動 */
 }
 
 .app-container {

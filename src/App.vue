@@ -93,6 +93,8 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 100vw; /* 防止超出視窗寬度 */
+  overflow-x: hidden; /* 進一步保險 */
 }
 
 .main-container {

@@ -6,6 +6,7 @@ import Components from 'unplugin-vue-components/vite'
 import { createMimeFixPlugin } from './vite-plugins/mime-fix'
 import { createCspPlugin } from './vite-plugins/csp-plugin'
 import basicSsl from '@vitejs/plugin-basic-ssl'
+import compression from 'vite-plugin-compression'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -77,6 +78,19 @@ export default defineConfig(({ mode }) => {
           },
         ],
       }),
+      // 壓縮：同時產出 .br 與 .gz
+      compression({
+        algorithm: 'brotliCompress',
+        ext: '.br',
+        threshold: 1024,
+        deleteOriginFile: false,
+      }),
+      compression({
+        algorithm: 'gzip',
+        ext: '.gz',
+        threshold: 1024,
+        deleteOriginFile: false,
+      }),
     ],
     resolve: {
       alias,
@@ -101,6 +115,17 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       sourcemap: 'hidden',
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              if (id.includes('vue-i18n')) return 'vue-i18n'
+              if (id.includes('pinia')) return 'pinia'
+              return 'vendor'
+            }
+          },
+        },
+      },
     },
   }
 })

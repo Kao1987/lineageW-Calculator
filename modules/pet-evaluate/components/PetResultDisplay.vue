@@ -1,7 +1,6 @@
 <template>
   <section v-if="result" class="result-section">
     <div class="result-header">
-      <h2 class="result-title">{{ t('results.title', '計算結果') }}</h2>
       <button class="save-btn" @click="saveResult">
         <i class="fas fa-save"></i> {{ t('common.save', '儲存結果') }}
       </button>
@@ -44,7 +43,9 @@
           <div class="current-value">{{ analysis.currentValue }}</div>
           <div class="base-value">{{ analysis.baseValue }}</div>
           <div class="growth-value">+{{ analysis.growthValue }}</div>
-          <div class="expected-value">{{ analysis.expectedValue.toFixed(1) }}</div>
+          <div class="expected-value">
+            {{ analysis.stat === 'aggressiveness' ? '-' : analysis.expectedValue.toFixed(1) }}
+          </div>
           <div class="character-bonus">{{ analysis.characterBonus }}</div>
           <div class="rating-cell">
             <span class="rating-badge" :class="`rating-${analysis.rating}`">
@@ -104,6 +105,9 @@
           </span>
           <p class="rating-description">
             {{ getRatingDescription(result.rating) }}
+          </p>
+          <p class="score-explain">
+            {{ t('results.scoreExplain', '此分數為加權平均分，滿分 100 分') }}
           </p>
         </div>
       </div>
@@ -196,29 +200,8 @@ function getOverallRatingText(rating: OverallRating): string {
 
 .result-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.result-title {
-  color: var(--color-text-secondary);
-  margin-bottom: 30px;
-  font-size: 2rem;
-  text-align: center;
-  position: relative;
-}
-
-.result-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(135deg, var(--color-text-accent), var(--color-text-purple));
-  border-radius: 2px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
 .save-btn {
@@ -516,7 +499,12 @@ function getOverallRatingText(rating: OverallRating): string {
 }
 
 .rating-details {
-  flex-basis: 250px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
   text-align: center;
 }
 
@@ -684,5 +672,13 @@ function getOverallRatingText(rating: OverallRating): string {
 .rating-skill {
   background: var(--color-text-accent);
   color: white;
+}
+
+.score-explain {
+  color: var(--color-text-accent);
+  font-size: 0.8rem;
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.4;
 }
 </style>

@@ -228,6 +228,7 @@ const zhTW: TranslationSchema = {
     waitingDesc: '完成上方的數值輸入後，這裡將會顯示您的寵物評價結果。',
     overallRating: '整體評價',
     attribute: '屬性',
+    scoreExplain: '此分數為各屬性加權平均後的總分，滿分 100 分，分數越高代表成長越優秀',
   },
 
   ratings: {

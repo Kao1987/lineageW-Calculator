@@ -31,3 +31,16 @@ export const OVERALL_RATING_RULES: OverallRatingRule[] = [
   { minScore: 45, rating: 'needImprovement' },
   { minScore: 0, rating: 'tragic' },
 ]
+
+// =====  屬性上限計算相關  =====
+export const MAX_GROWTH_MAIN = 7 // 主屬性單級最大增長
+export const MAX_GROWTH_SUB = 3 // 副屬性單級最大增長
+
+// 技能加成上限（依寵物等級區間）
+export function getSkillBuffer(level: number): number {
+  if (level <= 5) return 6
+  if (level <= 10) return 9
+  return 12 // 11–15
+}
+
+export const AGGRESSIVENESS_MAX = 99

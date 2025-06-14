@@ -25,7 +25,7 @@
     </div>
 
     <!-- Step 3: Results Display -->
-    <div class="content-section results-section">
+    <div class="content-section results-section" ref="resultsSectionRef">
       <h2 class="section-title">
         <span class="step-number">3</span>
         {{ t('results.title', '計算結果') }}
@@ -86,9 +86,9 @@ import { usePetEvaluateStore } from '../stores'
 import PetSelector from './PetSelector.vue'
 import PetStatsInput from './PetStatsInput.vue'
 import PetResultDisplay from './PetResultDisplay.vue'
-import HelpModal from './HelpModal.vue'
+import { defineAsyncComponent } from 'vue'
 import { storeToRefs } from 'pinia'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch, nextTick } from 'vue'
 
 const { t } = useI18n()
 const petStore = usePetEvaluateStore()
@@ -96,6 +96,9 @@ const { calculationResult, calculationHistory, isCalculating } = storeToRefs(pet
 const { loadFromHistory, clearHistory } = petStore
 
 const showHelp = ref(false)
+const resultsSectionRef = ref<HTMLElement | null>(null)
+
+const HelpModal = defineAsyncComponent(() => import('./HelpModal.vue'))
 
 onMounted(() => {
   petStore.initialize()
@@ -104,6 +107,16 @@ onMounted(() => {
 function showHelpModal() {
   showHelp.value = true
 }
+
+watch(
+  () => calculationResult.value,
+  async (newVal) => {
+    if (newVal) {
+      await nextTick()
+      resultsSectionRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  },
+)
 </script>
 
 <style scoped>

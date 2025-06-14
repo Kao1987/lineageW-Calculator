@@ -199,6 +199,7 @@ export interface ResultsTranslations {
   waitingDesc: string
   overallRating: string
   attribute: string
+  scoreExplain?: string
 }
 
 export interface RatingsTranslations {

@@ -30,8 +30,12 @@ export const usePetEvaluateStore = defineStore('petEvaluate', () => {
   const availablePets = computed(() => getPetList())
 
   const canCalculate = computed(() => {
+    const petSelected = !!selectedPet.value
     return (
-      petLevel.value >= config.minLevel && petLevel.value <= config.maxLevel && hasValidInputs.value
+      petSelected &&
+      petLevel.value >= config.minLevel &&
+      petLevel.value <= config.maxLevel &&
+      hasValidInputs.value
     )
   })
 

@@ -2,9 +2,9 @@
 
 declare global {
   interface Window {
-    gtag: (type: string, action: string, parameters?: any) => void
-    dataLayer: any[]
-    trackEvent: (eventName: string, parameters?: any) => void
+    gtag: (...args: unknown[]) => void
+    dataLayer: unknown[][]
+    trackEvent: (eventName: string, parameters?: TrackEventParams) => void
   }
 }
 
@@ -15,7 +15,7 @@ export interface TrackEventParams {
   calculator_type?: string
   language?: string
   pet_type?: string
-  [key: string]: any
+  [key: string]: unknown
 }
 
 /**
@@ -32,18 +32,18 @@ export function initializeGA() {
   window.dataLayer = window.dataLayer || []
 
   // 定義 gtag 函數
-  window.gtag = function () {
-    window.dataLayer.push(arguments)
+  window.gtag = (...args: unknown[]) => {
+    window.dataLayer.push(args)
   }
 
-  window.gtag('js', new Date() as any)
+  window.gtag('js', new Date())
 
   // GA4 Enhanced Configuration
   window.gtag('config', 'G-6RPKQGPBG0', {
     // 增強測量
     enhanced_measurement: true,
     // 頁面標題追蹤
-    page_title: '天堂W 綜合計算器',
+    page_title: 'LineageW 數據實驗室',
     // 自定義維度
     custom_map: {
       custom_parameter_1: 'calculator_type',

@@ -92,7 +92,9 @@
             id="stat-endurance"
             v-model.number="inputStats.endurance"
             type="number"
+            :max="getMaxStat('endurance')"
             min="0"
+            @change="clampStat('endurance')"
             class="stat-value-input"
           />
           <div v-if="expectedStats" class="expected-hint">
@@ -101,6 +103,7 @@
           <div v-if="skillBonus.endurance > 0" class="skill-bonus">
             {{ t('pets.skillBonus', '技能加成') }}: +{{ skillBonus.endurance }}
           </div>
+          <div v-if="errors.endurance" class="input-error">{{ errors.endurance }}</div>
         </div>
 
         <!-- 忠誠心 -->
@@ -120,7 +123,9 @@
             id="stat-loyalty"
             v-model.number="inputStats.loyalty"
             type="number"
+            :max="getMaxStat('loyalty')"
             min="0"
+            @change="clampStat('loyalty')"
             class="stat-value-input"
           />
           <div v-if="expectedStats" class="expected-hint">
@@ -129,6 +134,7 @@
           <div v-if="skillBonus.loyalty > 0" class="skill-bonus">
             {{ t('pets.skillBonus', '技能加成') }}: +{{ skillBonus.loyalty }}
           </div>
+          <div v-if="errors.loyalty" class="input-error">{{ errors.loyalty }}</div>
         </div>
 
         <!-- 速度 -->
@@ -148,7 +154,9 @@
             id="stat-speed"
             v-model.number="inputStats.speed"
             type="number"
+            :max="getMaxStat('speed')"
             min="0"
+            @change="clampStat('speed')"
             class="stat-value-input"
           />
           <div v-if="expectedStats" class="expected-hint">
@@ -157,6 +165,7 @@
           <div v-if="skillBonus.speed > 0" class="skill-bonus">
             {{ t('pets.skillBonus', '技能加成') }}: +{{ skillBonus.speed }}
           </div>
+          <div v-if="errors.speed" class="input-error">{{ errors.speed }}</div>
         </div>
 
         <!-- 積極性 -->
@@ -173,12 +182,15 @@
             id="stat-aggressiveness"
             v-model.number="inputStats.aggressiveness"
             type="number"
+            :max="getMaxStat('aggressiveness')"
             min="3"
+            @change="clampStat('aggressiveness')"
             class="stat-value-input"
           />
           <div v-if="skillBonus.aggressiveness > 0" class="skill-bonus">
             {{ t('pets.skillBonus', '技能加成') }}: +{{ skillBonus.aggressiveness }}
           </div>
+          <div v-if="errors.aggressiveness" class="input-error">{{ errors.aggressiveness }}</div>
         </div>
 
         <!-- 體力 -->
@@ -198,7 +210,9 @@
             id="stat-hp"
             v-model.number="inputStats.hp"
             type="number"
+            :max="getMaxStat('hp')"
             min="0"
+            @change="clampStat('hp')"
             class="stat-value-input"
           />
           <div v-if="expectedStats" class="expected-hint">
@@ -207,6 +221,7 @@
           <div v-if="skillBonus.hp > 0" class="skill-bonus">
             {{ t('pets.skillBonus', '技能加成') }}: +{{ skillBonus.hp }}
           </div>
+          <div v-if="errors.hp" class="input-error">{{ errors.hp }}</div>
         </div>
       </div>
     </div>
@@ -217,6 +232,7 @@
         class="calculate-btn"
         :class="{ disabled: !canCalculate, loading: isCalculating }"
         :disabled="!canCalculate || isCalculating"
+        :title="disabledReason"
         @click="handleCalculate"
       >
         <span v-if="isCalculating" class="loading-spinner">⏳</span>
@@ -226,18 +242,21 @@
       <button class="reset-btn" @click="handleReset" :disabled="isCalculating">
         🔄 {{ t('common.reset', '重置') }}
       </button>
+
+      <p v-if="disabledReason && !canCalculate" class="calc-hint">{{ disabledReason }}</p>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { storeToRefs } from 'pinia'
 import { usePetEvaluateStore } from '../stores'
 import type { CalculationMode, SelectedSkill } from '../types'
 import PetSkillSelector from './PetSkillSelector.vue'
 import { calculateSkillBonus } from '../utils/skillData'
+import { MAX_GROWTH_MAIN, MAX_GROWTH_SUB, getSkillBuffer, AGGRESSIVENESS_MAX } from '../constants'
 
 const { t } = useI18n()
 
@@ -263,6 +282,13 @@ const skillBonus = computed(() => {
     aggressiveness: 0,
     hp: 0,
   }
+})
+
+// 計算按鈕禁用原因
+const disabledReason = computed(() => {
+  if (canCalculate.value) return ''
+  if (!selectedPet.value) return t('pets.selectType', '尚未選擇寵物類型')
+  return t('common.fillAllStats', '請輸入完整屬性')
 })
 
 // 處理模式切換
@@ -335,6 +361,31 @@ async function performCalculationWithSkills() {
   } finally {
     // 恢復原始值
     Object.assign(inputStats.value, originalStats)
+  }
+}
+
+// 計算各屬性的最大可輸入值 (含技能緩衝)
+function getMaxStat(statName: keyof typeof inputStats.value): number {
+  if (!selectedPet.value) return statName === 'aggressiveness' ? AGGRESSIVENESS_MAX : 100
+
+  if (statName === 'aggressiveness') return AGGRESSIVENESS_MAX
+
+  const isMain = selectedPet.value.mainStat === statName
+  const base = selectedPet.value.baseStats[statName]
+  const growthMax = (petLevel.value - 1) * (isMain ? MAX_GROWTH_MAIN : MAX_GROWTH_SUB)
+  const max = base + growthMax + getSkillBuffer(petLevel.value)
+  return max
+}
+
+// 驗證錯誤訊息
+const errors = reactive<Record<string, string>>({})
+
+function clampStat(statName: keyof typeof inputStats.value) {
+  const max = getMaxStat(statName)
+  if (inputStats.value[statName] > max) {
+    errors[statName] = `${t(`stats.${statName}`, statName)} 不可超過 ${max}`
+  } else {
+    delete errors[statName]
   }
 }
 </script>
@@ -635,6 +686,10 @@ async function performCalculationWithSkills() {
   display: flex;
   align-items: center;
   gap: 8px;
+  /* 水平居中 icon + 文字 */
+  justify-content: center;
+  /* 防止 iPhone 12 Pro 窄寬度下文字換行 */
+  white-space: nowrap;
 }
 
 .calculate-btn {
@@ -778,5 +833,44 @@ async function performCalculationWithSkills() {
   color: var(--color-text-accent);
   font-size: 0.75rem;
   font-style: italic;
+}
+
+.input-error {
+  text-align: center;
+  margin-top: 8px;
+  color: var(--color-text-error-dark);
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 600;
+  opacity: 0;
+  animation: fadeInShake 0.4s ease-out forwards;
+}
+
+@keyframes fadeInShake {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  25% {
+    opacity: 1;
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.calc-hint {
+  color: var(--color-text-warning);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 4px;
 }
 </style>
