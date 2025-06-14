@@ -22,8 +22,12 @@ export interface TrackEventParams {
  * 初始化 Google Analytics
  */
 export function initializeGA() {
-  // 讀取 GA4 Measurement ID (從環境變數帶入，若未設定則回退至舊 ID 以避免中斷)
-  const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-6RPKQGPBG0'
+  // 讀取 GA4 Measurement ID (必填)
+  const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined
+  if (!GA_MEASUREMENT_ID) {
+    console.warn('[Analytics] Missing VITE_GA_MEASUREMENT_ID in environment variables.')
+    return
+  }
 
   // 載入 gtag script
   const script = document.createElement('script')

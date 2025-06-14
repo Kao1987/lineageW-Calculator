@@ -78,26 +78,30 @@
       <h3>{{ t('results.overallRating', '整體評價') }}</h3>
       <div class="rating-display">
         <div class="score-circle">
-          <svg class="progress-ring" width="120" height="120">
+          <svg class="progress-ring" width="160" height="160">
             <circle
               class="progress-ring__circle_bg"
               stroke-width="8"
               fill="transparent"
-              r="52"
-              cx="60"
-              cy="60"
+              r="70"
+              cx="80"
+              cy="80"
             />
             <circle
               class="progress-ring__circle"
               stroke-width="8"
               fill="transparent"
-              r="52"
-              cx="60"
-              cy="60"
-              :style="{ strokeDasharray: circumference, strokeDashoffset: strokeDashoffset }"
+              r="70"
+              cx="80"
+              cy="80"
+              :style="{
+                strokeDasharray: circumference,
+                strokeDashoffset: strokeDashoffset,
+                stroke: '#ffc801',
+              }"
             />
           </svg>
-          <div class="score-text">{{ result.overallScore.toFixed(1) }}</div>
+          <div class="score-text score-silver">{{ result.overallScore.toFixed(1) }}</div>
         </div>
         <div class="rating-details">
           <span class="rating-badge" :class="`rating-${result.rating}`">
@@ -138,7 +142,8 @@ function saveResult() {
   }
 }
 
-const circumference = computed(() => 2 * Math.PI * 52)
+const RADIUS = 70
+const circumference = computed(() => 2 * Math.PI * RADIUS)
 const strokeDashoffset = computed(() => {
   if (!props.result) return circumference.value
   const progress = props.result.overallScore / 100
@@ -434,10 +439,11 @@ function getOverallRatingText(rating: OverallRating): string {
 
 .overall-rating {
   text-align: center;
-  background: var(--color-bg-secondary);
-  padding: 30px;
-  border-radius: 15px;
-  border: 1px solid var(--color-border-primary);
+  background: radial-gradient(circle at top left, #403b34 0%, #2f2a25 100%);
+  padding: 40px 30px;
+  border-radius: 20px;
+  border: 3px solid #ffc801;
+  box-shadow: 0 0 25px rgba(255, 200, 1, 0.12);
 }
 
 .overall-rating h3 {
@@ -450,7 +456,7 @@ function getOverallRatingText(rating: OverallRating): string {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .overall-rating .rating-badge {
@@ -474,8 +480,8 @@ function getOverallRatingText(rating: OverallRating): string {
 
 .score-circle {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
 }
 
 .progress-ring__circle_bg {
@@ -494,12 +500,12 @@ function getOverallRatingText(rating: OverallRating): string {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: var(--font-size-2xl);
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
 .rating-details {
-  flex: 1 1 300px;
+  flex: 1 1 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -680,5 +686,30 @@ function getOverallRatingText(rating: OverallRating): string {
   margin: 0 auto;
   max-width: 600px;
   line-height: 1.4;
+}
+
+/* 新增銀色文字樣式 */
+.score-silver {
+  color: #e8e8e8; /* 亮銀色 */
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.8),
+    0 0 12px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.4);
+  animation: silverGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes silverGlow {
+  from {
+    text-shadow:
+      0 0 4px rgba(255, 255, 255, 0.6),
+      0 0 8px rgba(255, 255, 255, 0.4),
+      0 0 12px rgba(255, 255, 255, 0.2);
+  }
+  to {
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 1),
+      0 0 16px rgba(255, 255, 255, 0.8),
+      0 0 24px rgba(255, 255, 255, 0.6);
+  }
 }
 </style>
