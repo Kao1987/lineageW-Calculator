@@ -12,11 +12,11 @@
     </div>
 
     <!-- Announcement Banner -->
-    <div class="announcement-banner">
+    <div class="announcement-banner" v-if="announcementContent">
       <div class="announcement-icon">📢</div>
       <div class="announcement-content">
         <h3>{{ t('home.announcement.title', '系統公告') }}</h3>
-        <p>{{ t('home.announcement.content', '專業的遊戲輔助計算工具，持續更新中...') }}</p>
+        <p>{{ announcementContent }}</p>
       </div>
     </div>
 
@@ -79,11 +79,44 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { onMounted } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { setPageMeta, pageMeta } from '../../modules/shared/utils/seo'
 import { trackPageView } from '../../modules/shared/utils/analytics'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
+const announcementContent = ref('')
+
+interface AnnouncementData {
+  [lang: string]: {
+    title: string
+    content: string
+  }
+}
+
+const loadAnnouncements = async () => {
+  try {
+    const response = await fetch('/announcements.json', { cache: 'no-cache' })
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const announcements: AnnouncementData = await response.json()
+    const currentLang = locale.value
+
+    if (announcements[currentLang]?.content) {
+      announcementContent.value = announcements[currentLang].content
+    } else if (announcements['zh-TW']?.content) {
+      // Fallback to zh-TW
+      announcementContent.value = announcements['zh-TW'].content
+    }
+  } catch (error) {
+    console.error('Failed to load announcements:', error)
+    announcementContent.value = ''
+  }
+}
+
+watch(locale, () => {
+  loadAnnouncements()
+})
 
 onMounted(() => {
   // 設置頁面 Meta 標籤
@@ -91,6 +124,9 @@ onMounted(() => {
 
   // 追蹤頁面瀏覽
   trackPageView('home', '首頁 - LineageW 數據實驗室')
+
+  // 載入公告
+  loadAnnouncements()
 })
 </script>
 

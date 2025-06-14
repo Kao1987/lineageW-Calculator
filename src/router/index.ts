@@ -102,6 +102,19 @@ const routes: RouteRecordRaw[] = [
   },
 ]
 
+// 只在開發模式下加入管理頁面路由
+if (import.meta.env.DEV) {
+  routes.push({
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('@/views/AdminPage.vue'),
+    meta: {
+      title: '公告管理',
+      showInNav: false,
+    },
+  })
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,

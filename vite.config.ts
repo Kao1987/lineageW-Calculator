@@ -5,6 +5,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { createMimeFixPlugin } from './vite-plugins/mime-fix'
 import { createCspPlugin } from './vite-plugins/csp-plugin'
+import { createApiPlugin } from './vite-plugins/api-plugin'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import compression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -46,6 +47,7 @@ export default defineConfig(({ mode }) => {
       vue(),
       createMimeFixPlugin(),
       createCspPlugin(mode),
+      createApiPlugin(),
       basicSsl(),
       AutoImport({
         imports: [
