@@ -22,10 +22,13 @@ export interface TrackEventParams {
  * 初始化 Google Analytics
  */
 export function initializeGA() {
+  // 讀取 GA4 Measurement ID (從環境變數帶入，若未設定則回退至舊 ID 以避免中斷)
+  const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-6RPKQGPBG0'
+
   // 載入 gtag script
   const script = document.createElement('script')
   script.async = true
-  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-6RPKQGPBG0'
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
   document.head.appendChild(script)
 
   // 初始化 dataLayer
@@ -39,7 +42,7 @@ export function initializeGA() {
   window.gtag('js', new Date())
 
   // GA4 Enhanced Configuration
-  window.gtag('config', 'G-6RPKQGPBG0', {
+  window.gtag('config', GA_MEASUREMENT_ID, {
     // 增強測量
     enhanced_measurement: true,
     // 頁面標題追蹤
