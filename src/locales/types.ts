@@ -19,7 +19,7 @@ export interface CommonTranslations {
   quantity: string
   loading: string
   reset: string
-  error: string
+  errorTitle: string
   confirm: string
   cancel: string
   save: string
@@ -40,6 +40,17 @@ export interface CommonTranslations {
   comingSoon: string
   switchTheme: string
   switchLanguage: string
+  screenshot: string
+  screenshotSuccess: string
+  screenshotFail: string
+  calculating: string
+  generating: string
+  shareResult: string
+  shareHint: string
+}
+
+export interface ErrorsTranslations {
+  imageFailed: string
 }
 
 export interface CurrencyTranslations {
@@ -476,6 +487,7 @@ export interface TranslationSchema extends Record<string, unknown> {
   modal: ModalTranslations
   notifications: NotificationsTranslations
   footer: FooterTranslations
+  errors: ErrorsTranslations
 }
 
 /**

@@ -21,7 +21,7 @@ const ko: TranslationSchema = {
     quantity: '수량:',
     loading: '로딩 중...',
     reset: '초기화',
-    error: '오류 발생',
+    errorTitle: '오류 발생',
     confirm: '확인',
     cancel: '취소',
     save: '저장',
@@ -42,6 +42,17 @@ const ko: TranslationSchema = {
     comingSoon: '곧 출시 예정',
     switchTheme: '테마 변경',
     switchLanguage: '언어 변경',
+    screenshot: '스크린샷',
+    screenshotSuccess: '스크린샷 성공',
+    screenshotFail: '스크린샷 실패',
+    calculating: '계산 중...',
+    generating: '이미지 생성 중...',
+    shareResult: '평가 결과 공유',
+    shareHint: '클릭하여 평가 결과 이미지를 생성하여 공유하거나 저장하세요',
+  },
+
+  errors: {
+    imageFailed: '이미지 생성 실패',
   },
 
   currency: {

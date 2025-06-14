@@ -1,11 +1,5 @@
 <template>
   <section v-if="result" class="result-section">
-    <div class="result-header">
-      <button class="save-btn" @click="saveResult">
-        <i class="fas fa-save"></i> {{ t('common.save', '儲存結果') }}
-      </button>
-    </div>
-
     <!-- 寵物資訊顯示 -->
     <div class="pet-info">
       <div class="selected-pet-display">
@@ -123,24 +117,15 @@
 import type { PetCalculationResult, RatingLevel, OverallRating } from '../types'
 import { getRatingDescription } from '../utils/calculations'
 import { useI18n } from 'vue-i18n'
-import { usePetEvaluateStore } from '../stores'
 import { computed } from 'vue'
 
 const { t } = useI18n()
-const petStore = usePetEvaluateStore()
 
 interface Props {
   result: PetCalculationResult | null
 }
 
 const props = defineProps<Props>()
-
-function saveResult() {
-  if (props.result) {
-    petStore.addToHistory(props.result)
-    // Optionally, show a success message
-  }
-}
 
 const RADIUS = 70
 const circumference = computed(() => 2 * Math.PI * RADIUS)

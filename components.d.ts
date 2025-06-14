@@ -32,5 +32,6 @@ declare module 'vue' {
     PrivacyPolicy: typeof import('./modules/shared/components/PrivacyPolicy.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ScreenshotPreviewModal: typeof import('./modules/shared/components/ScreenshotPreviewModal.vue')['default']
   }
 }

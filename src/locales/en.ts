@@ -21,7 +21,7 @@ const en: TranslationSchema = {
     quantity: 'Quantity:',
     loading: 'Loading...',
     reset: 'Reset',
-    error: 'Error occurred',
+    errorTitle: 'Error occurred',
     confirm: 'Confirm',
     cancel: 'Cancel',
     save: 'Save',
@@ -42,6 +42,17 @@ const en: TranslationSchema = {
     comingSoon: 'Coming Soon',
     switchTheme: 'Switch Theme',
     switchLanguage: 'Switch Language',
+    screenshot: 'Screenshot',
+    screenshotSuccess: 'Screenshot successful',
+    screenshotFail: 'Screenshot failed',
+    calculating: 'Calculating...',
+    generating: 'Generating image...',
+    shareResult: 'Share Evaluation Result',
+    shareHint: 'Click to generate an image of the evaluation result for sharing or saving',
+  },
+
+  errors: {
+    imageFailed: 'Failed to generate image',
   },
 
   currency: {

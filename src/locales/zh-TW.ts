@@ -21,7 +21,7 @@ const zhTW: TranslationSchema = {
     quantity: '數量:',
     loading: '載入中...',
     reset: '重置',
-    error: '發生錯誤',
+    errorTitle: '發生錯誤',
     confirm: '確認',
     cancel: '取消',
     save: '保存',
@@ -42,6 +42,17 @@ const zhTW: TranslationSchema = {
     comingSoon: '敬請期待',
     switchTheme: '切換模式',
     switchLanguage: '切換語言',
+    screenshot: '截圖',
+    screenshotSuccess: '截圖成功',
+    screenshotFail: '截圖失敗',
+    calculating: '計算中...',
+    generating: '圖片產生中...',
+    shareResult: '分享評鑑結果',
+    shareHint: '點擊產生評鑑結果的圖片，可分享或儲存',
+  },
+
+  errors: {
+    imageFailed: '圖片產生失敗',
   },
 
   currency: {
