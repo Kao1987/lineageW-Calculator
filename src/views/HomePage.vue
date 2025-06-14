@@ -16,7 +16,7 @@
       <div class="announcement-icon">📢</div>
       <div class="announcement-content">
         <h3>{{ t('home.announcement.title', '系統公告') }}</h3>
-        <p>{{ announcementContent }}</p>
+        <p v-html="announcementContent"></p>
       </div>
     </div>
 
